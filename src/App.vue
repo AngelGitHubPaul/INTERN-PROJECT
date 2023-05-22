@@ -35,8 +35,12 @@ const web3modal = new Web3Modal({ projectId }, ethereumClient)
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+main{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  place-items: center;
+  justify-content: center;
 }
 
 .logo {
@@ -44,7 +48,7 @@ header {
   margin: 0 auto 2rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 100vw) {
   header {
     display: flex;
     place-items: center;
@@ -58,8 +62,9 @@ header {
   header .wrapper {
     display: flex;
     align-items: center;
-    place-items: flex-start;
-    flex-wrap: wrap;
+    place-items: center;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
   }
 }
 </style>
