@@ -26,7 +26,6 @@ const web3modal = new Web3Modal({ projectId }, ethereumClient)
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
-      <!-- <p>Connect Wallet</p> -->
       <w3m-core-button>Connect Wallet</w3m-core-button>
     </div>
   </header>
