@@ -1,10 +1,10 @@
-<script setup>
+<script>
 import HelloWorld from './components/HelloWorld.vue'
-
+import { publicKey } from '../src/custodianWallet/masterWallet.js';
 
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/html'
-import { configureChains, createConfig } from '@wagmi/core'
+import { configureChains, createConfig, getAccount } from '@wagmi/core'
 import { arbitrum, mainnet, polygon } from '@wagmi/core/chains'
 
 const chains = [arbitrum, mainnet, polygon]
@@ -18,24 +18,46 @@ const wagmiConfig = createConfig({
 })
 const ethereumClient = new EthereumClient(wagmiConfig, chains)
 const web3modal = new Web3Modal({ projectId }, ethereumClient)
+
+// on click event MASTER WALLET
+export default {
+  data() {
+    return {
+      showPublicKey: false,
+      publicKey: publicKey,
+    };
+  },
+  methods: {
+    toggle() {
+      this.showPublicKey = !this.showPublicKey;
+    }
+  },
+};
 </script>
 
 <template>
   <main>
-  <header>
-    <div class="wrapper">
-      <HelloWorld msg="Scan to connect wallet" />
-      <!-- <p>Connect Wallet</p> -->
-      <br>
-      <w3m-core-button>Connect Wallet</w3m-core-button>
-    </div>
-  </header>
+    <header>
+      <div class="wrapper">
+        <HelloWorld msg="Metamask wallet" />
+        <!-- <p>Connect Wallet</p> -->
+        <br>
+        <w3m-core-button>Connect Wallet</w3m-core-button>
+      </div>
+      <div>
+        <h1> Custodian Wallet </h1>
+        <button @click="toggle">Show Public Key</button>
+        <div v-if="showPublicKey">
+          <span>Public Key: {{ publicKey }}</span>
+        </div>
+      </div>
+    </header>
     <TheWelcome />
   </main>
 </template>
 
 <style scoped>
-main{
+main {
   height: 100vh;
   width: 100vw;
   display: flex;
