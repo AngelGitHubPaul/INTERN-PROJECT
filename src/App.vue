@@ -1,6 +1,6 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
 
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/html'
@@ -21,24 +21,26 @@ const web3modal = new Web3Modal({ projectId }, ethereumClient)
 </script>
 
 <template>
+  <main>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="Scan to connect wallet" />
       <!-- <p>Connect Wallet</p> -->
+      <br>
       <w3m-core-button>Connect Wallet</w3m-core-button>
     </div>
   </header>
-
-  <main>
     <TheWelcome />
   </main>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+main{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  place-items: center;
+  justify-content: center;
 }
 
 .logo {
@@ -46,7 +48,7 @@ header {
   margin: 0 auto 2rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 100vw) {
   header {
     display: flex;
     place-items: center;
@@ -60,8 +62,9 @@ header {
   header .wrapper {
     display: flex;
     align-items: center;
-    place-items: flex-start;
-    flex-wrap: wrap;
+    place-items: center;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
   }
 }
 </style>
