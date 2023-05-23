@@ -1,7 +1,7 @@
 <script setup>
+import { ref } from 'vue';
+import RegistrationModal from './components/RegistrationModal.vue';
 import HelloWorld from './components/HelloWorld.vue'
-
-
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/html'
 import { configureChains, createConfig } from '@wagmi/core'
@@ -18,6 +18,18 @@ const wagmiConfig = createConfig({
 })
 const ethereumClient = new EthereumClient(wagmiConfig, chains)
 const web3modal = new Web3Modal({ projectId }, ethereumClient)
+
+//for the register modal
+const showModal = ref(false); // Initially, the modal is hidden
+
+const openModal = () => {
+  showModal.value = true; // Show the modal when the button is clicked
+};
+
+const closeModal = () => {
+  showModal.value = false; // Close the modal when the close event is emitted
+};
+
 </script>
 
 <template>
@@ -28,9 +40,11 @@ const web3modal = new Web3Modal({ projectId }, ethereumClient)
       <!-- <p>Connect Wallet</p> -->
       <br>
       <w3m-core-button>Connect Wallet</w3m-core-button>
+      <br>
+      <button @click="openModal">Register Account</button>
+      <RegistrationModal v-if="showModal" @close="closeModal"/>
     </div>
   </header>
-    <TheWelcome />
   </main>
 </template>
 
