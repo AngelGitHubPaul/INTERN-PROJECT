@@ -6,6 +6,7 @@ import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/html'
 import { configureChains, createConfig } from '@wagmi/core'
 import { arbitrum, mainnet, polygon } from '@wagmi/core/chains'
+import Navigation from './components/Navigation.vue';
 
 const chains = [arbitrum, mainnet, polygon]
 const projectId = '3573bd0abc5671d2624f6e29d229f71a'
@@ -34,51 +35,25 @@ const closeModal = () => {
 
 <template>
   <main>
+      <Navigation/>  
   <header>
     <div class="wrapper">
-      <HelloWorld msg="Scan to connect wallet" />
+      <HelloWorld msg="Welcome to Your Mint Wallet!" />
       <!-- <p>Connect Wallet</p> -->
       <br>
-      <w3m-core-button>Connect Wallet</w3m-core-button>
       <br>
       <button @click="openModal">Register Account</button>
       <RegistrationModal v-if="showModal" @close="closeModal"/>
     </div>
+
   </header>
+  <section>
+    <div class="box-container">
+      <div class="container">1</div>
+      <div class="container">2</div>
+      <div class="container">3</div>
+      <div class="container">4</div>
+    </div>
+  </section>
   </main>
 </template>
-
-<style scoped>
-main{
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  place-items: center;
-  justify-content: center;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 100vw) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    align-items: center;
-    place-items: center;
-    /* flex-wrap: wrap; */
-    flex-direction: column;
-  }
-}
-</style>
