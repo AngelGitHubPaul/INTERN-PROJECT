@@ -6,6 +6,7 @@ import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/html'
 import { configureChains, createConfig, getAccount } from '@wagmi/core'
 import { arbitrum, mainnet, polygon } from '@wagmi/core/chains'
+import { sendEmail } from "./lib/utils.js"
 import Navigation from './components/Navigation.vue';
 
 const chains = [arbitrum, mainnet, polygon]
@@ -31,6 +32,14 @@ export default {
     methods: {
         toggle() {
             this.showPublicKey = !this.showPublicKey;
+        },
+        async triggerSendEmail() {
+          try {
+            await sendEmail()
+            console.log("arovugj")
+          } catch (error) {
+            console.log(error)
+          }
         }
     },
     components: { Navigation }
@@ -53,6 +62,7 @@ export default {
         <div v-if="showPublicKey">
           <span>Public Key: {{ publicKey }}</span>
         </div>
+        <button @click="triggerSendEmail">Send Email</button>
       </div>
     </header>
     <TheWelcome />
