@@ -2,8 +2,11 @@ const express = require('express');
 const mongoose = require("mongoose");
 const cors = require('cors');
 const Wallet = require('./model');
+const dotenv = require('dotenv');
 
-const mongoURI = "mongodb+srv://Madii:Madii@keys.s53cekq.mongodb.net/?retryWrites=true&w=majority";
+dotenv.config();
+
+const mongoURI = process.env.VITE_DB_URI;
 const PORT = 4000;
 
 const app = express();
@@ -52,7 +55,7 @@ app.post('/api/keys', async (req, res) => {
         };
         // Send the response as JSON
         res.json(responseData);
-        res.send(wallet);
+        // res.send(wallet);
     } catch (error) {
         console.log(error);
         res.status(500).send(error);

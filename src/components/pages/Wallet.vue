@@ -9,7 +9,7 @@ import Navigation from '../Navigation.vue';
 import { fetchWallet } from '../../api/fetchDbData';
 
 const chains = [arbitrum, mainnet, polygon]
-const projectId = '3573bd0abc5671d2624f6e29d229f71a'
+const projectId = import.meta.env.VITE_PROJECT_ID;
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })])
 const wagmiConfig = createConfig({
