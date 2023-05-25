@@ -5,6 +5,8 @@ import App from './App.vue'
 import HomePage from './components/pages/HomePage.vue'
 import MintingPage from './components/pages/MintingPage.vue'
 import Wallet from './components/pages/Wallet.vue'
+import NftPage from './components/pages/NftPage.vue'
+import NotFoundPage from './components/pages/NotFoundPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -19,6 +21,14 @@ const routes = [
   {
     path: '/wallet',
     component: Wallet,
+  },
+  {
+    path: '/nft/:id',
+    component: NftPage,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: NotFoundPage,
   },
 ]
 
