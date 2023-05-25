@@ -1,10 +1,16 @@
+<script>
+
+export default{};
+</script>
+
 <template>
     <nav>
         <div class="nav-holder">
             <a href="" class="hover-link" >Trade</a>
             <a href="" class="hover-link">Earn</a>
-            <a href="" class="hover-link">NFT</a>
+            <a href="/mintnft" class="hover-link">NFT</a>
             <a href="" class="hover-link">CrossChain</a>
+            <a href="/wallet" class="hover-link">Wallet</a>
         </div>
         <w3m-core-button>Connect Wallet</w3m-core-button>
 
