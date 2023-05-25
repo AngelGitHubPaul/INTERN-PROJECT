@@ -12,12 +12,15 @@
     "@wagmi/core": "^1.0.5",
     "@web3modal/ethereum": "^2.4.1",
     "@web3modal/html": "^2.4.1",
+    "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
     "ethers": "^6.4.0",
     "express": "^4.18.2",
     "mongoose": "^7.2.0",
+    "nodemailer": "^6.9.2",
     "viem": "^0.3.31",
-    "vue": "^3.3.2"
+    "vue": "^3.3.2",
+    "vue-router": "^4.2.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
