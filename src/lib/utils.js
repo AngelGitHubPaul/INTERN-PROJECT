@@ -10,4 +10,4 @@ export const sendEmail = async (
 			method: 'POST',
 			body: JSON.stringify({ mailOptions })
 		})
-	);
+	).json();
