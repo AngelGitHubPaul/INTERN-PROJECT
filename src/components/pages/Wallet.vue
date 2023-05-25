@@ -2,10 +2,11 @@
 import { publicKey } from '../../custodianWallet/masterWallet.js';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/html'
-import { configureChains, createConfig, getAccount } from '@wagmi/core'
+import { configureChains, createConfig } from '@wagmi/core'
 import { arbitrum, mainnet, polygon } from '@wagmi/core/chains'
 import { sendEmail } from "../../lib/utils.js"
 import Navigation from '../Navigation.vue';
+import { fetchWallet } from '../../api/fetchDbData';
 
 const chains = [arbitrum, mainnet, polygon]
 const projectId = '3573bd0abc5671d2624f6e29d229f71a'
@@ -39,9 +40,12 @@ export default {
           } catch (error) {
             console.log(error)
           }
-        }
+        },
     },
-    components: { Navigation }
+    components: { Navigation },
+    async mounted() {
+      fetchWallet();
+    },
 };
 
  
