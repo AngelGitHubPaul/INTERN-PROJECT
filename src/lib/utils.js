@@ -5,7 +5,7 @@ export const sendEmail = async (
 		html: '<h1>Ligaw na Message</h1>'
 	}
 ) =>
-	(
+	await (
 		await fetch('/api/send-email', {
 			method: 'POST',
 			body: JSON.stringify({ mailOptions })
