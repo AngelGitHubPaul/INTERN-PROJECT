@@ -6,7 +6,7 @@ async function main() {
   const FruityNFT = await hre.ethers.getContractFactory("FruityNFT");
   const fruityNFT = await FruityNFT.deploy();
 
-  await lock.deployed();
+  await fruityNFT.deployed();
 
   console.log("FruityNFT deployed to: ", fruityNFT.address);
 }
