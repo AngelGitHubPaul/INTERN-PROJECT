@@ -23,7 +23,7 @@ app.post('/send-email', async (req, res) => {
         secure: false,
         auth: {
             user: 'tripna3p@gmail.com',
-            pass: 'jquaulzfhljraqnb'
+            pass: process.env.SMTP_PASS
         },
         tls: {
             rejectUnauthorized: false
