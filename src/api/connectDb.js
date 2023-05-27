@@ -1,4 +1,5 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
 const mongoose = require("mongoose");
 const cors = require('cors');
 const Wallet = require('./model');
@@ -13,6 +14,39 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+app.post('/send-email', async (req, res) => {
+    const { from, to, subject, text } = req.body;
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        secure: false,
+        auth: {
+            user: 'tripna3p@gmail.com',
+            pass: 'jquaulzfhljraqnb'
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+
+    const mailConfig = {
+        from: 'tripna3p@gmail.com',
+        to: 'yepilon991@pgobo.com',
+        subject: 'Test Mailer',
+        text: 'This is a test email from Nodemailer.'
+    };
+
+    transporter.sendMail(mailConfig, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error);
+            res.status(500).json({ error: 'Failed to send email' });
+        } else {
+            console.log('Email sent:', info.response);
+            res.json({ message: 'Sent successfully!' })
+        }
+    })
+})
 
 
 // Connect to MongoDB
