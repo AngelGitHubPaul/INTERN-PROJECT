@@ -1,22 +1,11 @@
-<script>
-
-import Navigation from './components/Navigation.vue';
-
-export default {
-    name: 'App',
-    components: { Navigation }
-};
-
- 
+<script setup>
+import Navigation from './components/Navigation.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
   <main>
-    <Navigation/>
-    <router-view></router-view>
-    <header>
-      
-    </header>
-    <TheWelcome />
+    <Navigation />
+    <RouterView />
   </main>
 </template>
