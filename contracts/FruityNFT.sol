@@ -26,23 +26,24 @@ contract FruityNFT is ERC721, Ownable {
         isPublicMintEnabled = _isPublicMintEnabled;
     }
 
-    // returns the img file location (URL) of the nft
+    // sets the base uri of the nft
     function setBaseTokenUri(string calldata _baseTokenUri) external onlyOwner {
         baseTokenUri = _baseTokenUri;
     }
 
     function tokenURI(uint256 _tokenId) public view override returns (string memory) {
-        // checks if the tokenId exists, then returns the nft's json resource identifier using baseTokenUri and tokenId (converted to string)
+        // checks if the tokenId exists
         require(_exists(_tokenId), 'Token does not exist');
 
+        // then returns the nft's json resource identifier using baseTokenUri and tokenId (converted to string)
         // then convert the json file name to its address on the blockchain (abi.encodePacked)
         return string(abi.encodePacked(baseTokenUri, Strings.toString(_tokenId), ".json"));
     }
 
     // function that checks if the withdraw is successful
     function withdraw() external onlyOwner {
-        // the function first calls the [withdrawWallet] then calls the call() method, then passes the [value] as a parameter which is the amount of eth that is needed to send
-        // then gets the transaction's snapshot and gets the [success] value
+        // the function first calls the [withdrawWallet] then calls the call() method, then passes the [value] as a parameter which is the balance of the user's wallet
+        // then gets the transaction's snapshot and gets the bool value then store it on [success]
         (bool success, ) = withdrawWallet.call{value: address(this).balance}('');
 
         // then pass it on the require function
@@ -60,7 +61,7 @@ contract FruityNFT is ERC721, Ownable {
         // checks if there's still a supply for that nft
         require(totalSupply + _quantity <= maxSupply, 'sold out');
 
-        // checks if the minting will exceed the nft count per wallet
+        // checks if the minting will exceed the mint limit count per wallet
         require(walletMints[msg.sender] + _quantity <= maxPerWallet, 'you already reach the limit per wallet');
 
         // reiterates _safeMint function as many times as the quantity value
