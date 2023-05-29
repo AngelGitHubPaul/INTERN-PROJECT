@@ -4,9 +4,8 @@ import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/html'
 import { configureChains, createConfig } from '@wagmi/core'
 import { arbitrum, mainnet, polygon } from '@wagmi/core/chains'
-import { sendEmail } from "../../lib/utils.js"
 import Navigation from '../Navigation.vue';
-import { fetchWallet } from '../../api/fetchDbData';
+import { fetchWallet } from '../../api/getAxios.js';
 
 const chains = [arbitrum, mainnet, polygon]
 const projectId = import.meta.env.VITE_PROJECT_ID;
@@ -32,14 +31,6 @@ export default {
     methods: {
         toggle() {
             this.showPublicKey = !this.showPublicKey;
-        },
-        async triggerSendEmail() {
-          try {
-            await sendEmail()
-            console.log("arovugj")
-          } catch (error) {
-            console.log(error)
-          }
         },
     },
     components: { Navigation },
