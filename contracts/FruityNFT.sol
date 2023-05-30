@@ -27,13 +27,13 @@ contract FruityNFT is ERC721, Ownable {
     //     isPublicMintEnabled = _isPublicMintEnabled;
     // }
 
-    // returns the img file location (URL) of the nft
+    // sets the base uri of the nft
     function setBaseTokenUri(string calldata _baseTokenUri) external onlyOwner {
         baseTokenUri = _baseTokenUri;
     }
     // this is the url that the opensea will call for the image of nft, we override it so that we can assign the baseTokenUri to this function
     function tokenURI(uint256 _tokenId) public view override returns (string memory) {
-        // checks if the tokenId exists, then returns the nft's json resource identifier using baseTokenUri and tokenId (converted to string)
+        // checks if the tokenId exists
         require(_exists(_tokenId), 'Token does not exist');
         // then convert the json file name to its address on the blockchain (abi.encodePacked)
         return string(abi.encodePacked(baseTokenUri, Strings.toString(_tokenId), ".json"));
@@ -60,7 +60,7 @@ contract FruityNFT is ERC721, Ownable {
         // checks if there's still a supply for that nft
         require(totalSupply + _quantity <= maxSupply, 'sold out');
 
-        // checks if the minting will exceed the nft count per wallet
+        // checks if the minting will exceed the mint limit count per wallet
         require(walletMints[msg.sender] + _quantity <= maxPerWallet, 'you already reach the limit per wallet');
 
 
