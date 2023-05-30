@@ -1,5 +1,9 @@
 @import './base.css';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 #app {
   max-width: 1280px;
   /* margin: 0 auto; */
@@ -34,7 +38,7 @@ a,
   }
 }
 
-main{
+main {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -68,15 +72,14 @@ main{
   }
 }
 
-section .box-container{
+section .box-container {
   display: flex;
   place-items: center;
   justify-content: center;
   gap: 35px;
-
 }
 
-section .container{
+section .container {
   display: flex;
   gap: 100px;
   border: solid;
@@ -88,7 +91,7 @@ section .container{
   font-size: x-large;
   width: 200px;
   height: 150px;
-  place-items:  center;
+  place-items: center;
   justify-content: center;
   margin-top: 5rem;
 }
