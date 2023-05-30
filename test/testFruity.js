@@ -20,5 +20,20 @@ describe("Mint Contract", function () {
             const ownerBalance = await fruityNFT.balanceOf(owner.address);
             expect(await fruityNFT.totalSupply()).to.equal(ownerBalance);
         });
+        it("Should not exceed the max supply", async function () {
+            const {fruityNFT} = await loadFixture(deployFruityNFT);
+            const totalSupply = await fruityNFT.totalSupply();
+            const quantity = 1;
+            const maxSupply = await fruityNFT.maxSupply();
+          
+            expect(totalSupply + quantity).to.be.at.most(maxSupply);
+          });
+        it("Should not exceed the limit per wallet", async function () {
+            const {fruityNFT, owner} = await loadFixture(deployFruityNFT);
+            const quantity = 1;
+            const maxPerWallet = await fruityNFT.maxPerWallet();
+            const userMints = await fruityNFT.walletMints(owner.address);
+            expect(userMints+quantity).to.be.at.most(maxPerWallet);
+        });
     });
 });
