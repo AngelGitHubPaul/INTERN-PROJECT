@@ -13,4 +13,16 @@ export async function fetchWallet() {
     }
 }
 
+// a client side function to fetch user email data in database
+export async function fetchEmail(_email) {
+    const email = _email;
+    try {
+        const result = await axios.get('http://localhost:5000/api/emails/${email}');
+        response = result.data; // Assign the fetched data to the response variable
+        console.log('response', response);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export default response;

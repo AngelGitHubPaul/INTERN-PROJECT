@@ -1,6 +1,7 @@
 const express = require('express');
 const Wallet = require('./database/dbSchema');
 const { sendEmail } = require('./mailer/emailService');
+const Email = require('./database/dbSchema');
 
 // Create an instance of the Express router:
 const router = express.Router();
@@ -56,6 +57,19 @@ router.post('/api/keys', async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
+  }
+});
+
+// Get request route to fetch user email
+router.get('/api/emails/:email', async (req, res) => {
+  const { email } = req.params.email;
+
+  try {
+    const userEmail = await Email.find({"email": email});
+    res.json(userEmail);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error retrieving user email data');
   }
 });
 
