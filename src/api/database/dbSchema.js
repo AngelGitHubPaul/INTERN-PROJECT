@@ -10,7 +10,7 @@ const keySchema = new mongoose.Schema({
 const Wallet = mongoose.model('Wallet', keySchema);
 
 // Export the Wallet model to be used in other parts of the application
-module.exports = Wallet; 
+module.exports.wallet = Wallet; 
 
 // define a schema for the email model
 const emailSchema = new mongoose.Schema({
@@ -21,4 +21,4 @@ const emailSchema = new mongoose.Schema({
 const Email = mongoose.model('Email', emailSchema);
 
 // Export the Email model to be used in other parts of the application
-module.exports = Email; 
+module.exports.email = Email; 

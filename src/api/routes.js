@@ -1,5 +1,5 @@
 const express = require('express');
-const Wallet = require('./database/dbSchema');
+const Schema = require('./database/dbSchema');
 const { sendEmail } = require('./mailer/emailService');
 const Email = require('./database/dbSchema');
 
@@ -22,7 +22,7 @@ router.post('/send-email', async (req, res) => {
 // Get request route to fetch all wallet data
 router.get('/api/keys', async (req, res) => {
   try {
-    const wallet = await Wallet.find();
+    const wallet = await Schema.wallet.find();
     res.json(wallet);
   } catch (error) {
     console.error(error);
@@ -62,10 +62,10 @@ router.post('/api/keys', async (req, res) => {
 
 // Get request route to fetch user email
 router.get('/api/emails/:email', async (req, res) => {
-  const { email } = req.params.email;
+  const { email } = req.params;
 
   try {
-    const userEmail = await Email.find({"email": email});
+    const userEmail = await Schema.email.find({"email": email});
     res.json(userEmail);
   } catch (error) {
     console.error(error);
