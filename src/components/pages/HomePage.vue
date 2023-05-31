@@ -29,9 +29,9 @@ export default {
 </script>
 
 <template>
-  <section class="m-5">
+  <section class="px-5">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
-      <div class="p-10">
+      <div class="p-5">
         <h1 class="text-5xl md:text-7xl pb-10">UVUVWE</h1>
         <p class="pb-8">
           Lorem ipsum dolor sit amet. Sed voluptatibus laborum rem deleniti
@@ -48,7 +48,7 @@ export default {
           </button>
         </div>
       </div>
-      <div class="relative p-10">
+      <div class="relative p-5">
         <img
           src="../../assets/Fruitie/1547667490.png"
           class="rounded-md absolute w-36"
@@ -66,7 +66,7 @@ export default {
       </div>
     </div>
   </section>
-  <section class="m-5 pt-20">
+  <section class="px-5 pt-20">
     <div class="flex flex-col md:flex-row align-middle bg-purple-500">
       <div class="flex-row basis-1/3 p-10">
         <span class="float-left material-symbols-outlined px-2">
@@ -94,7 +94,7 @@ export default {
       </div>
     </div>
   </section>
-  <section class="m-5 p-5">
+  <section class="p-5">
     <div class="mx-auto" id="about">
       <div class="flex flex-col md:flex-row gap-4">
         <div class="flex flex-row align-middle items-center basis-1/2">
@@ -145,7 +145,7 @@ export default {
       </div>
     </div>
   </section>
-  <section class="m-5 p-5">
+  <section class="p-5">
     <h1 class="text-4xl mt-10 pb-10">Market Trend</h1>
     <div class="flex justify-center mb-5 overflow-x-auto">
       <table
@@ -153,22 +153,22 @@ export default {
       >
         <thead>
           <tr>
-            <th class="px-4 py-2">Symbol</th>
-            <th class="px-4 py-2">Price</th>
-            <th class="px-4 py-2">Market Cap</th>
-            <th class="px-4 py-2">24h Change</th>
+            <th class="text-center px-4 py-2">Symbol</th>
+            <th class="text-center px-4 py-2">Price</th>
+            <th class="text-center px-4 py-2">Market Cap</th>
+            <th class="text-center px-4 py-2">24h Change</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="crypto in cryptocurrencies" :key="crypto.id">
-            <td class="border px-4 py-2">{{ crypto.symbol }}</td>
-            <td class="border px-4 py-2">
+            <td class="border text-center px-4 py-2">{{ crypto.symbol }}</td>
+            <td class="border text-center px-4 py-2">
               $ {{ crypto.quotes.USD.price.toFixed(2) }}
             </td>
-            <td class="border px-4 py-2">
+            <td class="border text-center px-4 py-2">
               $ {{ crypto.quotes.USD.market_cap }}
             </td>
-            <td class="border px-4 py-2">
+            <td class="border text-center px-4 py-2">
               {{ crypto.quotes.USD.market_cap_change_24h }}%
             </td>
           </tr>
