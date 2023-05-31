@@ -9,27 +9,35 @@
     "test:unit": "vitest"
   },
   "dependencies": {
-    "@wagmi/core": "^1.0.5",
+    "@openzeppelin/contracts": "^4.9.0",
+    "@wagmi/core": "^1.0.6",
     "@web3modal/ethereum": "^2.4.1",
     "@web3modal/html": "^2.4.1",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
-    "ethers": "^6.4.0",
+    "dotenv": "^16.0.3",
+    "ethers": "^5.0.0",
     "express": "^4.18.2",
-    "mongoose": "^7.2.0",
+    "mongoose": "^7.2.1",
     "nodemailer": "^6.9.2",
-    "viem": "^0.3.31",
-    "vue": "^3.3.2",
+    "viem": "^0.3.36",
+    "vue": "^3.3.4",
     "vue-router": "^4.2.1"
   },
   "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/test-utils": "^2.3.2",
+
     "autoprefixer": "^10.4.14",
+
+    "dotenv": "^16.0.3",
+    "hardhat": "^2.14.0",
+
     "jsdom": "^22.0.0",
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2",
     "vite": "^4.3.8",
-    "vitest": "^0.31.0"
+    "vitest": "^0.31.1"
   }
 }
