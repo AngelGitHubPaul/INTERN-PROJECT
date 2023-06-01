@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "name": "Anya Waku Waku",
+    "imageURL": "https://staticg.sportskeeda.com/editor/2022/08/c5992-16616271792389-1920.jpg",
+    "price": 1.3
+  },
+
+  {
+    "id": 2,
+    "name": "Anya Smug",
+    "imageURL": "https://pbs.twimg.com/media/FS646o-UcAE3luS?format=jpg&name=small",
+    "price": 2.5
+  }
+]
