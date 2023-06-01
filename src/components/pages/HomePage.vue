@@ -176,6 +176,37 @@ export default {
       </table>
     </div>
   </section>
+  <section class="px-5">
+      <h1 class="text-4xl flex justify-center mb-5">Marketplace</h1>
+      <div class="mx-auto flex justify-center items-center">
+          <span class="float-left material-symbols-outlined px-2" data-v-9ee6238f=""> arrow_left </span>
+          <p class="text-gray-700">   Best Seller NFT's</p>
+          <span class="float-left material-symbols-outlined px-2" data-v-9ee6238f=""> arrow_right </span>
+      </div>
+      <div class=" bg-white flex flex-row justify-center align-middle gap-1 p-5" data-v-9ee6238f="">
+            <img src="/src/assets/Fruitie/1547667490.png" class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
+            <img src="/src/assets/Fruitie/2997147654.png" class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
+            <img src="/src/assets/Fruitie/5404552974.png" class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
+      </div>
+  </section>
+  <section  class="px-5">
+    <div class="mx-auto flex justify-center items-center">
+      <p class="text-gray-700">   About Us</p>
+    </div>
+    <div class="mx-auto flex justify-center items-center">
+      <p class="text-2xl mb-2" data-v-9ee6238f="">Frequently asked questions</p>
+    </div>
+    <div class="mx-auto flex justify-center items-center"> 
+    <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f=""><div data-v-9ee6238f="">
+      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> What is NFT? </button>
+      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> What is NFSpace? </button>
+    </div><div data-v-9ee6238f="">
+      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> How to Mint? </button>
+      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> How payments process? </button>
+    </div>
+    </div>
+    </div>
+  </section>
 </template>
 
 <style scoped>
