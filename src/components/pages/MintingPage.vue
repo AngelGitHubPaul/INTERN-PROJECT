@@ -18,7 +18,7 @@
 
     <div class="basis-2/3 pr-16">
       <p class=" font-bold text-white text-2xl">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
+        Lorem ipum dolor sit amet, consectetur adipisicing elit. Cupiditate
         aliquid veniam libero explicabo saepe recusandae eligendi? Ducimus
         similique laboriosam iste maxime voluptatum perspiciatis suscipit
         sapiente quidem minus, nobis et tempore corrupti saepe repudiandae earum

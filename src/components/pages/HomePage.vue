@@ -1,4 +1,4 @@
-<script>
+<script lang>
 export default {
   data() {
     return {
