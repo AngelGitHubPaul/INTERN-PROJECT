@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <nav class="flex justify-end w-screen h-32 place-items-center gap-10 pr-10 pt-5 pb-5 border-b-green-200 mb-10">
+  <nav class="flex justify-end w-screen h-32 place-items-center gap-10 pr-10 pt-2 pb-2">
     <div class="flex gap-10">
       <!--update "to" value for routes -->
       <RouterLink to="/" class="button">Trade</RouterLink>
@@ -75,7 +75,7 @@ import { RouterLink } from 'vue-router'
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(-45deg, #2f9c19 0%, #87f183 100% );
+  background: linear-gradient(-45deg, #ff1b2e 0%, #ff5f6c 100% );
   transform: scale(0);
   pointer-events: none;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);

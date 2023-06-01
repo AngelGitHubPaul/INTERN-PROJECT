@@ -43,21 +43,15 @@ export default {
 </script>
 
 <template>
-    <div class="wrapper">
-        <HelloWorld msg="Metamask wallet" />
-        <!-- <p>Connect Wallet</p> -->
-        <br>
-      </div>
-      <div>
-        <h1> Custodian Wallet </h1>
-        <button @click="toggle">Show Public Key</button>
-        <div v-if="showPublicKey">
-          <span>Public Key: {{ publicKey }}</span>
+    <div class="flex flex-col justify-center items-center gap-10 w-screen h-screen bg-slate-800/50">
+      <h1> Custodian Wallet </h1>
+        <div class="flex gap-10">
+          <button class="bg-black p-2 rounded-md hover:scale-105" @click="toggle">Show Public Key</button>
+          <button class=" btn bg-black p-2 rounded-md hover:scale-105" @click="triggerSendEmail">Send Email</button>
+            <div v-if="showPublicKey">
+              <span>Public Key: {{ publicKey }}</span>
+            </div>
         </div>
-        <button @click="triggerSendEmail">Send Email</button>
-        <br>
-        
-        <!-- <a href="/MintingPage">Mint Now!!</a> -->
-      </div>
+    </div>  
 
 </template>

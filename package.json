@@ -29,6 +29,7 @@
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/test-utils": "^2.3.2",
     "autoprefixer": "^10.4.14",
+    "daisyui": "^3.0.0",
     "dotenv": "^16.0.3",
     "hardhat": "^2.14.0",
     "jsdom": "^22.0.0",
