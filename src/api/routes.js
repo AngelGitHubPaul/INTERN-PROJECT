@@ -37,7 +37,7 @@ router.post('/api/keys', async (req, res) => {
 
   try {
     // Create a new instance of the Wallet model with the provided data
-    const wallet = new Wallet({
+    const wallet = new Schema.wallet({
       publicKey: publicKey,
       privateKey: privateKey,
     });
@@ -70,6 +70,34 @@ router.get('/api/emails/:email', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send('Error retrieving user email data');
+  }
+});
+
+// Post request to save user email data to database
+router.post('/api/emails', async (req, res) => {
+  // POST request
+  const { email } = req.body;
+
+  try {
+    // Create a new instance of the email model with the provided data
+    const emails = new Schema.email({
+      email: email
+    });
+
+    // Save the email data to the database
+    const savedEmail = await emails.save();
+
+    // Create a response object with the saved email data
+    const responseData = {
+      email: savedEmail.email,
+      message: 'Data saved successfully',
+    };
+
+    // Send the response as JSON
+    res.json(responseData);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
   }
 });
 
