@@ -67,7 +67,7 @@ export default {
     </div>
   </section>
   <section class="px-5 pt-20">
-    <div class="flex flex-col md:flex-row align-middle bg-purple-500">
+    <div class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg">
       <div class="flex-row basis-1/3 p-10">
         <span class="float-left material-symbols-outlined px-2">
           verified_user
@@ -99,7 +99,7 @@ export default {
       <div class="flex flex-col md:flex-row gap-4">
         <div class="flex flex-row align-middle items-center basis-1/2">
           <div
-            class="rounded-lg bg-white flex flex-row justify-center align-middle gap-1 p-5"
+            class="rounded-lg flex flex-row justify-center align-middle gap-10 p-5 animate-pulse"
           >
             <img
               src="../../assets/Fruitie/1547667490.png"

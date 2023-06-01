@@ -1,9 +1,7 @@
 <template>
-  <div class="mint flex flex-row px-10">
-    <div class="flex-row basis-2/3 px-5">
-      <div
-        class="rounded-md border-2 border-teal-400 outline-black shadow-lg hover:shadow-2xl shadow-teal-950 bg-teal-400/50 p-2"
-      >
+  <div class="flex px-10 mt-10">
+    <div class="basis-2/3 px-5">
+      <div class="rounded-md border-2 border-teal-400 outline-black shadow-lg hover:shadow-2xl shadow-teal-950 bg-teal-400/50 p-2">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
         aliquid veniam libero explicabo saepe recusandae eligendi? Ducimus
         similique laboriosam iste maxime voluptatum perspiciatis suscipit

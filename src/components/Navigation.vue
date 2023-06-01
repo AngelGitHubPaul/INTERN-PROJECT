@@ -3,43 +3,93 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <nav>
-    <div class="nav-holder">
+  <nav class="flex justify-end w-screen h-32 place-items-center gap-10 pr-10 pt-5 pb-5 border-b-green-200 mb-10">
+    <div class="flex gap-10">
       <!--update "to" value for routes -->
-      <RouterLink to="/" class="hover-link">Trade</RouterLink>
-      <RouterLink to="/" class="hover-link">Earn</RouterLink>
-      <RouterLink to="/mintnft" class="hover-link">NFT</RouterLink>
-      <RouterLink to="/" class="hover-link">CrossChain</RouterLink>
-      <RouterLink to="/wallet" class="hover-link">Wallet</RouterLink>
+      <RouterLink to="/" class="button">Trade</RouterLink>
+      <RouterLink to="/" class="button">Earn</RouterLink>
+      <RouterLink to="/mintnft" class="button">NFT</RouterLink>
+      <RouterLink to="/" class="button">CrossChain</RouterLink>
+      <RouterLink to="/wallet" class="button">Wallet</RouterLink>
     </div>
-    <w3m-core-button>Connect Wallet</w3m-core-button>
+    <w3m-core-button class="button">Connect Wallet</w3m-core-button>
   </nav>
 </template>
 
 <style scoped>
-nav {
-  display: flex;
-  width: 100vw;
-  height: 80px;
-  background-color: rgba(127, 255, 212, 0.103);
-  justify-content: end;
-  padding-right: 4rem;
-  place-items: center;
-  gap: 50px;
-}
 
-nav .nav-holder {
-  display: flex;
-  gap: 50px;
-}
-
-.hover-link {
-  font-weight: 500;
-  font-size: large;
-}
-
-.hover-link:hover {
-  color: whitesmoke;
+.button {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 15px 30px;
+  display: block;
   background-color: transparent;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 }
+
+.button span {
+  background: linear-gradient(-45deg, #63A4FF 0%, #83EAF1 100% );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.button:hover span {
+  -webkit-text-fill-color: white;
+}
+
+.button::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleY(2);
+  border: 3px solid;
+  border-image: linear-gradient(-45deg, #63A4FF 0%, #83EAF1 100% );
+  border-image-slice: 1;
+  border-width: 2px 0 2px 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: -1;
+}
+
+.button:hover::before {
+  transform: scaleY(0);
+  opacity: 1;
+}
+
+.button::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #2f9c19 0%, #87f183 100% );
+  transform: scale(0);
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: -1;
+}
+
+.button:hover::after {
+  transform: scaleY(1);
+}
+
+.button:active {
+  scale: 0.90;
+}
+
+
+
 </style>
