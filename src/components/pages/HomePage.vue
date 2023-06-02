@@ -29,7 +29,7 @@ export default {
 </script>
 
 <template>
-  <section class="px-5">
+  <section class="w-fit px-5">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
       <div class="p-5">
         <h1 class="text-5xl md:text-7xl pb-10">UVUVWE</h1>
@@ -48,26 +48,28 @@ export default {
           </button>
         </div>
       </div>
-      <div class="relative p-5">
+      <div class="flex justify-center md:relative p-5">
         <img
           src="../../assets/Fruitie/1547667490.png"
-          class="rounded-md absolute w-36"
+          class="rounded-md md:absolute w-20 md:w-36"
           style="top: 30px; left: 30px"
         />
         <img
           src="../../assets/Fruitie/2997147654.png"
-          class="rounded-md absolute w-36 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
+          class="rounded-md md:absolute w-20 md:w-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:z-50"
         />
         <img
           src="../../assets/Fruitie/5404552974.png"
-          class="rounded-md absolute w-36 bottom-0 right-0"
+          class="rounded-md md:absolute w-20 md:w-36"
           style="bottom: 30px; right: 30px"
         />
       </div>
     </div>
   </section>
-  <section class="px-5 pt-20">
-    <div class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg">
+  <section class="px-5 pt-4">
+    <div
+      class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg"
+    >
       <div class="flex-row basis-1/3 p-10">
         <span class="float-left material-symbols-outlined px-2">
           verified_user
@@ -99,7 +101,7 @@ export default {
       <div class="flex flex-col md:flex-row gap-4">
         <div class="flex flex-row align-middle items-center basis-1/2">
           <div
-            class="rounded-lg flex flex-row justify-center align-middle gap-10 p-5 animate-pulse"
+            class="rounded-lg flex flex-row justify-center align-middle gap-1 p-5 animate-pulse"
           >
             <img
               src="../../assets/Fruitie/1547667490.png"
@@ -177,34 +179,81 @@ export default {
     </div>
   </section>
   <section class="px-5">
-      <h1 class="text-4xl flex justify-center mb-5">Marketplace</h1>
-      <div class="mx-auto flex justify-center items-center">
-          <span class="float-left material-symbols-outlined px-2" data-v-9ee6238f=""> arrow_left </span>
-          <p class="text-gray-700">   Best Seller NFT's</p>
-          <span class="float-left material-symbols-outlined px-2" data-v-9ee6238f=""> arrow_right </span>
-      </div>
-      <div class=" bg-white flex flex-row justify-center align-middle gap-1 p-5" data-v-9ee6238f="">
-            <img src="/src/assets/Fruitie/1547667490.png" class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
-            <img src="/src/assets/Fruitie/2997147654.png" class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
-            <img src="/src/assets/Fruitie/5404552974.png" class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
-      </div>
-  </section>
-  <section  class="px-5">
+    <h1 class="text-4xl flex justify-center mb-5">Marketplace</h1>
     <div class="mx-auto flex justify-center items-center">
-      <p class="text-gray-700">   About Us</p>
+      <span
+        class="float-left material-symbols-outlined px-2"
+        data-v-9ee6238f=""
+      >
+        arrow_left
+      </span>
+      <p class="text-gray-700">Best Seller NFT's</p>
+      <span
+        class="float-left material-symbols-outlined px-2"
+        data-v-9ee6238f=""
+      >
+        arrow_right
+      </span>
+    </div>
+    <div
+      class="bg-white flex flex-row justify-center align-middle gap-1 p-5"
+      data-v-9ee6238f=""
+    >
+      <img
+        src="/src/assets/Fruitie/1547667490.png"
+        class="relative p-5 w-24 lg:w-36 md:w-28"
+        data-v-9ee6238f=""
+      />
+      <img
+        src="/src/assets/Fruitie/2997147654.png"
+        class="relative p-5 w-24 lg:w-36 md:w-28"
+        data-v-9ee6238f=""
+      />
+      <img
+        src="/src/assets/Fruitie/5404552974.png"
+        class="relative p-5 w-24 lg:w-36 md:w-28"
+        data-v-9ee6238f=""
+      />
+    </div>
+  </section>
+  <section class="px-5">
+    <div class="mx-auto flex justify-center items-center">
+      <p class="text-gray-700">About Us</p>
     </div>
     <div class="mx-auto flex justify-center items-center">
       <p class="text-2xl mb-2" data-v-9ee6238f="">Frequently asked questions</p>
     </div>
-    <div class="mx-auto flex justify-center items-center"> 
-    <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f=""><div data-v-9ee6238f="">
-      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> What is NFT? </button>
-      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> What is NFSpace? </button>
-    </div><div data-v-9ee6238f="">
-      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> How to Mint? </button>
-      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> How payments process? </button>
-    </div>
-    </div>
+    <div class="mx-auto flex justify-center items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f="">
+        <div data-v-9ee6238f="">
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            What is NFT?
+          </button>
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            What is NFSpace?
+          </button>
+        </div>
+        <div data-v-9ee6238f="">
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            How to Mint?
+          </button>
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            How payments process?
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 </template>
