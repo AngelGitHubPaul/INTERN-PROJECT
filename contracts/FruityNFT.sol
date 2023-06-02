@@ -1,11 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-
-contract FruityNFT is ERC721, Ownable {
+contract FruityNFT is ERC721URIStorage, Ownable {
     uint256 public mintPrice;
     uint256 public totalSupply;
     uint256 public maxSupply;
@@ -20,6 +19,7 @@ contract FruityNFT is ERC721, Ownable {
         totalSupply = 0;
         maxSupply = 500;
         maxPerWallet = 1;
+        baseTokenUri = "https://ipfs.io/ipfs/bafybeiabmqfka5hric53a7yxapqklhuhou22vhdlchfnvy6padxuxmapyy/;";
     }
 
     // sets the nft if it is mintable or not
@@ -28,9 +28,9 @@ contract FruityNFT is ERC721, Ownable {
     // }
 
     // sets the base uri of the nft
-    function setBaseTokenUri(string calldata _baseTokenUri) external onlyOwner {
-        baseTokenUri = _baseTokenUri;
-    }
+    // function setBaseTokenUri(string calldata _baseTokenUri) external onlyOwner {
+    //     baseTokenUri = "https://ipfs.io/ipfs/bafybeiabmqfka5hric53a7yxapqklhuhou22vhdlchfnvy6padxuxmapyy/;";
+    // }
     // this is the url that the opensea will call for the image of nft, we override it so that we can assign the baseTokenUri to this function
     function tokenURI(uint256 _tokenId) public view override returns (string memory) {
         // checks if the tokenId exists
@@ -65,9 +65,11 @@ contract FruityNFT is ERC721, Ownable {
 
 
         uint256 newTokenId = totalSupply + 1;
-        totalSupply++;
         // safemint is a function inside the ERC721 contract
         _safeMint(msg.sender, newTokenId);
+        _setTokenURI(newTokenId, tokenURI(newTokenId));
+        totalSupply++;
+        walletMints[msg.sender]++;
         
     }
 }
