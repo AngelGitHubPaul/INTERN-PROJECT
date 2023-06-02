@@ -183,24 +183,36 @@ export default {
           <p class="text-gray-700">   Best Seller NFT's</p>
           <span class="float-left material-symbols-outlined px-2" data-v-9ee6238f=""> arrow_right </span>
       </div>
-      <div class=" bg-white flex flex-row justify-center align-middle gap-1 p-5" data-v-9ee6238f="">
-            <img src="/src/assets/Fruitie/1547667490.png" class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
-            <img src="/src/assets/Fruitie/2997147654.png" class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
-            <img src="/src/assets/Fruitie/5404552974.png" class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
+      <div class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg">
+      <div class="flex-row basis-1/3 p-10">
+        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">NFT-01</button>
+        <img src="/src/assets/Fruitie/1547667490.png"  
+                class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
       </div>
+      <div class="flex-row basis-1/3 p-10">
+        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">NFT-02</button>
+        <img src="/src/assets/Fruitie/2997147654.png" 
+                class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
+      </div>
+      <div class="flex-row basis-1/3 p-10">
+        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">NFT-03</button>
+        <img src="/src/assets/Fruitie/5404552974.png" 
+            class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
+      </div>
+    </div>
   </section>
   <section  class="px-5">
-    <div class="mx-auto flex justify-center items-center">
-      <p class="text-gray-700">   About Us</p>
-    </div>
-    <div class="mx-auto flex justify-center items-center">
+      <div class="mx-auto flex justify-center items-center">
+           <p class="text-gray-700">   About Us</p>
+      </div>
+      <div class="mx-auto flex justify-center items-center">
       <p class="text-2xl mb-2" data-v-9ee6238f="">Frequently asked questions</p>
-    </div>
-    <div class="mx-auto flex justify-center items-center"> 
-    <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f=""><div data-v-9ee6238f="">
+     </div>
+     <div class="mx-auto flex justify-center items-center"> 
+     <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f=""><div data-v-9ee6238f="">
       <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> What is NFT? </button>
       <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> What is NFSpace? </button>
-    </div><div data-v-9ee6238f="">
+     </div><div data-v-9ee6238f="">
       <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> How to Mint? </button>
       <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> How payments process? </button>
     </div>
@@ -212,5 +224,11 @@ export default {
 <style scoped>
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 0, 'GRAD' 0, 'opsz' NaN;
+}
+section{
+  background-color: blueviolet;
+}
+div{
+  background-color: rgb(223, 223, 179);
 }
 </style>
