@@ -1,6 +1,6 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
+import { createApp, defineCustomElement } from 'vue'
 import App from './App.vue'
 import HomePage from './components/pages/HomePage.vue'
 import MintingPage from './components/pages/MintingPage.vue'
@@ -38,5 +38,6 @@ const router = createRouter({
 })
 
 const app = createApp(App)
+
 app.use(router)
 app.mount('#app')

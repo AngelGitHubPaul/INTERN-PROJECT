@@ -177,12 +177,22 @@ export default {
     </div>
   </section>
   <section class="px-5">
-      <h1 class="text-4xl flex justify-center mb-5">Marketplace</h1>
-      <div class="mx-auto flex justify-center items-center">
-          <span class="float-left material-symbols-outlined px-2" data-v-9ee6238f=""> arrow_left </span>
-          <p class="text-gray-700">   Best Seller NFT's</p>
-          <span class="float-left material-symbols-outlined px-2" data-v-9ee6238f=""> arrow_right </span>
-      </div>
+    <h1 class="text-4xl flex justify-center mb-5">Marketplace</h1>
+    <div class="mx-auto flex justify-center items-center">
+      <span
+        class="float-left material-symbols-outlined px-2"
+        data-v-9ee6238f=""
+      >
+        arrow_left
+      </span>
+      <p class="text-gray-700">Best Seller NFT's</p>
+      <span
+        class="float-left material-symbols-outlined px-2"
+        data-v-9ee6238f=""
+      >
+        arrow_right
+      </span>
+    </div>
       <div class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg">
       <div class="flex-row basis-1/3 p-10">
         <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">NFT-01</button>
@@ -207,16 +217,38 @@ export default {
       </div>
       <div class="mx-auto flex justify-center items-center">
       <p class="text-2xl mb-2" data-v-9ee6238f="">Frequently asked questions</p>
-     </div>
-     <div class="mx-auto flex justify-center items-center"> 
-     <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f=""><div data-v-9ee6238f="">
-      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> What is NFT? </button>
-      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> What is NFSpace? </button>
-     </div><div data-v-9ee6238f="">
-      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> How to Mint? </button>
-      <button class="rounded-md bg-purple-500/50 w-52 m-2" data-v-9ee6238f=""> How payments process? </button>
     </div>
-    </div>
+    <div class="mx-auto flex justify-center items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f="">
+        <div data-v-9ee6238f="">
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            What is NFT?
+          </button>
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            What is NFSpace?
+          </button>
+        </div>
+        <div data-v-9ee6238f="">
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            How to Mint?
+          </button>
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            How payments process?
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -224,11 +256,5 @@ export default {
 <style scoped>
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 0, 'GRAD' 0, 'opsz' NaN;
-}
-section{
-  background-color: blueviolet;
-}
-div{
-  background-color: rgb(223, 223, 179);
 }
 </style>
