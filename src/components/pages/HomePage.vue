@@ -1,4 +1,4 @@
-<script lang>
+<script>
 export default {
   data() {
     return {
@@ -7,6 +7,12 @@ export default {
   },
   mounted() {
     this.populateTable()
+    this.$nextTick(() => {
+      // Refresh AOS after rendering the component
+      this.$nextTick(() => {
+        this.$AOS.refresh()
+      })
+    })
   },
   methods: {
     async getData() {
@@ -29,7 +35,11 @@ export default {
 </script>
 
 <template>
-  <section class="px-5">
+  <section
+    class="h-full w-full px-5 py-40"
+    data-aos="zoom-in"
+    data-aos-duration="2000"
+  >
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
       <div class="p-5">
         <h1 class="text-5xl md:text-7xl pb-10">UVUVWE</h1>
@@ -66,8 +76,14 @@ export default {
       </div>
     </div>
   </section>
-  <section class="px-5 pt-20">
-    <div class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg">
+  <section
+    class="h-full px-5 pt-4"
+    data-aos="fade-right"
+    data-aos-duration="2000"
+  >
+    <div
+      class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg"
+    >
       <div class="flex-row basis-1/3 p-10">
         <span class="float-left material-symbols-outlined px-2">
           verified_user
@@ -94,7 +110,7 @@ export default {
       </div>
     </div>
   </section>
-  <section class="p-5">
+  <section class="p-5" data-aos="fade-left" data-aos-duration="2000">
     <div class="mx-auto" id="about">
       <div class="flex flex-col md:flex-row gap-4">
         <div class="flex flex-row align-middle items-center basis-1/2">
@@ -145,7 +161,11 @@ export default {
       </div>
     </div>
   </section>
-  <section class="p-5">
+  <section
+    class="h-full px-5 py-40"
+    data-aos="fade-up"
+    data-aos-duration="2000"
+  >
     <h1 class="text-4xl mt-10 pb-10">Market Trend</h1>
     <div class="flex justify-center mb-5 overflow-x-auto">
       <table
@@ -193,29 +213,46 @@ export default {
         arrow_right
       </span>
     </div>
-      <div class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg">
+    <div
+      class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg"
+    >
       <div class="flex-row basis-1/3 p-10">
-        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">NFT-01</button>
-        <img src="/src/assets/Fruitie/1547667490.png"  
-                class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
+        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">
+          NFT-01
+        </button>
+        <img
+          src="/src/assets/Fruitie/1547667490.png"
+          class="relative p-5 w-24 lg:w-36 md:w-28"
+          data-v-9ee6238f=""
+        />
       </div>
       <div class="flex-row basis-1/3 p-10">
-        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">NFT-02</button>
-        <img src="/src/assets/Fruitie/2997147654.png" 
-                class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
+        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">
+          NFT-02
+        </button>
+        <img
+          src="/src/assets/Fruitie/2997147654.png"
+          class="relative p-5 w-24 lg:w-36 md:w-28"
+          data-v-9ee6238f=""
+        />
       </div>
       <div class="flex-row basis-1/3 p-10">
-        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">NFT-03</button>
-        <img src="/src/assets/Fruitie/5404552974.png" 
-            class=" relative p-5 w-24 lg:w-36 md:w-28" data-v-9ee6238f="">
+        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">
+          NFT-03
+        </button>
+        <img
+          src="/src/assets/Fruitie/5404552974.png"
+          class="relative p-5 w-24 lg:w-36 md:w-28"
+          data-v-9ee6238f=""
+        />
       </div>
     </div>
   </section>
-  <section  class="px-5">
-      <div class="mx-auto flex justify-center items-center">
-           <p class="text-gray-700">   About Us</p>
-      </div>
-      <div class="mx-auto flex justify-center items-center">
+  <section class="px-5">
+    <div class="mx-auto flex justify-center items-center">
+      <p class="text-gray-700">About Us</p>
+    </div>
+    <div class="mx-auto flex justify-center items-center">
       <p class="text-2xl mb-2" data-v-9ee6238f="">Frequently asked questions</p>
     </div>
     <div class="mx-auto flex justify-center items-center">

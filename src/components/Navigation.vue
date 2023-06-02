@@ -25,10 +25,10 @@ import { RouterLink } from 'vue-router'
       </div>
       <div
         :class="['nav-links', { 'top-[12%]': isMenuOpen }]"
-        class="duration-500 md:static absolute bg-black md:bg-transparent md:min-h-fit min-h-[85vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5"
+        class="duration-500 md:static absolute bg-black md:bg-transparent md:min-h-fit min-h-[85vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 z-50"
       >
         <ul
-          class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8"
+          class="flex md:flex-row flex-col md:items-center md:gap-[1vw] gap-8"
         >
           <li>
             <RouterLink to="/" class="button">Trade</RouterLink>
@@ -82,7 +82,7 @@ export default {
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  padding: 15px 30px;
+  padding: 15px 10px;
   display: block;
   background-color: transparent;
   border: none;

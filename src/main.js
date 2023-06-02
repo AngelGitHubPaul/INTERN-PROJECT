@@ -8,6 +8,8 @@ import Wallet from './components/pages/Wallet.vue'
 import NftPage from './components/pages/NftPage.vue'
 import NotFoundPage from './components/pages/NotFoundPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const routes = [
   {
@@ -40,4 +42,9 @@ const router = createRouter({
 const app = createApp(App)
 
 app.use(router)
+app.use(
+  AOS.init({
+    once: false,
+  })
+)
 app.mount('#app')
