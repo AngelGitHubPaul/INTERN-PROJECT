@@ -36,7 +36,7 @@ export default {
 
 <template>
   <section
-    class="h-full w-full px-5 py-40"
+    class="h-full w-full px-5 lg:py-40"
     data-aos="zoom-in"
     data-aos-duration="2000"
   >
@@ -58,26 +58,26 @@ export default {
           </button>
         </div>
       </div>
-      <div class="relative p-5">
+      <div class="flex justify-center md:relative p-5">
         <img
           src="../../assets/Fruitie/1547667490.png"
-          class="rounded-md absolute w-36"
+          class="rounded-md md:absolute w-20 md:w-36"
           style="top: 30px; left: 30px"
         />
         <img
           src="../../assets/Fruitie/2997147654.png"
-          class="rounded-md absolute w-36 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
+          class="rounded-md md:absolute w-20 md:w-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:z-50"
         />
         <img
           src="../../assets/Fruitie/5404552974.png"
-          class="rounded-md absolute w-36 bottom-0 right-0"
+          class="rounded-md md:absolute w-20 md:w-36"
           style="bottom: 30px; right: 30px"
         />
       </div>
     </div>
   </section>
   <section
-    class="h-full px-5 pt-4"
+    class="h-full px-5 pt-20 lg:pt-4"
     data-aos="fade-right"
     data-aos-duration="2000"
   >
@@ -115,7 +115,7 @@ export default {
       <div class="flex flex-col md:flex-row gap-4">
         <div class="flex flex-row align-middle items-center basis-1/2">
           <div
-            class="rounded-lg flex flex-row justify-center align-middle gap-10 p-5 animate-pulse"
+            class="rounded-lg flex flex-row justify-center align-middle gap-2 p-5 animate-pulse"
           >
             <img
               src="../../assets/Fruitie/1547667490.png"
@@ -162,7 +162,7 @@ export default {
     </div>
   </section>
   <section
-    class="h-full px-5 py-40"
+    class="h-full px-5 lg:py-40"
     data-aos="fade-up"
     data-aos-duration="2000"
   >
@@ -196,7 +196,7 @@ export default {
       </table>
     </div>
   </section>
-  <section class="px-5">
+  <section class="px-5" data-aos="slide-up" data-aos-duration="2000">
     <h1 class="text-4xl flex justify-center mb-5">Marketplace</h1>
     <div class="mx-auto flex justify-center items-center">
       <span
@@ -248,7 +248,7 @@ export default {
       </div>
     </div>
   </section>
-  <section class="px-5">
+  <section class="px-5 lg:pb-40" data-aos="flip-up" data-aos-duration="2000">
     <div class="mx-auto flex justify-center items-center">
       <p class="text-gray-700">About Us</p>
     </div>
