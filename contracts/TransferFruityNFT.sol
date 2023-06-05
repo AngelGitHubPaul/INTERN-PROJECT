@@ -51,6 +51,7 @@ contract FruityShop is FruityNFT {
         uint256 fruityPrice = fruityTransferPricings[_fruityId];
         address payable owner = payable(fruityOwnerListing[_fruityId]);
         require(fruityOwnerListing[_fruityId] != address(0), "This fruity is not on the listing");
+        require(getApproved(_fruityId) == msg.sender, "Token approval not found");
         require(msg.sender !=  owner, "Your wallet address is the recipient, you cannot send ETH to yourself");
         require((msg.sender.balance / 1e18) >= fruityPrice, "Insufficient Balance");
 
