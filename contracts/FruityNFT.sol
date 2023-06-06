@@ -39,5 +39,6 @@ contract FruityNFT is ERC721, Ownable {
         uint256 tokenId = _tokenIdCounter.current() + 1;
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
+        tokenURI(tokenId);
     }
 }
