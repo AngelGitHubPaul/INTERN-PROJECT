@@ -1,12 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
-import '@openzeppelin/contracts/access/Ownable.sol';
+// import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
+// import '@openzeppelin/contracts-upgradeable/token/ERC721/ERC';
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import '@openzeppelin/contracts/utils/Counters.sol';
-import '@openzeppelin/contracts/utils/Strings.sol';
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
-contract FruityNFT is ERC721, Ownable {
+// import "@openzeppelin/contracts/token/ERC721/";
+contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
     using Counters for Counters.Counter;
     using Strings for uint256;
 
@@ -16,7 +19,11 @@ contract FruityNFT is ERC721, Ownable {
     uint256 public constant maxPerWallet = 1;
     mapping(address => uint256) public walletMints;
 
-    constructor() payable ERC721("FruityNFT", "FN") {}
+    // constructor() payable ERC721("FruityNFT", "FN") {}
+    function initialized() public initializer {
+        __ERC721_init("FruityNFT", "FN");
+        __Ownable_init();
+    }
 
     function _baseURI() internal pure override returns (string memory) {
         return "https://nftstorage.link/ipfs/bafybeibmzuf32cgb7rbai7hkr4hwew7vdildb6sjnoivgcq5aod4n423mi/";
