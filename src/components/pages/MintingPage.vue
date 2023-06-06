@@ -7,12 +7,12 @@
       </div>
       <div class="text-3xl py-5">UVUWE NFT Claim</div>
       <div>
-        <button class="button">
-    <span class="button_lg">
-        <span class="button_sl"></span>
-        <span class="button_text">Mint Now!</span>
-    </span>
-</button>
+        <button class="button" @click="open = true">
+      <span class="button_lg">
+          <span class="button_sl"></span>
+          <span class="button_text">Mint Now!</span>
+      </span>
+    </button>
       </div>
     </div>
 
@@ -28,7 +28,63 @@
     </div>
   </section>
 </body>
+      <Teleport to="body">
+        <div v-if="open" class="modal">
+          <div>
+            <div class="flex flex-col h-full w-full items-center justify-center">
+              <input v-if="!isSubmitted" type="email" class=" input-field w-3/4 h-12 bg-gray-600 p-2 text-center"  placeholder="Enter Email" required v-model="email">
+              <button class="submit_btn" @click="handleSubmit" :disabled="isLoading || isSubmitted || email === ''">
+              <span v-if="isLoading">
+                <i class="loading-icon"></i>
+              </span>
+              <span v-else-if="isSubmitted">
+                Submitted ✔
+              </span>
+              <span v-else>
+                Submit
+              </span>
+              </button>
+            </div>
+            <div class="close-btn" id="close_button">
+              <div id="translate"></div>
+            <span @click="open = false" class="close_btn">Close</span>
+            </div>
+          </div>
+        </div>
+       
+      </Teleport>
+
 </template>
+
+<script>
+
+export default {
+  data() {
+    return {
+      open: false,
+      isLoading: false,
+      isSubmitted: false,
+      email: ''
+    };
+  },
+  methods: {
+    handleSubmit() {
+      if (this.email === '') {
+        return;
+      }
+
+      this.isLoading = true;
+      this.isSubmitted = false;
+
+      setTimeout(() => {
+        this.isLoading = false;
+        this.isSubmitted = true;
+      }, 2000);
+    }
+  }
+};
+
+</script>
 
 <style scoped>
 
@@ -37,6 +93,36 @@ img {
   height: auto;
   padding: 5px;
 }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal > div {
+  position: relative;
+  padding: 20px;
+  background-color: rgb(24, 34, 43);
+  width: 45rem;
+  height: 25rem;
+  border: solid 1px;
+  border-right: none;
+  border-left: none;
+}
+
+.close_btn {
+  position: absolute;
+  cursor: pointer;
+  padding: 10px 35px;
+}
+
+
   /* Minting button css */
 
   .button {
@@ -163,11 +249,134 @@ img {
   background-color: #fff;
 }
 
+/* Submit button */
+
+.submit_btn{
+  margin-top: 10px ;
+  background-color: #ff4655;
+  padding: 5px;
+  width: 10rem;
+  border-radius: 2px;
+  font-weight: 500;
+  border: none;
+  color: #ffffff;
+}
+
+.submit_btn:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  direction: rtl;
+  z-index: -1;
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  transition: all 0.3s ease;
+}
+.submit_btn:hover {
+  color: #000;
+}
+.submit_btn:hover:after {
+  left: auto;
+  right: 0;
+  width: 100%;
+}
+.submit_btn:active {
+  top: 2px;
+}
+
+.input-field {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* loading Animation */
+
+.loading-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  padding-bottom: none;
+  margin-bottom: none;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* close button */
+
+.close-btn {
+  display: inline-flex;
+  height: 40px;
+  width: 100px;
+  border: 2px solid #BFC0C0;
+  margin: 20px 20px 20px 20px;
+  color: #BFC0C0;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: .8em;
+  letter-spacing: 1.5px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #ff4655;
+}
+
+#close_button {
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  margin: 1rem;
+  padding: 10px 35px;
+  color:white;
+  overflow: hidden;
+}
+
+#close_button span {
+  position: relative;
+}
+
+.pressed {
+  transform: matrix(0.95, 0, 0, 0.95, 0, 0);
+}
+
+
+#translate {
+  transform: rotate(45deg);
+  width: 105%;
+  height: 225%;
+  left: -200px;
+  top: -20px;
+  background: rgb(24, 34, 43);
+  position: absolute;
+  transition: all .3s ease-Out;
+}
+
+#close_button:hover #translate {
+  left: 0;
+}
+
+#close_button:hover span {
+  color: #2D3142;
+}
+
 /* Bg css */
 
 body{
   position: relative;
-	background: linear-gradient(-45deg, #292929, #00000077, #202020, #333333);
+	background: linear-gradient(-45deg, #ff4848, #00000077, #04081f, #111d33);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 	height: 100vh;
