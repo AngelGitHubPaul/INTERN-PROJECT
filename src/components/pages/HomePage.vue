@@ -1,39 +1,3 @@
-<script>
-export default {
-  data() {
-    return {
-      cryptocurrencies: [],
-    }
-  },
-  mounted() {
-    this.populateTable()
-    this.$nextTick(() => {
-      // Refresh AOS after rendering the component
-      this.$nextTick(() => {
-        this.$AOS.refresh()
-      })
-    })
-  },
-  methods: {
-    async getData() {
-      try {
-        const response = await fetch('https://api.coinpaprika.com/v1/tickers')
-        const data = await response.json()
-        return data
-      } catch (error) {
-        console.error('Error fetching cryptocurrency market data:', error)
-        return []
-      }
-    },
-    async populateTable() {
-      const marketData = await this.getData()
-      this.cryptocurrencies = marketData.slice(0, 5)
-      console.log(marketData.slice(0, 5))
-    },
-  },
-}
-</script>
-
 <template>
   <section
     class="h-full w-full px-5 lg:py-40"
@@ -289,6 +253,42 @@ export default {
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      cryptocurrencies: [],
+    }
+  },
+  mounted() {
+    this.populateTable()
+    this.$nextTick(() => {
+      // Refresh AOS after rendering the component
+      this.$nextTick(() => {
+        this.$AOS.refresh()
+      })
+    })
+  },
+  methods: {
+    async getData() {
+      try {
+        const response = await fetch('https://api.coinpaprika.com/v1/tickers')
+        const data = await response.json()
+        return data
+      } catch (error) {
+        console.error('Error fetching cryptocurrency market data:', error)
+        return []
+      }
+    },
+    async populateTable() {
+      const marketData = await this.getData()
+      this.cryptocurrencies = marketData.slice(0, 5)
+      console.log(marketData.slice(0, 5))
+    },
+  },
+}
+</script>
 
 <style scoped>
 .material-symbols-outlined {

@@ -15,14 +15,10 @@ import { RouterLink } from 'vue-router'
   </nav> -->
   <header class="mt-0">
     <nav class="flex justify-between items-center w-fit mx-auto">
-      <div class="flex items-center">
-        <img
-          class="flex-shrink-0 w-16 cursor-pointer"
-          src="../assets/Fruitie/9424480543.png"
-          alt="..."
-        />
-        <div class="flex-grow px-10">FRUITY NFT</div>
-      </div>
+      <RouterLink to="/" class="flex items-center hover:bg-black/0">
+        <img class="flex-shrink-0 w-16 cursor-pointer" src="../assets/Fruitie/9424480543.png" alt="..."/>
+        <div class="px-10">FRUITY NFT</div>
+      </RouterLink>
       <div
         :class="['nav-links', { 'top-[12%]': isMenuOpen }]"
         class="duration-500 md:static absolute bg-black md:bg-transparent md:min-h-fit min-h-[85vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 z-50"
@@ -31,16 +27,16 @@ import { RouterLink } from 'vue-router'
           class="flex md:flex-row flex-col md:items-center md:gap-[1vw] gap-8"
         >
           <li>
-            <RouterLink to="/" class="button">Trade</RouterLink>
+            <RouterLink to="" class="button">Trade</RouterLink>
           </li>
           <li>
-            <RouterLink to="/" class="button">Earn</RouterLink>
+            <RouterLink to="" class="button">Earn</RouterLink>
           </li>
           <li>
-            <RouterLink to="/mintnft" class="button">NFT</RouterLink>
+            <RouterLink to="/mintnft" class="button">MINT</RouterLink>
           </li>
           <li>
-            <RouterLink to="/" class="button">CrossChain</RouterLink>
+            <RouterLink to="" class="button">CrossChain</RouterLink>
           </li>
           <li>
             <RouterLink to="/wallet" class="button">Wallet</RouterLink>
