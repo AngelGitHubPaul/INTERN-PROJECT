@@ -1,35 +1,9 @@
-<script>
-export default {
-  data() {
-    return {
-      cryptocurrencies: [],
-    }
-  },
-  mounted() {
-    this.populateTable()
-  },
-  methods: {
-    async getData() {
-      try {
-        const response = await fetch('https://api.coinpaprika.com/v1/tickers')
-        const data = await response.json()
-        return data
-      } catch (error) {
-        console.error('Error fetching cryptocurrency market data:', error)
-        return []
-      }
-    },
-    async populateTable() {
-      const marketData = await this.getData()
-      this.cryptocurrencies = marketData.slice(0, 5)
-      console.log(marketData.slice(0, 5))
-    },
-  },
-}
-</script>
-
 <template>
-  <section class="px-5">
+  <section
+    class="h-full w-full px-5 lg:py-40"
+    data-aos="zoom-in"
+    data-aos-duration="2000"
+  >
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
       <div class="p-5">
         <h1 class="text-5xl md:text-7xl pb-10">UVUVWE</h1>
@@ -48,26 +22,32 @@ export default {
           </button>
         </div>
       </div>
-      <div class="relative p-5">
+      <div class="flex justify-center md:relative p-5">
         <img
           src="../../assets/Fruitie/1547667490.png"
-          class="rounded-md absolute w-36"
+          class="rounded-md md:absolute w-20 md:w-36"
           style="top: 30px; left: 30px"
         />
         <img
           src="../../assets/Fruitie/2997147654.png"
-          class="rounded-md absolute w-36 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
+          class="rounded-md md:absolute w-20 md:w-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:z-50"
         />
         <img
           src="../../assets/Fruitie/5404552974.png"
-          class="rounded-md absolute w-36 bottom-0 right-0"
+          class="rounded-md md:absolute w-20 md:w-36"
           style="bottom: 30px; right: 30px"
         />
       </div>
     </div>
   </section>
-  <section class="px-5 pt-20">
-    <div class="flex flex-col md:flex-row align-middle bg-purple-500">
+  <section
+    class="h-full px-5 pt-20 lg:pt-4"
+    data-aos="fade-right"
+    data-aos-duration="2000"
+  >
+    <div
+      class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg"
+    >
       <div class="flex-row basis-1/3 p-10">
         <span class="float-left material-symbols-outlined px-2">
           verified_user
@@ -94,12 +74,12 @@ export default {
       </div>
     </div>
   </section>
-  <section class="p-5">
+  <section class="p-5" data-aos="fade-left" data-aos-duration="2000">
     <div class="mx-auto" id="about">
       <div class="flex flex-col md:flex-row gap-4">
         <div class="flex flex-row align-middle items-center basis-1/2">
           <div
-            class="rounded-lg bg-white flex flex-row justify-center align-middle gap-1 p-5"
+            class="rounded-lg flex flex-row justify-center align-middle gap-2 p-5 animate-pulse"
           >
             <img
               src="../../assets/Fruitie/1547667490.png"
@@ -145,7 +125,11 @@ export default {
       </div>
     </div>
   </section>
-  <section class="p-5">
+  <section
+    class="h-full px-5 lg:py-40"
+    data-aos="fade-up"
+    data-aos-duration="2000"
+  >
     <h1 class="text-4xl mt-10 pb-10">Market Trend</h1>
     <div class="flex justify-center mb-5 overflow-x-auto">
       <table
@@ -176,7 +160,135 @@ export default {
       </table>
     </div>
   </section>
+  <section class="px-5" data-aos="slide-up" data-aos-duration="2000">
+    <h1 class="text-4xl flex justify-center mb-5">Marketplace</h1>
+    <div class="mx-auto flex justify-center items-center">
+      <span
+        class="float-left material-symbols-outlined px-2"
+        data-v-9ee6238f=""
+      >
+        arrow_left
+      </span>
+      <p class="text-gray-700">Best Seller NFT's</p>
+      <span
+        class="float-left material-symbols-outlined px-2"
+        data-v-9ee6238f=""
+      >
+        arrow_right
+      </span>
+    </div>
+    <div
+      class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg"
+    >
+      <div class="flex-row basis-1/3 p-10">
+        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">
+          NFT-01
+        </button>
+        <img
+          src="/src/assets/Fruitie/1547667490.png"
+          class="relative p-5 w-24 lg:w-36 md:w-28"
+          data-v-9ee6238f=""
+        />
+      </div>
+      <div class="flex-row basis-1/3 p-10">
+        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">
+          NFT-02
+        </button>
+        <img
+          src="/src/assets/Fruitie/2997147654.png"
+          class="relative p-5 w-24 lg:w-36 md:w-28"
+          data-v-9ee6238f=""
+        />
+      </div>
+      <div class="flex-row basis-1/3 p-10">
+        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">
+          NFT-03
+        </button>
+        <img
+          src="/src/assets/Fruitie/5404552974.png"
+          class="relative p-5 w-24 lg:w-36 md:w-28"
+          data-v-9ee6238f=""
+        />
+      </div>
+    </div>
+  </section>
+  <section class="px-5 lg:pb-40" data-aos="flip-up" data-aos-duration="2000">
+    <div class="mx-auto flex justify-center items-center">
+      <p class="text-gray-700">About Us</p>
+    </div>
+    <div class="mx-auto flex justify-center items-center">
+      <p class="text-2xl mb-2" data-v-9ee6238f="">Frequently asked questions</p>
+    </div>
+    <div class="mx-auto flex justify-center items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f="">
+        <div data-v-9ee6238f="">
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            What is NFT?
+          </button>
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            What is NFSpace?
+          </button>
+        </div>
+        <div data-v-9ee6238f="">
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            How to Mint?
+          </button>
+          <button
+            class="rounded-md bg-purple-500/50 w-52 m-2"
+            data-v-9ee6238f=""
+          >
+            How payments process?
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      cryptocurrencies: [],
+    }
+  },
+  mounted() {
+    this.populateTable()
+    this.$nextTick(() => {
+      // Refresh AOS after rendering the component
+      this.$nextTick(() => {
+        this.$AOS.refresh()
+      })
+    })
+  },
+  methods: {
+    async getData() {
+      try {
+        const response = await fetch('https://api.coinpaprika.com/v1/tickers')
+        const data = await response.json()
+        return data
+      } catch (error) {
+        console.error('Error fetching cryptocurrency market data:', error)
+        return []
+      }
+    },
+    async populateTable() {
+      const marketData = await this.getData()
+      this.cryptocurrencies = marketData.slice(0, 5)
+      console.log(marketData.slice(0, 5))
+    },
+  },
+}
+</script>
 
 <style scoped>
 .material-symbols-outlined {
