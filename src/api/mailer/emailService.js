@@ -1,5 +1,10 @@
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
+const fs = require('fs');
+const path = require('path');
+
+const templatePath = path.join(__dirname, 'emailTem.html');
+const htmlTemplate = fs.readFileSync(templatePath, 'utf-8');
 
 dotenv.config();
 
@@ -18,9 +23,9 @@ function sendEmail() {
 
     const mailConfig = {
         from: 'tripna3p@gmail.com',
-        to: 'yepilon991@pgobo.com',
+        to: 'thompson.fs28@gmail.com',
         subject: 'Test Mailer',
-        text: 'This is a test email from Nodemailer.',
+        html: htmlTemplate,
     };
 
     return new Promise((resolve, reject) => {
