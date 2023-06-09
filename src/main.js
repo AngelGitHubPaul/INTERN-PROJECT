@@ -1,6 +1,6 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
+import { createApp, defineCustomElement } from 'vue'
 import App from './App.vue'
 import HomePage from './components/pages/HomePage.vue'
 import MintingPage from './components/pages/MintingPage.vue'
@@ -8,6 +8,8 @@ import Wallet from './components/pages/Wallet.vue'
 import NftPage from './components/pages/NftPage.vue'
 import NotFoundPage from './components/pages/NotFoundPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const routes = [
   {
@@ -38,5 +40,11 @@ const router = createRouter({
 })
 
 const app = createApp(App)
+
 app.use(router)
+app.use(
+  AOS.init({
+    once: false,
+  })
+)
 app.mount('#app')
