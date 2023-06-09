@@ -10,7 +10,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 // import "@openzeppelin/contracts/token/ERC721/";
-contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
+contract FruityNFTv2 is Initializable, ERC721Upgradeable, OwnableUpgradeable {
     using Counters for Counters.Counter;
     using Strings for uint256;
 
@@ -24,7 +24,7 @@ contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
     function initialized() public initializer {
         __ERC721_init("FruityNFT", "FN");
         __Ownable_init();
-        maxSupply = 10;
+        maxSupply = 20;
     }
 
     function _baseURI() internal pure override returns (string memory) {
