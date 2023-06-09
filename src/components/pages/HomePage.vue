@@ -181,36 +181,37 @@
       class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg"
     >
       <div class="flex-row basis-1/3 p-10">
-        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">
+        <button class="rounded-md bg-yellow-500/50 w-40 m-0" data-v-9ee6238f="">
           NFT-01
         </button>
         <img
           src="/src/assets/Fruitie/1547667490.png"
-          class="relative p-5 w-24 lg:w-36 md:w-28"
+          class="relative p-0 w-24 lg:w-40 md:w-28"
           data-v-9ee6238f=""
         />
       </div>
       <div class="flex-row basis-1/3 p-10">
-        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">
+        <button class="rounded-md bg-violet-500/50 w-40 m-0" data-v-9ee6238f="">
           NFT-02
         </button>
         <img
           src="/src/assets/Fruitie/2997147654.png"
-          class="relative p-5 w-24 lg:w-36 md:w-28"
+          class="relative p-0 w-24 lg:w-40 md:w-28"
           data-v-9ee6238f=""
         />
       </div>
       <div class="flex-row basis-1/3 p-10">
-        <button class="rounded-md bg-purple-500/50 w-40 m-0" data-v-9ee6238f="">
+        <button class="rounded-md bg-red-500/50 w-40 m-0" data-v-9ee6238f="">
           NFT-03
         </button>
         <img
           src="/src/assets/Fruitie/5404552974.png"
-          class="relative p-5 w-24 lg:w-36 md:w-28"
+          class="relative p-0 w-24 lg:w-40 md:w-28"
           data-v-9ee6238f=""
         />
       </div>
     </div>
+    
   </section>
   <section class="px-5 lg:pb-40" data-aos="flip-up" data-aos-duration="2000">
     <div class="mx-auto flex justify-center items-center">
@@ -248,6 +249,7 @@
           >
             How payments process?
           </button>
+          
         </div>
       </div>
     </div>
