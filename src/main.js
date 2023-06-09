@@ -7,6 +7,7 @@ import MintingPage from './components/pages/MintingPage.vue'
 import Wallet from './components/pages/Wallet.vue'
 import NftPage from './components/pages/NftPage.vue'
 import NotFoundPage from './components/pages/NotFoundPage.vue'
+import ClaimNftPage from './components/pages/ClaimNftPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -31,6 +32,10 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     component: NotFoundPage,
+  },
+  {
+    path: '/claimnft',
+    component: ClaimNftPage,
   },
 ]
 
