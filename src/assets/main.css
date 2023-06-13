@@ -95,3 +95,7 @@ section .container {
   justify-content: center;
   margin-top: 5rem;
 }
+
+/* * {
+  outline: red dashed 1px;
+} */
