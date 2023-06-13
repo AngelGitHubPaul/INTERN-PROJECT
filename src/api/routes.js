@@ -1,34 +1,14 @@
 const express = require('express');
-const Schema = require('./database/dbSchema');
+const { Wallet, Email } = require('./database/dbSchema');
 const { sendEmail } = require('./mailer/emailService');
-const Email = require('./database/dbSchema');
 
 // Create an instance of the Express router:
 const router = express.Router();
 
-// Post request to send email
-router.post('/send-email', async (req, res) => {
-  const { email } = req.body;
-  try {
-    // call the sendEmail function 
-    const emailStatus = await sendEmail(email);
-
-    const responseData = {
-      email: emailStatus,
-      message: 'Email sent successfully',
-    };
-    // return success message
-    res.status(200).json(responseData.message);
-  } catch (error) {
-    console.error('Error sending email: ', error);
-    res.status(500).send({ error: 'Failed to send email' });
-  }
-});
-
 // Get request route to fetch all wallet data
 router.get('/api/keys', async (req, res) => {
   try {
-    const wallet = await Schema.wallet.find();
+    const wallet = await Wallet.find();
     res.json(wallet);
   } catch (error) {
     console.error(error);
@@ -38,12 +18,11 @@ router.get('/api/keys', async (req, res) => {
 
 // Post request to save wallet data to database
 router.post('/api/keys', async (req, res) => {
-  // POST request
   const { publicKey, privateKey } = req.body;
 
   try {
     // Create a new instance of the Wallet model with the provided data
-    const wallet = new Schema.wallet({
+    const wallet = new Wallet({
       publicKey: publicKey,
       privateKey: privateKey,
     });
@@ -66,12 +45,25 @@ router.post('/api/keys', async (req, res) => {
   }
 });
 
+// Post request to send email
+router.post('/send-email', async (req, res) => {
+  const { email } = req.body;
+  try {
+    // call the sendEmail function
+    const emailStatus = await sendEmail(email);
+    res.status(200).json({ emailStatus, message: 'Email sent successfully' });
+  } catch (error) {
+    console.error('Error sending email: ', error);
+    res.status(500).send({ error: 'Failed to send email' });
+  }
+});
+
 // Get request route to fetch user email
 router.get('/api/emails/:email', async (req, res) => {
   const { email } = req.params;
 
   try {
-    const userEmail = await Schema.email.find({"email": email});
+    const userEmail = await Email.find({ email: email });
     res.json(userEmail);
   } catch (error) {
     console.error(error);
@@ -86,8 +78,8 @@ router.post('/api/emails', async (req, res) => {
 
   try {
     // Create a new instance of the email model with the provided data
-    const emails = new Schema.email({
-      email: email
+    const emails = new Email({
+      email: email,
     });
 
     // Save the email data to the database
