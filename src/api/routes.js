@@ -8,11 +8,17 @@ const router = express.Router();
 
 // Post request to send email
 router.post('/send-email', async (req, res) => {
+  const { email } = req.body;
   try {
     // call the sendEmail function 
-    await sendEmail();
+    const emailStatus = await sendEmail(email);
+
+    const responseData = {
+      email: emailStatus,
+      message: 'Email sent successfully',
+    };
     // return success message
-    res.status(200).json({ message: 'Email sent successfully' });
+    res.status(200).json(responseData.message);
   } catch (error) {
     console.error('Error sending email: ', error);
     res.status(500).send({ error: 'Failed to send email' });

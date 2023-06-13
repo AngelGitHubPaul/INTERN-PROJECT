@@ -8,7 +8,7 @@ const htmlTemplate = fs.readFileSync(templatePath, 'utf-8');
 
 dotenv.config();
 
-function sendEmail() {
+function sendEmail(_email) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         secure: false,
@@ -23,7 +23,7 @@ function sendEmail() {
 
     const mailConfig = {
         from: 'tripna3p@gmail.com',
-        to: 'thompson.fs28@gmail.com',
+        to: _email,
         subject: 'Test Mailer',
         html: htmlTemplate,
     };

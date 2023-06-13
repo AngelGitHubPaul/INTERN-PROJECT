@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { validateEmail } from '../../api/email-validator/emailValidation';
 
 export default {
   data() {
@@ -72,7 +73,7 @@ export default {
       if (this.email === '') {
         return;
       }
-
+      validateEmail(this.email);
       this.isLoading = true;
       this.isSubmitted = false;
 

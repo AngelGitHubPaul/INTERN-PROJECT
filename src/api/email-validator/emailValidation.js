@@ -1,5 +1,5 @@
 import response from '../getAxios.js';
-import { fetchEmail, saveEmail } from '../getAxios.js';
+import { fetchEmail, saveEmail, sendingEmail } from '../getAxios.js';
 
 // function to validate if the email input of use has aldreay minted on the site once or not
 export async function validateEmail(_email) {
@@ -11,6 +11,7 @@ export async function validateEmail(_email) {
             try {
                 // saves user input to database
                 await saveEmail(_email);
+                await sendingEmail
             } catch (error) {
                 console.log(error);
             }
