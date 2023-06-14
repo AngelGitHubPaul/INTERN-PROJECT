@@ -24,7 +24,7 @@ function sendEmail(_email) {
     const mailConfig = {
         from: 'tripna3p@gmail.com',
         to: _email,
-        subject: 'Test Mailer',
+        subject: 'Sample Test Mailer',
         html: htmlTemplate,
     };
 
