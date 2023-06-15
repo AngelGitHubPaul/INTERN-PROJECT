@@ -1,34 +1,42 @@
 <script>
-import { ethers } from 'ethers';
-import contractABI from '../../FruityNFT.json';
-
-const contractAddress = '0xcE5D9270079aA96d471227aaAe11a7484c5f77bc';
+import { contract, userAddress} from "../../lib/FruityNftInstance"
 
 export default {
   data() {
     return {
-      provider: null,
-      contract: null,
+      mintedNftTokenId: null,
+      mintedNftURI: null,
+      mintedNftImgSrc: null
     };
   },
   methods: {
     async mintNFT() {
       try {
+
         if (typeof window.ethereum === 'undefined') {
           throw new Error('Please install MetaMask to mint NFTs.');
         }
-        await window.ethereum.request({ method: 'eth_requestAccounts' })
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(contractAddress, contractABI.abi, signer);
-        const userAddress = await signer.getAddress();
-        const transaction = await contract.safemint(userAddress);
+
+        const transaction = await contract.safeMint(userAddress);
         await transaction.wait();
-        console.log('NFT minted successfully!');
+        const tokenIdMinted = await contract.walletMints(userAddress);
+        console.log('NFT minted successfully!', 'Token Id: ' +  tokenIdMinted);
+        const nftURI = await this.getNftDetails(tokenIdMinted);
+        this.mintedNftTokenId = tokenIdMinted;
+        this.mintedNftURI = nftURI;
+        this.mintedNftImgSrc = "https://ipfs.io/ipfs/bafybeig3s37uhworydiydd3eq7jbjbnbrxcjgqoh76u5xawj6jaasfknfi/" + tokenIdMinted +  ".png";
+        
       } catch (error) {
         console.error('Error minting NFT:', error);
       }
     },
+    async getNftDetails(tokenId) {
+      const nftURI = await contract.tokenURI(tokenId);
+      return await nftURI;
+    },
+    getImageUrl() {
+      console.log(this.mintedNftImgSrc)
+    }
   },
 };
 </script>
@@ -37,13 +45,13 @@ export default {
 
 <template>
     <body>    
-     <section class="flex items-center justify-center h-screen w-screen">
-       <div class="flex flex-col justify-center items-center">
-        <!-- <Carousel :autoplay="2000" class="rounded-md border-2 border-teal-400 outline-black shadow-lg hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
-        <div class="rounded-md border-2 border-teal-400 outline-black shadow-lg hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
+     <section class="flex items-center justify-center w-screen h-screen">
+       <div class="flex flex-col items-center justify-center">
+        <!-- <Carousel :autoplay="2000" class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
+        <div class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
           <img src="../../assets/Fruitie/1547667490.png" alt="">
         </div>
-         <div class="text-3xl py-5">FRUITY NFT Claim</div>
+         <div class="py-5 text-3xl">FRUITY NFT Claim</div>
          <div>
             <button class="button" @click="mintNFT">
                 <span class="button_lg">
@@ -51,7 +59,13 @@ export default {
                     <span class="button_text">Mint</span>
                 </span>
             </button>
-         </div>
+            <button class="button" @click="getImageUrl()">
+                Get Nft Image Url
+            </button>
+          </div>
+          <div v-if="mintedNftURI !== null && mintedNftTokenId !== null">
+            <img v-bind:src="mintedNftImgSrc" alt="NFT Image" >
+          </div>
        </div>
      </section>
     </body>
