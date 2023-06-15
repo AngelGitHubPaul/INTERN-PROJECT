@@ -1,7 +1,7 @@
 <script>
 import { ethers } from 'ethers';
-// the contractABI and contractAddress will be change later, this is just for testing
 import contractABI from '../../FruityNFT.json';
+
 const contractAddress = '0xcE5D9270079aA96d471227aaAe11a7484c5f77bc';
 
 export default {
@@ -14,17 +14,15 @@ export default {
   methods: {
     async mintNFT() {
       try {
-        // Check if MetaMask is installed
         if (typeof window.ethereum === 'undefined') {
           throw new Error('Please install MetaMask to mint NFTs.');
         }
-        // Request access to the user's MetaMask account
-        await window.ethereum.enable();
-        // Get the provider and create an instance of the contract
-        this.provider = new ethers.providers.Web3Provider(window.ethereum);
-        this.contract = new ethers.Contract(contractAddress, contractABI, this.provider.getSigner());
-        // Call the mint function of your contract
-        const transaction = await this.contract.safemint();
+        await window.ethereum.request({ method: 'eth_requestAccounts' })
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI.abi, signer);
+        const userAddress = await signer.getAddress();
+        const transaction = await contract.safemint(userAddress);
         await transaction.wait();
         console.log('NFT minted successfully!');
       } catch (error) {
@@ -33,8 +31,9 @@ export default {
     },
   },
 };
-
 </script>
+
+
 
 <template>
     <body>    
