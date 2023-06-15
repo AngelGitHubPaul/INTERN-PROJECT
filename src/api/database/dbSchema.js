@@ -1,24 +1,24 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
 // define a schema for the wallet model
-const keySchema = new mongoose.Schema({
+const keySchema = new Schema({
     publicKey: String,
     privateKey: String,
 });
 
 // define a schema for the email model
-const emailSchema = new mongoose.Schema({
+const emailSchema = new Schema({
     email: String
 });
 
 // create email model using schema
-const Email = mongoose.model('Email', emailSchema);
+const Email = model('Email', emailSchema);
 
 // create wallet model using schema
-const Wallet = mongoose.model('Wallet', keySchema);
+const Wallet = model('Wallet', keySchema);
 
 // Export the Email model to be used in other parts of the application
-module.exports = {
+export default {
     Email,
     Wallet,
 };
