@@ -44,14 +44,16 @@ contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
         return tokenUri;
     }
 
-    function safemint(address to) public {
+    function safeMint(address to) external {
         uint256 tokenId = _tokenIdCounter.current() + 1;
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
+        walletMints[to] = tokenId;
         tokenURI(tokenId);
     }
 
-    function showsupply() public view returns (uint256) {
-        return maxSupply;
+    function showsupply() external pure returns (uint256) {
+        return maxPerWallet;
     }
+
 }
