@@ -32,9 +32,10 @@
         <div v-if="open" class="modal">
           <div>
             <div class="flex flex-col h-full w-full items-center justify-center">
-              <input v-if="!isSubmitted" type="email" class=" input-field w-3/4 h-12 bg-gray-600 p-2 text-center"  placeholder="Enter Email" required v-model="email">
-              <button class="submit_btn" @click="handleSubmit" :disabled="isLoading || isSubmitted || email === ''">
-              <span v-if="isLoading">
+              <!-- <input type="email"   v-model="email" @blur="validateEmail" class=" input-field w-3/4 h-12 bg-gray-600 p-2 text-center"  placeholder="Enter Email" required/> -->
+              <input class=" input-field w-3/4 h-12 bg-gray-600 p-2 text-center" type="email" v-model="email" placeholder="Email" />
+              <button class="submit_btn" @click="submitEmail">
+              <!-- <span v-if="isLoading">
                 <i class="loading-icon"></i>
               </span>
               <span v-else-if="isSubmitted">
@@ -42,8 +43,18 @@
               </span>
               <span v-else>
                 Submit
-              </span>
+              </span> -->
+              check
               </button>
+              <div v-if="showModal" class="modal-confirm">
+                <h2>{{ modalTitle }}</h2>
+                <p>{{ modalMessage }}</p>
+                <div class="option-btn">
+                <button @click="closeModal" class="ok">OK</button>
+                <button @click="handleCancel" class="cancel">Cancel</button>
+                </div>
+               </div>
+
             </div>
             <div class="close-btn" id="close_button">
               <div id="translate"></div>
@@ -64,24 +75,29 @@ export default {
       open: false,
       isLoading: false,
       isSubmitted: false,
-      email: ''
+      email: '',
+      showModal: false,
+      modalTitle: '',
+      modalMessage: '',
     };
   },
   methods: {
-    handleSubmit() {
-      if (this.email === '') {
-        return;
-      }
+    submitEmail() {
+      this.showModal = true;
+      this.modalTitle = 'Email Submission';
+      this.modalMessage = 'Are you sure you want to submit this email?';
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    handleOk() {
+      this.showModal = false;
+    },
+    handleCancel() {
+      this.showModal = false;
+    },
+  },
 
-      this.isLoading = true;
-      this.isSubmitted = false;
-
-      setTimeout(() => {
-        this.isLoading = false;
-        this.isSubmitted = true;
-      }, 2000);
-    }
-  }
 };
 
 </script>
@@ -105,6 +121,40 @@ img {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.modal-confirm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-items: center;
+  position: absolute;
+  background-color: #0f1923;
+  width: 30rem;
+  height: 15rem;
+  color: white;
+}
+
+.modal-confirm .option-btn{
+  display: flex;
+  margin-top: 100px;
+  gap: 200px;
+
+}
+
+.modal-confirm .option-btn .ok{
+  background-color: #2D3142;
+  width: 5rem;
+  padding: 5px;
+  padding-top: 1px;
+  border: solid 1px;
+}
+
+.modal-confirm .option-btn .cancel{
+  background-color:#ff4655;
+  width: 5rem;
+  padding: 5px;
+  padding-top: 1px;
+  border: solid 1px;
+}
 .modal > div {
   position: relative;
   padding: 20px;
