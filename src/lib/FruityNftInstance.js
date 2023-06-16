@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import contractABI from '../FruityNFT.json';
 
-const contractAddress = '0x94B88E88093033AB2B8FD1107f9722C81D82eCA1';
+const contractAddress = '0x2BC84E9783384ED4425B7d916F965f3d322bBE33';
 await window.ethereum.request({ method: 'eth_requestAccounts' })
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
