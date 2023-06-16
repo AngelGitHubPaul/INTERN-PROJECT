@@ -6,7 +6,7 @@ import { sendEmail } from './mailer/emailService';
 const router = Router();
 
 // Get request route to fetch all wallet data
-router.get('/api/keys', async (req, res) => {
+router.get('/api/keys', async (res) => {
   try {
     const wallet = await Wallet.find();
     res.json(wallet);
