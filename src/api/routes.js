@@ -1,12 +1,12 @@
-const express = require('express');
-const { Wallet, Email } = require('./database/dbSchema');
-const { sendEmail } = require('./mailer/emailService');
+import { Router } from 'express';
+import { Wallet, Email } from './database/dbSchema';
+import { sendEmail } from './mailer/emailService';
 
 // Create an instance of the Express router:
-const router = express.Router();
+const router = Router();
 
 // Get request route to fetch all wallet data
-router.get('/api/keys', async (req, res) => {
+router.get('/api/keys', async (res) => {
   try {
     const wallet = await Wallet.find();
     res.json(wallet);
@@ -99,4 +99,4 @@ router.post('/api/emails', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
