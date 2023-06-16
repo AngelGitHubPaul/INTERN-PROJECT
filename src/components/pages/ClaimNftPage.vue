@@ -9,14 +9,17 @@ export default {
     return {
       provider: null,
       contract: null,
+      isConnected: false,
+      isMinted: false,
     };
   },
   methods: {
     async mintNFT() {
+      if (!this.isConnected) {
+        console.error("Please connect MetaMask to mint NFTs.");
+        return;
+      }
       try {
-        if (typeof window.ethereum === 'undefined') {
-          throw new Error('Please install MetaMask to mint NFTs.');
-        }
         await window.ethereum.request({ method: 'eth_requestAccounts' })
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -25,9 +28,38 @@ export default {
         const transaction = await contract.safemint(userAddress);
         await transaction.wait();
         console.log('NFT minted successfully!');
+        this.isMinted = true;
       } catch (error) {
         console.error('Error minting NFT:', error);
       }
+    },
+    async updateAccountStatus() {
+      this.isConnected = await window.ethereum.request({ method: "eth_requestAccounts" }).then((accounts) => {
+        return accounts.length > 0;
+      });
+    },
+    async onDisconnect() {
+      try {
+        this.provider = null;
+        this.signer = null;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    returnToHomepage() {
+      this.$router.push('/')
+    },
+  },
+  mounted() {
+    if (typeof window.ethereum === "undefined") {
+      console.error("Please install MetaMask to mint NFTs.");
+    } else {
+      this.updateAccountStatus();
+    }
+  },
+  watch: {
+    isConnected(newValue) {
+      this.isConnected = newValue;
     },
   },
 };
@@ -45,12 +77,18 @@ export default {
         </div>
          <div class="text-3xl py-5">FRUITY NFT Claim</div>
          <div>
-            <button class="button" @click="mintNFT">
-                <span class="button_lg">
-                    <span class="button_sl"></span>
-                    <span class="button_text">Mint</span>
-                </span>
-            </button>
+          <button v-if="!isMinted" class="button" @click="mintNFT" :disabled="!isConnected">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Mint</span>
+            </span>
+          </button>
+          <button v-else class="button" @click="returnToHomepage">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Return to Homepage</span>
+            </span>
+          </button>
          </div>
        </div>
      </section>
