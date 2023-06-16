@@ -6,33 +6,52 @@ export default {
     return {
       mintedNftTokenId: null,
       mintedNftURI: null,
-      mintedNftImgSrc: null
+      mintedNftDetails: {},
     };
+  },
+  mounted() {
+    if (typeof window.ethereum === 'undefined') {
+          throw new Error('Please install MetaMask to mint NFTs.');
+      }
   },
   methods: {
     async mintNFT() {
       try {
+        if(await contract.walletMints(userAddress) == 0){
+          const transaction = await contract.safeMint(userAddress);
+          await transaction.wait();
+          getNftDetails();
+          console.log('NFT minted successfully!', 'Token Id: ' +  tokenIdMinted);
 
-        if (typeof window.ethereum === 'undefined') {
-          throw new Error('Please install MetaMask to mint NFTs.');
+        } else {
+          alert("This wallet has already minted [1] fruity")
         }
 
-        const transaction = await contract.safeMint(userAddress);
-        await transaction.wait();
-        const tokenIdMinted = await contract.walletMints(userAddress);
-        console.log('NFT minted successfully!', 'Token Id: ' +  tokenIdMinted);
-        const nftURI = await this.getNftDetails(tokenIdMinted);
-        this.mintedNftTokenId = tokenIdMinted;
-        this.mintedNftURI = nftURI;
-        this.mintedNftImgSrc = "https://ipfs.io/ipfs/bafybeig3s37uhworydiydd3eq7jbjbnbrxcjgqoh76u5xawj6jaasfknfi/" + tokenIdMinted +  ".png";
-        
       } catch (error) {
         console.error('Error minting NFT:', error);
       }
     },
-    async getNftDetails(tokenId) {
-      const nftURI = await contract.tokenURI(tokenId);
-      return await nftURI;
+    async getNftDetails() {
+      const tokenIdMinted = await contract.walletMints(userAddress);
+      const nftURI = await contract.tokenURI(tokenIdMinted);
+      console.log("NFT URI >> " + nftURI)
+      this.mintedNftTokenId = tokenIdMinted;
+      this.mintedNftURI = nftURI;
+
+      // get the image url from the minted nft's uri through XMLHttpRequest
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', this.mintedNftURI);
+      xhr.responseType = "json";
+      xhr.onload = () => {
+        this.mintedNftDetails.image = "https://" + xhr.response.image;
+        this.mintedNftDetails.name = xhr.response.name;
+        this.mintedNftDetails.description = xhr.response.description;
+        // patanggal nlng ng console.logs kung di nyo trip may nakalagay sa console
+        console.log("Image Url >> " + this.mintedNftDetails.image)
+        console.log("Fruity Name >> " + this.mintedNftDetails.name)
+        console.log("Description >> " + this.mintedNftDetails.description)
+      }
+      xhr.send();
     },
     getImageUrl() {
       console.log(this.mintedNftImgSrc)
@@ -59,12 +78,14 @@ export default {
                     <span class="button_text">Mint</span>
                 </span>
             </button>
-            <button class="button" @click="getImageUrl()">
-                Get Nft Image Url
+            <button class="button" @click="getNftDetails()">
+                Get Nft Image and MetaData
             </button>
           </div>
-          <div v-if="mintedNftURI !== null && mintedNftTokenId !== null">
-            <img v-bind:src="mintedNftImgSrc" alt="NFT Image" >
+          <div v-if="!!mintedNftURI && !!mintedNftTokenId && !!mintedNftDetails">
+            <img v-bind:src="mintedNftDetails.image" alt="NFT Image" >
+            <p class="text-lg text-white">{{ mintedNftDetails.name }}</p>
+            <p class="text-white text-md">{{ mintedNftDetails.description }}</p>
           </div>
        </div>
      </section>
