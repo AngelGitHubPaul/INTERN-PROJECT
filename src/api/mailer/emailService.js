@@ -1,15 +1,15 @@
-const nodemailer = require('nodemailer');
-const dotenv = require('dotenv');
-const fs = require('fs');
-const path = require('path');
+import { createTransport } from 'nodemailer';
+import { config } from 'dotenv';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
-const templatePath = path.join(__dirname, 'emailTem.html');
-const htmlTemplate = fs.readFileSync(templatePath, 'utf-8');
+const templatePath = join(__dirname, 'emailTem.html');
+const htmlTemplate = readFileSync(templatePath, 'utf-8');
 
-dotenv.config();
+config();
 
-function sendEmail() {
-    const transporter = nodemailer.createTransport({
+function sendEmail(_email) {
+    const transporter = createTransport({
         service: 'gmail',
         secure: false,
         auth: {
@@ -23,8 +23,8 @@ function sendEmail() {
 
     const mailConfig = {
         from: 'tripna3p@gmail.com',
-        to: 'thompson.fs28@gmail.com',
-        subject: 'Test Mailer',
+        to: _email,
+        subject: 'Sample Test Mailer',
         html: htmlTemplate,
     };
 
@@ -41,4 +41,4 @@ function sendEmail() {
     });
 }
 
-module.exports = { sendEmail };
+export default { sendEmail };

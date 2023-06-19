@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import { validateEmail } from '../../api/email-validator/emailValidation';
 
 export default {
   data() {
@@ -82,22 +83,15 @@ export default {
     };
   },
   methods: {
-    submitEmail() {
-      this.showModal = true;
-      this.modalTitle = 'Email Submission';
-      this.modalMessage = 'Are you sure you want to submit this email?';
-    },
-    closeModal() {
-      this.showModal = false;
-    },
-    handleOk() {
-      this.showModal = false;
-    },
-    handleCancel() {
-      this.showModal = false;
-    },
-  },
-
+    handleSubmit() {
+      if (this.email === '') {
+        return;
+      }
+      validateEmail(this.email);
+      this.isLoading = true;
+      this.isSubmitted = false;
+    }
+  }
 };
 
 </script>
