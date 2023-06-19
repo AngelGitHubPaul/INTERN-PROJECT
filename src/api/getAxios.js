@@ -1,42 +1,57 @@
 import axios from 'axios';
 
-let response = []; // Initialize response as an empty array
-
-// a client side function to fetch the data in database
+// a client side function to fetch the data from the database
 export async function fetchWallet() {
     try {
-        const result = await axios.get('http://localhost:5000/api/keys');
-        response = result.data; // Assign the fetched data to the response variable
-        console.log('response', response);
+        const result = await axios.get('https://the-intern-project.vercel.app/api/keys');
+        const responseData = result.data;
+        // console.log('response', responseData);
+        return responseData;
     } catch (error) {
         console.log(error);
+        return null;
     }
 }
 
-// a client side function to fetch user email data in database
-export async function fetchEmail(_email) {
-    const email = _email;
+// a client side function to send a link to the user's email
+export async function sendingEmail(email) {
     try {
-        const result = await axios.get('http://localhost:5000/api/emails/${email}');
-        response = result.data; // Assign the fetched data to the response variable
-        console.log('response', response);
+        const result = await axios.post('https://the-intern-project.vercel.app/send-email', {
+            email: email,
+        });
+        const responseData = result.data;
+        console.log('SendingEmailResponse', responseData);
+        return responseData;
     } catch (error) {
         console.log(error);
+        return null;
+    }
+}
+
+// a client side function to fetch user email data from the database
+export async function fetchEmail(email) {
+    try {
+        const result = await axios.get('https://the-intern-project.vercel.app/api/emails/' + email);
+        const responseData = result.data;
+        //console.log('FetchEmailResponse', responseData);
+        return responseData;
+    } catch (error) {
+        console.log(error);
+        return null;
     }
 }
 
 // a client side function to save user email data to the database
-export async function saveEmail(_email) {
-    const email = _email;
+export async function saveEmail(email) {
     try {
-        const result = await axios.post('http://localhost:5000/api/emails}', {
-            email: email
+        const result = await axios.post('https://the-intern-project.vercel.app/api/emails', {
+            email: email,
         });
-        response = result.data; // Assign the fetched data to the response variable
-        console.log('response', response);
+        const responseData = result.data;
+        console.log('SaveEmailResponse', responseData);
+        return responseData;
     } catch (error) {
         console.log(error);
+        return null;
     }
 }
-
-export default response;

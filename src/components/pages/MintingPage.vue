@@ -32,10 +32,17 @@
         <div v-if="open" class="modal">
           <div>
             <div class="flex flex-col items-center justify-center w-full h-full">
-              <!-- <input type="email"   v-model="email" @blur="validateEmail" class="w-3/4 h-12 p-2 text-center bg-gray-600  input-field"  placeholder="Enter Email" required/> -->
-              <input class="w-3/4 h-12 p-2 text-center bg-gray-600  input-field" type="email" v-model="email" placeholder="Email" />
-              <button class="submit_btn" @click="submitEmail">
-              check
+              <input v-if="!isSubmitted" type="email" class="w-3/4 h-12 p-2 text-center bg-gray-600  input-field"  placeholder="Enter Email" required v-model="email">
+              <button class="submit_btn" @click="handleSubmit" :disabled="isLoading || isSubmitted || email === ''">
+              <span v-if="isLoading">
+                <i class="loading-icon"></i>
+              </span>
+              <span v-else-if="isSubmitted">
+                Submitted ✔
+              </span>
+              <span v-else>
+                Submit
+              </span>
               </button>
               <div v-if="showModal" class="modal-confirm">
                 <h2>{{ modalTitle }}</h2>
@@ -59,6 +66,7 @@
 </template>
 
 <script>
+import { validateEmail } from '../../api/email-validator/emailValidation';
 
 export default {
   data() {
@@ -73,22 +81,20 @@ export default {
     };
   },
   methods: {
-    submitEmail() {
-      this.showModal = true;
-      this.modalTitle = 'Email Submission';
-      this.modalMessage = 'Are you sure you want to submit this email?';
-    },
-    closeModal() {
-      this.showModal = false;
-    },
-    handleOk() {
-      this.showModal = false;
-    },
-    handleCancel() {
-      this.showModal = false;
-    },
-  },
+    handleSubmit() {
+      if (this.email === '') {
+        return;
+      }
+      validateEmail(this.email);
+      this.isLoading = true;
+      this.isSubmitted = false;
 
+      setTimeout(() => {
+        this.isLoading = false;
+        this.isSubmitted = true;
+      }, 2000);
+    }
+  }
 };
 
 </script>
