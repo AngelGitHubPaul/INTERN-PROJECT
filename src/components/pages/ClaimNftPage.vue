@@ -1,5 +1,5 @@
 <script>
-import { contract, userAddress} from "../../lib/FruityNftInstance"
+import { contract, userAddress } from "../../lib/FruityNftInstance"
 
 export default {
   data() {
@@ -20,7 +20,7 @@ export default {
         if(await contract.walletMints(userAddress) == 0){
           const transaction = await contract.safeMint(userAddress);
           await transaction.wait();
-          getNftDetails();
+          this.getNftDetails();
           console.log('NFT minted successfully!', 'Token Id: ' +  tokenIdMinted);
 
         } else {
@@ -43,10 +43,13 @@ export default {
       xhr.open('GET', this.mintedNftURI);
       xhr.responseType = "json";
       xhr.onload = () => {
-        this.mintedNftDetails.image = "https://" + xhr.response.image;
+        this.mintedNftDetails.image = xhr.response.image;
+        if(tokenIdMinted != 1){
+          this.mintedNftDetails.image = "https://" + this.mintedNftDetails.image;
+        }
         this.mintedNftDetails.name = xhr.response.name;
         this.mintedNftDetails.description = xhr.response.description;
-        // patanggal nlng ng console.logs kung di nyo trip may nakalagay sa console
+        
         console.log("Image Url >> " + this.mintedNftDetails.image)
         console.log("Fruity Name >> " + this.mintedNftDetails.name)
         console.log("Description >> " + this.mintedNftDetails.description)
