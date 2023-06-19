@@ -43,10 +43,10 @@ export default {
       xhr.open('GET', this.mintedNftURI);
       xhr.responseType = "json";
       xhr.onload = () => {
-        this.mintedNftDetails.image = xhr.response.image;
-        if(tokenIdMinted != 1){
-          this.mintedNftDetails.image = "https://" + this.mintedNftDetails.image;
-        }
+        this.mintedNftDetails.image = "https://" + xhr.response.image;
+        // if(tokenIdMinted != 1){
+        //   this.mintedNftDetails.image = "https://" + this.mintedNftDetails.image;
+        // }
         this.mintedNftDetails.name = xhr.response.name;
         this.mintedNftDetails.description = xhr.response.description;
         
@@ -71,7 +71,7 @@ export default {
        <div class="flex flex-col items-center justify-center">
         <!-- <Carousel :autoplay="2000" class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
         <div class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
-          <img src="../../assets/Fruitie/1547667490.png" alt="">
+          <img src="../../assets/Fruitie/1.png" alt="">
         </div>
          <div class="py-5 text-3xl">FRUITY NFT Claim</div>
          <div>
@@ -85,7 +85,7 @@ export default {
                 Get Nft Image and MetaData
             </button>
           </div>
-          <div v-if="!!mintedNftURI && !!mintedNftTokenId && !!mintedNftDetails">
+          <div v-if="mintedNftURI != null && mintedNftTokenId != null && mintedNftDetails != null">
             <img v-bind:src="mintedNftDetails.image" alt="NFT Image" >
             <p class="text-lg text-white">{{ mintedNftDetails.name }}</p>
             <p class="text-white text-md">{{ mintedNftDetails.description }}</p>
