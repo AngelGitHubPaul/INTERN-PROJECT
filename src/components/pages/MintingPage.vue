@@ -1,11 +1,11 @@
 <template>
  <body>
-  <section class="flex items-center h-screen w-screen">
-    <div class="flex flex-col basis-1/2 first-letter: justify-center items-center px-5">
-      <div class="rounded-md border-2 border-teal-400 outline-black shadow-lg hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
+  <section class="flex items-center w-screen h-screen">
+    <div class="flex flex-col items-center justify-center px-5 basis-1/2 first-letter:">
+      <div class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
         <img src="../../assets/Fruitie/9424480543.png" />
       </div>
-      <div class="text-3xl py-5">UVUWE NFT Claim</div>
+      <div class="py-5 text-3xl">UVUWE NFT Claim</div>
       <div>
         <button class="button" @click="open = true">
       <span class="button_lg">
@@ -16,8 +16,8 @@
       </div>
     </div>
 
-    <div class="basis-2/3 pr-16">
-      <p class=" font-bold text-white text-2xl">
+    <div class="pr-16 basis-2/3">
+      <p class="text-2xl font-bold text-white ">
         Lorem ipum dolor sit amet, consectetur adipisicing elit. Cupiditate
         aliquid veniam libero explicabo saepe recusandae eligendi? Ducimus
         similique laboriosam iste maxime voluptatum perspiciatis suscipit
@@ -31,11 +31,10 @@
       <Teleport to="body">
         <div v-if="open" class="modal">
           <div>
-            <div class="flex flex-col h-full w-full items-center justify-center">
-              <!-- <input type="email"   v-model="email" @blur="validateEmail" class=" input-field w-3/4 h-12 bg-gray-600 p-2 text-center"  placeholder="Enter Email" required/> -->
-              <input class=" input-field w-3/4 h-12 bg-gray-600 p-2 text-center" type="email" v-model="email" placeholder="Email" />
-              <button class="submit_btn" @click="submitEmail">
-              <!-- <span v-if="isLoading">
+            <div class="flex flex-col items-center justify-center w-full h-full">
+              <input v-if="!isSubmitted" type="email" class="w-3/4 h-12 p-2 text-center bg-gray-600  input-field"  placeholder="Enter Email" required v-model="email">
+              <button class="submit_btn" @click="handleSubmit" :disabled="isLoading || isSubmitted || email === ''">
+              <span v-if="isLoading">
                 <i class="loading-icon"></i>
               </span>
               <span v-else-if="isSubmitted">
@@ -43,8 +42,7 @@
               </span>
               <span v-else>
                 Submit
-              </span> -->
-              check
+              </span>
               </button>
               <div v-if="showModal" class="modal-confirm">
                 <h2>{{ modalTitle }}</h2>

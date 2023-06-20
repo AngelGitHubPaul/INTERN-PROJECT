@@ -28,7 +28,7 @@ contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
     }
 
     function _baseURI() internal pure override returns (string memory) {
-        return "https://nftstorage.link/ipfs/bafybeibmzuf32cgb7rbai7hkr4hwew7vdildb6sjnoivgcq5aod4n423mi/";
+        return "https://nftstorage.link/ipfs/bafybeietihtd2pn62biqxv5ci2cty652hjcq33majlh6qcov4pzzplf4ym/";
     }
 
     function tokenURI(uint256 _tokenId) public view override returns (string memory) {
@@ -44,14 +44,16 @@ contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
         return tokenUri;
     }
 
-    function safemint(address to) public {
+    function safeMint(address to) external {
         uint256 tokenId = _tokenIdCounter.current() + 1;
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
+        walletMints[to] = tokenId;
         tokenURI(tokenId);
     }
 
-    function showsupply() public view returns (uint256) {
-        return maxSupply;
+    function showsupply() external pure returns (uint256) {
+        return maxPerWallet;
     }
+
 }

@@ -2,16 +2,24 @@
 import { ethers } from 'ethers';
 import contractABI from '../../FruityNFT.json';
 
-const contractAddress = '0xcE5D9270079aA96d471227aaAe11a7484c5f77bc';
+const contractAddress = '0x3dF34C7368A8AD1D3258d93a8e4Ba2b77f391EF7';
 
 export default {
   data() {
     return {
       provider: null,
       contract: null,
+      mintedNftTokenId: null,
+      mintedNftURI: null,
       isConnected: false,
       isMinted: false,
+      mintedNftDetails: {},
     };
+  },
+  mounted() {
+    if (typeof window.ethereum === 'undefined') {
+          throw new Error('Please install MetaMask to mint NFTs.');
+      }
   },
   methods: {
     async mintNFT() {
@@ -25,13 +33,45 @@ export default {
         const signer = provider.getSigner();
         const contract = new ethers.Contract(contractAddress, contractABI.abi, signer);
         const userAddress = await signer.getAddress();
-        const transaction = await contract.safemint(userAddress);
+        if(await contract.walletMints(userAddress) == 0){
+        const transaction = await contract.safeMint(userAddress);
         await transaction.wait();
         console.log('NFT minted successfully!');
         this.isMinted = true;
+        } else {
+            alert("This wallet has already minted [1] fruity")
+        }
       } catch (error) {
         console.error('Error minting NFT:', error);
       }
+    },
+    async getNftDetails() {
+      const tokenIdMinted = await contract.walletMints(userAddress);
+      const nftURI = await contract.tokenURI(tokenIdMinted);
+      console.log("NFT URI >> " + nftURI)
+      this.mintedNftTokenId = tokenIdMinted;
+      this.mintedNftURI = nftURI;
+
+      // get the image url from the minted nft's uri through XMLHttpRequest
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', this.mintedNftURI);
+      xhr.responseType = "json";
+      xhr.onload = () => {
+        this.mintedNftDetails.image = "https://" + xhr.response.image;
+        // if(tokenIdMinted != 1){
+        //   this.mintedNftDetails.image = "https://" + this.mintedNftDetails.image;
+        // }
+        this.mintedNftDetails.name = xhr.response.name;
+        this.mintedNftDetails.description = xhr.response.description;
+        
+        console.log("Image Url >> " + this.mintedNftDetails.image)
+        console.log("Fruity Name >> " + this.mintedNftDetails.name)
+        console.log("Description >> " + this.mintedNftDetails.description)
+      }
+      xhr.send();
+    },
+    getImageUrl() {
+      console.log(this.mintedNftImgSrc)
     },
     async updateAccountStatus() {
       this.isConnected = await window.ethereum.request({ method: "eth_requestAccounts" }).then((accounts) => {
@@ -69,13 +109,13 @@ export default {
 
 <template>
     <body>    
-     <section class="flex items-center justify-center h-screen w-screen">
-       <div class="flex flex-col justify-center items-center">
-        <!-- <Carousel :autoplay="2000" class="rounded-md border-2 border-teal-400 outline-black shadow-lg hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
-        <div class="rounded-md border-2 border-teal-400 outline-black shadow-lg hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
-          <img src="../../assets/Fruitie/1547667490.png" alt="">
+     <section class="flex items-center justify-center w-screen h-screen">
+       <div class="flex flex-col items-center justify-center">
+        <!-- <Carousel :autoplay="2000" class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
+        <div class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
+          <img src="../../assets/Fruitie/1.png" alt="">
         </div>
-         <div class="text-3xl py-5">FRUITY NFT Claim</div>
+         <div class="py-5 text-3xl">FRUITY NFT Claim</div>
          <div>
           <button v-if="!isMinted" class="button" @click="mintNFT" :disabled="!isConnected">
             <span class="button_lg">
@@ -89,7 +129,15 @@ export default {
               <span class="button_text">Return to Homepage</span>
             </span>
           </button>
-         </div>
+            <button class="button" @click="getNftDetails()">
+                Get Nft Image and MetaData
+            </button>
+          </div>
+          <div v-if="mintedNftURI != null && mintedNftTokenId != null && mintedNftDetails != null">
+            <img v-bind:src="mintedNftDetails.image" alt="NFT Image" >
+            <p class="text-lg text-white">{{ mintedNftDetails.name }}</p>
+            <p class="text-white text-md">{{ mintedNftDetails.description }}</p>
+          </div>
        </div>
      </section>
     </body>
