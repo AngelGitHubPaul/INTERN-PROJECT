@@ -19,12 +19,13 @@ export async function signInToMetamask() {
 
 export async function setContractInstance() {
     if (typeof window.ethereum === 'undefined') {
-        throw new Error('Please install and login to MetaMask to continue.');
+        signInToMetamask();
     } else {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         contract = new ethers.Contract(contractAddress, contractABI.abi, signer);
         userAddress = await signer.getAddress();
-        console.log("signer address" + userAddress)
+        console.log("signer address" + userAddress);
+        return { contract, userAddress };
     }
 }
