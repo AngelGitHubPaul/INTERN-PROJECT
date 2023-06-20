@@ -1,28 +1,30 @@
 <script>
-import { contract, userAddress } from "../../lib/FruityNftInstance"
+import { setContractInstance, signInToMetamask } from "../../lib/FruityNftInstance"
 
 export default {
   data() {
     return {
+      contract: null,
+      userAddress: null,
       mintedNftTokenId: null,
       mintedNftURI: null,
       mintedNftDetails: {},
     };
   },
   mounted() {
-    if (typeof window.ethereum === 'undefined') {
-          throw new Error('Please install MetaMask to mint NFTs.');
-      }
+    this.setContractInstance();
   },
   methods: {
     async mintNFT() {
       try {
+        const { contract, userAddress } = await setContractInstance();
+        this.contract = contract;
+        this.userAddress = userAddress;
         if(await contract.walletMints(userAddress) == 0){
           const transaction = await contract.safeMint(userAddress);
           await transaction.wait();
           this.getNftDetails();
           console.log('NFT minted successfully!', 'Token Id: ' +  tokenIdMinted);
-
         } else {
           alert("This wallet has already minted [1] fruity")
         }
