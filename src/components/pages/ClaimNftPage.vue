@@ -33,8 +33,8 @@ export default {
       }
     },
     async getNftDetails() {
-      const tokenIdMinted = await contract.walletMints(userAddress);
-      const nftURI = await contract.tokenURI(tokenIdMinted);
+      const tokenIdMinted = await this.contract.walletMints(this.userAddress);
+      const nftURI = await this.contract.tokenURI(tokenIdMinted);
       console.log("NFT URI >> " + nftURI)
       this.mintedNftTokenId = tokenIdMinted;
       this.mintedNftURI = nftURI;
