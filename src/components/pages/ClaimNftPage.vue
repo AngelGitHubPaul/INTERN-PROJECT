@@ -4,6 +4,7 @@ import { contract, userAddress, signInToMetamask, setContractInstance } from "..
 export default {
   data() {
     return {
+      isMinted: false,
       mintedNftTokenId: null,
       mintedNftURI: null,
       mintedNftDetails: {},
@@ -30,6 +31,7 @@ export default {
           await transaction.wait();
           this.getNftDetails();
           console.log('NFT minted successfully!', 'Token Id: ' +  tokenIdMinted);
+          this.isMinted = true;
         } else {
           alert("This wallet has already minted a Fruity NFT")
         }
@@ -38,8 +40,8 @@ export default {
       }
     },
     async getNftDetails() {
-      const tokenIdMinted = await this.contract.walletMints(this.userAddress);
-      const nftURI = await this.contract.tokenURI(tokenIdMinted);
+      const tokenIdMinted = await contract.walletMints(userAddress);
+      const nftURI = await contract.tokenURI(tokenIdMinted);
       console.log("NFT URI >> " + nftURI)
       this.mintedNftTokenId = tokenIdMinted;
       this.mintedNftURI = nftURI;
@@ -61,7 +63,10 @@ export default {
     },
     getImageUrl() {
       console.log(this.mintedNftImgSrc)
-    }
+    },
+    returnToHomepage() {
+      this.$router.push('/')
+    },
   },
 };
 </script>
@@ -78,12 +83,18 @@ export default {
         </div>
          <div class="py-5 text-3xl">FRUITY NFT Claim</div>
          <div>
-            <button class="button" @click="mintNFT">
-                <span class="button_lg">
-                    <span class="button_sl"></span>
-                    <span class="button_text">Mint</span>
-                </span>
-            </button>
+          <button v-if="!isMinted" class="button" @click="mintNFT">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Mint</span>
+            </span>
+          </button>
+          <button v-else class="button" @click="returnToHomepage">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Return to Homepage</span>
+            </span>
+          </button>
             <button class="button" @click="getNftDetails()">
                 Get Nft Image and MetaData
             </button>
