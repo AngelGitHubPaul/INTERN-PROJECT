@@ -30,11 +30,9 @@ export default {
           await transaction.wait();
           this.getNftDetails();
           console.log('NFT minted successfully!', 'Token Id: ' +  tokenIdMinted);
-
         } else {
           alert("This wallet has already minted a Fruity NFT")
         }
-
       } catch (error) {
         console.error('Error minting NFT:', error);
       }
