@@ -12,7 +12,7 @@ export default {
     };
   },
   mounted() {
-    this.setContractInstance();
+    signInToMetamask();
   },
   methods: {
     async mintNFT() {
@@ -28,7 +28,6 @@ export default {
         } else {
           alert("This wallet has already minted [1] fruity")
         }
-
       } catch (error) {
         console.error('Error minting NFT:', error);
       }
