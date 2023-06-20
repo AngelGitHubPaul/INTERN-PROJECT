@@ -14,7 +14,7 @@ import { RouterLink } from 'vue-router'
     <w3m-core-button class="button">Connect Wallet</w3m-core-button>
   </nav> -->
   <header class="mt-0">
-    <nav class="flex items-center justify-between mx-auto w-fit">
+    <nav class="z-0 flex items-center justify-between mx-auto w-fit">
       <RouterLink to="/" class="flex items-center hover:bg-black/0">
         <img class="flex-shrink-0 w-16 cursor-pointer" src="../assets/Fruitie/1.png" alt="..."/>
         <div class="px-10">FRUITY NFT</div>
