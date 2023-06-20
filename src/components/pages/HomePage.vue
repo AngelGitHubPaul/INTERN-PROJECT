@@ -1,12 +1,12 @@
 <template>
   <section
-    class="w-full h-full px-5 lg:py-40"
+    class="h-full w-full px-5 lg:py-40"
     data-aos="zoom-in"
     data-aos-duration="2000"
   >
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
       <div class="p-5">
-        <h1 class="pb-10 text-5xl md:text-7xl">UVUVWE</h1>
+        <h1 class="text-5xl md:text-7xl pb-10">UVUVWE</h1>
         <p class="pb-8">
           Lorem ipsum dolor sit amet. Sed voluptatibus laborum rem deleniti
           doloribus hic velit enim et suscipit quaerat. Aut numquam error et
@@ -16,25 +16,25 @@
         </p>
         <div class="flex justify-center">
           <button
-            class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 w-80"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-80 rounded-full"
           >
             SHEESH
           </button>
         </div>
       </div>
-      <div class="flex justify-center p-5 md:relative">
+      <div class="flex justify-center md:relative p-5">
         <img
-          src="../../assets/Fruitie/1.png"
-          class="w-20 rounded-md md:absolute md:w-36"
+          src="../../assets/Fruitie/1547667490.png"
+          class="rounded-md md:absolute w-20 md:w-36"
           style="top: 30px; left: 30px"
         />
         <img
-          src="../../assets/Fruitie/2.png"
-          class="w-20 rounded-md md:absolute md:w-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:z-50"
+          src="../../assets/Fruitie/2997147654.png"
+          class="rounded-md md:absolute w-20 md:w-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:z-50"
         />
         <img
-          src="../../assets/Fruitie/3.png"
-          class="w-20 rounded-md md:absolute md:w-36"
+          src="../../assets/Fruitie/5404552974.png"
+          class="rounded-md md:absolute w-20 md:w-36"
           style="bottom: 30px; right: 30px"
         />
       </div>
@@ -46,24 +46,24 @@
     data-aos-duration="2000"
   >
     <div
-      class="flex flex-col align-middle rounded-lg md:flex-row bg-purple-500/40"
+      class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg"
     >
-      <div class="flex-row p-10 basis-1/3">
-        <span class="float-left px-2 material-symbols-outlined">
+      <div class="flex-row basis-1/3 p-10">
+        <span class="float-left material-symbols-outlined px-2">
           verified_user
         </span>
         <h1>Strong Security</h1>
         <p>Secure transaction and record</p>
       </div>
-      <div class="flex-row p-10 basis-1/3">
-        <span class="float-left px-2 material-symbols-outlined">
+      <div class="flex-row basis-1/3 p-10">
+        <span class="float-left material-symbols-outlined px-2">
           price_check
         </span>
         <h1>Payment Options</h1>
         <p>Flexible payment methods</p>
       </div>
-      <div class="flex-row p-10 basis-1/3">
-        <span class="float-left px-2 material-symbols-outlined">
+      <div class="flex-row basis-1/3 p-10">
+        <span class="float-left material-symbols-outlined px-2">
           verified_user
         </span>
         <h1>Updated Market</h1>
@@ -76,47 +76,47 @@
   </section>
   <section class="p-5" data-aos="fade-left" data-aos-duration="2000">
     <div class="mx-auto" id="about">
-      <div class="flex flex-col gap-4 md:flex-row">
-        <div class="flex flex-row items-center align-middle basis-1/2">
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex flex-row align-middle items-center basis-1/2">
           <div
-            class="flex flex-row justify-center gap-2 p-5 align-middle rounded-lg animate-pulse"
+            class="rounded-lg flex flex-row justify-center align-middle gap-2 p-5 animate-pulse"
           >
             <img
-              src="../../assets/Fruitie/1.png"
-              class="w-24 rounded-full lg:w-36 md:w-28"
+              src="../../assets/Fruitie/1547667490.png"
+              class="rounded-full w-24 lg:w-36 md:w-28"
             />
             <img
-              src="../../assets/Fruitie/2.png"
-              class="w-24 rounded-full lg:w-36 md:w-28"
+              src="../../assets/Fruitie/2997147654.png"
+              class="rounded-full w-24 lg:w-36 md:w-28"
             />
             <img
-              src="../../assets/Fruitie/3.png"
-              class="w-24 rounded-full lg:w-36 md:w-28"
+              src="../../assets/Fruitie/5404552974.png"
+              class="rounded-full w-24 lg:w-36 md:w-28"
             />
           </div>
         </div>
         <div class="flex-row basis-1/2">
-          <h1 class="flex justify-center mb-5 text-4xl">About US</h1>
+          <h1 class="text-4xl flex justify-center mb-5">About US</h1>
           <p class="text-2xl">Discover More!</p>
-          <p class="mb-2 text-2xl">Collect and Sell Rare NFT’s</p>
+          <p class="text-2xl mb-2">Collect and Sell Rare NFT’s</p>
           <p class="mb-2">
             Lorem ipsum dolor sit amet. Sed voluptatibus laborum rem deleniti
             doloribus hic velit enim et suscipit quaerat. Aut numquam error et
           </p>
           <div class="grid grid-cols-1 lg:grid-cols-2">
             <div>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="rounded-none bg-purple-500/50 w-52 m-2">
                 Wide Range of Platforms
               </button>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="rounded-none bg-purple-500/50 w-52 m-2">
                 World Class Artist
               </button>
             </div>
             <div>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="rounded-none bg-purple-500/50 w-52 m-2">
                 Any Type of Assets
               </button>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="rounded-none bg-purple-500/50 w-52 m-2">
                 Fast Payments
               </button>
             </div>
@@ -130,29 +130,29 @@
     data-aos="fade-up"
     data-aos-duration="2000"
   >
-    <h1 class="pb-10 mt-10 text-4xl">Market Trend</h1>
+    <h1 class="text-4xl mt-10 pb-10">Market Trend</h1>
     <div class="flex justify-center mb-5 overflow-x-auto">
       <table
-        class="min-w-full border border-collapse border-gray-300 table-auto bg-purple-500/50"
+        class="table-auto min-w-full border-collapse border border-gray-300 bg-purple-500/50"
       >
         <thead>
           <tr>
-            <th class="px-4 py-2 text-center">Symbol</th>
-            <th class="px-4 py-2 text-center">Price</th>
-            <th class="px-4 py-2 text-center">Market Cap</th>
-            <th class="px-4 py-2 text-center">24h Change</th>
+            <th class="text-center px-4 py-2">Symbol</th>
+            <th class="text-center px-4 py-2">Price</th>
+            <th class="text-center px-4 py-2">Market Cap</th>
+            <th class="text-center px-4 py-2">24h Change</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="crypto in cryptocurrencies" :key="crypto.id">
-            <td class="px-4 py-2 text-center border">{{ crypto.symbol }}</td>
-            <td class="px-4 py-2 text-center border">
+            <td class="border text-center px-4 py-2">{{ crypto.symbol }}</td>
+            <td class="border text-center px-4 py-2">
               $ {{ crypto.quotes.USD.price.toFixed(2) }}
             </td>
-            <td class="px-4 py-2 text-center border">
+            <td class="border text-center px-4 py-2">
               $ {{ crypto.quotes.USD.market_cap }}
             </td>
-            <td class="px-4 py-2 text-center border">
+            <td class="border text-center px-4 py-2">
               {{ crypto.quotes.USD.market_cap_change_24h }}%
             </td>
           </tr>
@@ -161,52 +161,52 @@
     </div>
   </section>
   <section class="px-5" data-aos="slide-up" data-aos-duration="2000">
-    <h1 class="flex justify-center mb-5 text-4xl">Marketplace</h1>
-    <div class="flex items-center justify-center mx-auto">
+    <h1 class="text-4xl flex justify-center mb-5">Marketplace</h1>
+    <div class="mx-auto flex justify-center items-center">
       <span
-        class="float-left px-2 material-symbols-outlined"
+        class="float-left material-symbols-outlined px-2"
         data-v-9ee6238f=""
       >
         arrow_left
       </span>
       <p class="text-gray-700">Best Seller NFT's</p>
       <span
-        class="float-left px-2 material-symbols-outlined"
+        class="float-left material-symbols-outlined px-2"
         data-v-9ee6238f=""
       >
         arrow_right
       </span>
     </div>
     <div
-      class="flex flex-col align-middle rounded-lg md:flex-row bg-purple-500/40"
+      class="flex flex-col md:flex-row align-middle bg-purple-500/40 rounded-lg"
     >
-      <div class="flex-row p-10 basis-1/3">
-        <button class="w-40 m-0 rounded-md bg-yellow-500/50" data-v-9ee6238f="">
+      <div class="flex-row basis-1/3 p-10">
+        <button class="rounded-md bg-yellow-500/50 w-40 m-0" data-v-9ee6238f="">
           NFT-01
         </button>
         <img
-          src="/src/assets/Fruitie/1.png"
-          class="relative w-24 p-0 lg:w-40 md:w-28"
+          src="/src/assets/Fruitie/1547667490.png"
+          class="relative p-0 w-24 lg:w-40 md:w-28"
           data-v-9ee6238f=""
         />
       </div>
-      <div class="flex-row p-10 basis-1/3">
-        <button class="w-40 m-0 rounded-md bg-violet-500/50" data-v-9ee6238f="">
+      <div class="flex-row basis-1/3 p-10">
+        <button class="rounded-md bg-violet-500/50 w-40 m-0" data-v-9ee6238f="">
           NFT-02
         </button>
         <img
-          src="/src/assets/Fruitie/2.png"
-          class="relative w-24 p-0 lg:w-40 md:w-28"
+          src="/src/assets/Fruitie/2997147654.png"
+          class="relative p-0 w-24 lg:w-40 md:w-28"
           data-v-9ee6238f=""
         />
       </div>
-      <div class="flex-row p-10 basis-1/3">
-        <button class="w-40 m-0 rounded-md bg-red-500/50" data-v-9ee6238f="">
+      <div class="flex-row basis-1/3 p-10">
+        <button class="rounded-md bg-red-500/50 w-40 m-0" data-v-9ee6238f="">
           NFT-03
         </button>
         <img
-          src="/src/assets/Fruitie/3.png"
-          class="relative w-24 p-0 lg:w-40 md:w-28"
+          src="/src/assets/Fruitie/5404552974.png"
+          class="relative p-0 w-24 lg:w-40 md:w-28"
           data-v-9ee6238f=""
         />
       </div>
@@ -214,23 +214,23 @@
     
   </section>
   <section class="px-5 lg:pb-40" data-aos="flip-up" data-aos-duration="2000">
-    <div class="flex items-center justify-center mx-auto">
+    <div class="mx-auto flex justify-center items-center">
       <p class="text-gray-700">About Us</p>
     </div>
-    <div class="flex items-center justify-center mx-auto">
-      <p class="mb-2 text-2xl" data-v-9ee6238f="">Frequently asked questions</p>
+    <div class="mx-auto flex justify-center items-center">
+      <p class="text-2xl mb-2" data-v-9ee6238f="">Frequently asked questions</p>
     </div>
-    <div class="flex items-center justify-center mx-auto">
+    <div class="mx-auto flex justify-center items-center">
       <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f="">
         <div data-v-9ee6238f="">
           <button
-            class="m-2 rounded-md bg-purple-500/50 w-52"
+            class="rounded-md bg-purple-500/50 w-52 m-2"
             data-v-9ee6238f=""
           >
             What is NFT?
           </button>
           <button
-            class="m-2 rounded-md bg-purple-500/50 w-52"
+            class="rounded-md bg-purple-500/50 w-52 m-2"
             data-v-9ee6238f=""
           >
             What is NFSpace?
@@ -238,13 +238,13 @@
         </div>
         <div data-v-9ee6238f="">
           <button
-            class="m-2 rounded-md bg-purple-500/50 w-52"
+            class="rounded-md bg-purple-500/50 w-52 m-2"
             data-v-9ee6238f=""
           >
             How to Mint?
           </button>
           <button
-            class="m-2 rounded-md bg-purple-500/50 w-52"
+            class="rounded-md bg-purple-500/50 w-52 m-2"
             data-v-9ee6238f=""
           >
             How payments process?
