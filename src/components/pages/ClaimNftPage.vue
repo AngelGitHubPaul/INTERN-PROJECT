@@ -1,5 +1,5 @@
 <script>
-import { contract, userAddress } from "../../lib/FruityNftInstance"
+import { contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
 
 export default {
   data() {
@@ -9,10 +9,18 @@ export default {
       mintedNftDetails: {},
     };
   },
-  mounted() {
+  async mounted() {
     if (typeof window.ethereum === 'undefined') {
           throw new Error('Please install MetaMask to mint NFTs.');
       }
+    await signInToMetamask()
+    .then(async ()=>{
+        await setContractInstance();
+        console.log("Setup Successful")
+    })
+    .catch((err)=>{
+      console.log(err.code, err.message);
+    })
   },
   methods: {
     async mintNFT() {
@@ -24,7 +32,7 @@ export default {
           console.log('NFT minted successfully!', 'Token Id: ' +  tokenIdMinted);
 
         } else {
-          alert("This wallet has already minted [1] fruity")
+          alert("This wallet has already minted a Fruity NFT")
         }
 
       } catch (error) {
@@ -43,10 +51,7 @@ export default {
       xhr.open('GET', this.mintedNftURI);
       xhr.responseType = "json";
       xhr.onload = () => {
-        this.mintedNftDetails.image = "https://" + xhr.response.image;
-        // if(tokenIdMinted != 1){
-        //   this.mintedNftDetails.image = "https://" + this.mintedNftDetails.image;
-        // }
+        this.mintedNftDetails.image = xhr.response.image;
         this.mintedNftDetails.name = xhr.response.name;
         this.mintedNftDetails.description = xhr.response.description;
         
