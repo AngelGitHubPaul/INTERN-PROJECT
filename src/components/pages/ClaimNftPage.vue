@@ -4,6 +4,7 @@ import { isConnected, contract, userAddress, signInToMetamask, setContractInstan
 
 import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
 
+let isMinted = ref(false);
 let mintedNftTokenId = ref(null);
 let mintedNftURI = ref(null);
 let mintedNftDetails = ref({});
@@ -24,6 +25,7 @@ async function mintNFT() {
         await transaction.wait();
         getNftDetails();
         console.log('NFT minted successfully!', 'Token Id: ' + tokenIdMinted);
+        isMinted.value = true;
       } else {
         alert("This wallet has already minted a Fruity NFT")
       }
@@ -37,6 +39,10 @@ async function mintNFT() {
   } catch (error) {
     console.error('Error minting NFT:', error);
   }
+}
+
+function returnToHomepage() {
+  this.$router.push('/')
 }
 
 async function getNftDetails() {
@@ -77,10 +83,16 @@ async function getNftDetails() {
         </div>
         <div class="py-5 text-3xl">FRUITY NFT Claim</div>
         <div>
-          <button class="button" @click="mintNFT">
+          <button v-if="!isMinted" class="button" @click="mintNFT">
             <span class="button_lg">
               <span class="button_sl"></span>
               <span class="button_text">Mint</span>
+            </span>
+          </button>
+          <button v-else class="button" @click="returnToHomepage">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Return to Homepage</span>
             </span>
           </button>
           <button class="button" @click="getNftDetails()">
