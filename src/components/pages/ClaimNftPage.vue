@@ -1,10 +1,20 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
+
+import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
 
 let mintedNftTokenId = ref(null);
 let mintedNftURI = ref(null);
 let mintedNftDetails = ref({});
+
+onMounted(()=>{
+  if(window.ethereum != undefined){
+    setContractInstance();
+  } else {
+    alert("Please Install Metamask first!")
+  }
+})
 
 async function mintNFT() {
   try {
@@ -20,7 +30,8 @@ async function mintNFT() {
     } else {
       alert("Connect your Metamask Wallet first!");
       await signInToMetamask();
-      await setContractInstance();
+      // await setContractInstance();
+      alert("Your wallet is now connected, you can now mint your NFT");
       console.log("Setup Successful");
     }
   } catch (error) {
@@ -79,13 +90,7 @@ async function getNftDetails() {
         <!-- <Teleport to="section"> -->
         <div v-if="mintedNftURI != null && mintedNftTokenId != null && mintedNftDetails != null"
           class="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center bg-black/60 z-10">
-          <div class="flex flex-col items-center w-3/4 gap-3 p-4 bg-white h/3/4">
-            <img v-bind:src="mintedNftDetails.image" alt="NFT Image">
-            <p class="text-lg text-black">{{ mintedNftDetails.name }}</p>
-            <p class="text-black">Description:</p>
-            <p class="text-center text-black text-md">{{ mintedNftDetails.description }}</p>
-            <button class="p-3 font-bold bg-red-600 rounded-xl">Close</button>
-          </div>
+          <NftDetalsModal nftDetails={{ mintedNftDetails }} />
         </div>
         <!-- </Teleport> -->
       </div>

@@ -3,7 +3,7 @@
   <section class="flex items-center w-screen h-screen">
     <div class="flex flex-col items-center justify-center px-5 basis-1/2 first-letter:">
       <div class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
-        <img src="../../assets/Fruitie/9424480543.png" />
+        <img src="../../assets/Fruitie/4.png" />
       </div>
       <div class="py-5 text-3xl">UVUWE NFT Claim</div>
       <div>
@@ -32,7 +32,7 @@
         <div v-if="open" class="modal">
           <div>
             <div class="flex flex-col items-center justify-center w-full h-full">
-              <input v-if="!isSubmitted" type="email" class="w-3/4 h-12 p-2 text-center bg-gray-600  input-field"  placeholder="Enter Email" required v-model="email">
+              <input v-if="!isSubmitted" type="email" class="w-3/4 h-12 p-2 text-center bg-gray-600 input-field"  placeholder="Enter Email" required v-model="email">
               <button class="submit_btn" @click="handleSubmit" :disabled="isLoading || isSubmitted || email === ''">
               <span v-if="isLoading">
                 <i class="loading-icon"></i>
