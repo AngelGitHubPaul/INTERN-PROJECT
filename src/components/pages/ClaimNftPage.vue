@@ -25,6 +25,7 @@ async function mintNFT() {
         getNftDetails();
         console.log('NFT minted successfully!', 'Token Id: ' + tokenIdMinted);
         isMinted.value = true;
+        openModal.value = true;
       } else {
         alert("This wallet has already minted a Fruity NFT")
       }
@@ -37,9 +38,7 @@ async function mintNFT() {
     }
   } catch (error) {
     console.error('Error minting NFT:', error);
-  } finally {
-    openModal.value = true;
-  }
+  } 
 }
 
 function returnToHomepage() {
