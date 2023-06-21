@@ -4,18 +4,22 @@ import contractABI from '../FruityNFT.json';
 const contractAddress = '0x9008EAFEccd99D48509F59511C73177Ca69cCdd7';
 export let contract;
 export let userAddress;
+export let isConnected = false;
 
 export async function signInToMetamask() {
-    const metamaskAccount = await window.ethereum.request({ method: 'eth_requestAccounts' })
-    .catch((err)=>{
-        if(err.code === 4001){
-            console.log("Please Connect to metamask")
+    try {
+        const metamaskAccount = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        console.log("Metamask login address: " + metamaskAccount);
+        isConnected = true;
+    } catch (err) {
+        if (err.code === 4001) {
+            alert("Please Connect to MetaMask");
         } else {
-            console.log(err.code, err.message)
+            console.log(err.code, err.message);
         }
-    })
-    console.log("metamask log in address" + metamaskAccount)
+    }
 }
+
 
 export async function setContractInstance() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
