@@ -11,9 +11,7 @@ let mintedNftDetails = ref({});
 let openModal = ref(false);
 
 onMounted(()=>{
-  if(window.ethereum != undefined){
-    setContractInstance();
-  } else {
+  if(window.ethereum == undefined){
     alert("Please Install Metamask first!")
   }
 })
@@ -33,7 +31,7 @@ async function mintNFT() {
     } else {
       alert("Connect your Metamask Wallet first!");
       await signInToMetamask();
-      // await setContractInstance();
+      await setContractInstance();
       alert("Your wallet is now connected, you can now mint your NFT");
       console.log("Setup Successful");
     }
