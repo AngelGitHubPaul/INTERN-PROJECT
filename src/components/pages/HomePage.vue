@@ -6,14 +6,11 @@
   >
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
       <div class="p-5">
-        <h1 class="pb-10 text-5xl md:text-7xl">UVUVWE</h1>
-        <p class="pb-8">
-          Lorem ipsum dolor sit amet. Sed voluptatibus laborum rem deleniti
-          doloribus hic velit enim et suscipit quaerat. Aut numquam error et
-          consequatur galisum eos dolores autem in aliquam asperiores. Ad
-          exercitationem optio et quasi illum in quasi ratione At inventore
-          tempora eum dolor nemo ab dolorum temporibus ad itaque maxime
-        </p>
+        <h1 class="pb-10 text-5xl md:text-6xl">Fruity NFT</h1>
+        <h2 class=" text-5xl md:text-4xl font-bold">Discover,</h2>
+        <p class="pb-0 text-5xl md:text-3xl font-bold">collect, and sell</p>
+        <p class="pb-8 text-5xl md:text-3xl"> extraordinary NFTs</p>
+        <p class="pb-8 ">The largest and unique Super rare NFT marketplace For Crypto-collectibles</p>
         <div class="flex justify-center">
           <button
             class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 w-80"
@@ -159,59 +156,6 @@
         </tbody>
       </table>
     </div>
-  </section>
-  <section class="px-5" data-aos="slide-up" data-aos-duration="2000">
-    <h1 class="flex justify-center mb-5 text-4xl">Marketplace</h1>
-    <div class="flex items-center justify-center mx-auto">
-      <span
-        class="float-left px-2 material-symbols-outlined"
-        data-v-9ee6238f=""
-      >
-        arrow_left
-      </span>
-      <p class="text-gray-700">Best Seller NFT's</p>
-      <span
-        class="float-left px-2 material-symbols-outlined"
-        data-v-9ee6238f=""
-      >
-        arrow_right
-      </span>
-    </div>
-    <div
-      class="flex flex-col align-middle rounded-lg md:flex-row bg-purple-500/40"
-    >
-      <div class="flex-row p-10 basis-1/3">
-        <button class="w-40 m-0 rounded-md bg-yellow-500/50" data-v-9ee6238f="">
-          NFT-01
-        </button>
-        <img
-          src="/src/assets/Fruitie/1.png"
-          class="relative w-24 p-0 lg:w-40 md:w-28"
-          data-v-9ee6238f=""
-        />
-      </div>
-      <div class="flex-row p-10 basis-1/3">
-        <button class="w-40 m-0 rounded-md bg-violet-500/50" data-v-9ee6238f="">
-          NFT-02
-        </button>
-        <img
-          src="/src/assets/Fruitie/2.png"
-          class="relative w-24 p-0 lg:w-40 md:w-28"
-          data-v-9ee6238f=""
-        />
-      </div>
-      <div class="flex-row p-10 basis-1/3">
-        <button class="w-40 m-0 rounded-md bg-red-500/50" data-v-9ee6238f="">
-          NFT-03
-        </button>
-        <img
-          src="/src/assets/Fruitie/3.png"
-          class="relative w-24 p-0 lg:w-40 md:w-28"
-          data-v-9ee6238f=""
-        />
-      </div>
-    </div>
-    
   </section>
   <section class="px-5 lg:pb-40" data-aos="flip-up" data-aos-duration="2000">
     <div class="flex items-center justify-center mx-auto">

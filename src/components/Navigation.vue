@@ -30,13 +30,7 @@ import { RouterLink } from 'vue-router'
             <RouterLink to="/claimnft" class="button">Trade</RouterLink>
           </li>
           <li>
-            <RouterLink to="" class="button">Earn</RouterLink>
-          </li>
-          <li>
             <RouterLink to="/mintnft" class="button">MINT</RouterLink>
-          </li>
-          <li>
-            <RouterLink to="" class="button">CrossChain</RouterLink>
           </li>
           <li>
             <RouterLink to="/wallet" class="button">Wallet</RouterLink>
