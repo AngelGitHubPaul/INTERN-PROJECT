@@ -1,65 +1,71 @@
 <script>
-import { ethers } from 'ethers';
-import contractABI from '../../FruityNFT.json';
-
-const contractAddress = '0xcE5D9270079aA96d471227aaAe11a7484c5f77bc';
+import { contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
 
 export default {
   data() {
     return {
-      provider: null,
-      contract: null,
-      isConnected: false,
       isMinted: false,
+      mintedNftTokenId: null,
+      mintedNftURI: null,
+      mintedNftDetails: {},
     };
+  },
+  async mounted() {
+    if (typeof window.ethereum === 'undefined') {
+          throw new Error('Please install MetaMask to mint NFTs.');
+      }
+    await signInToMetamask()
+    .then(async ()=>{
+        await setContractInstance();
+        console.log("Setup Successful")
+    })
+    .catch((err)=>{
+      console.log(err.code, err.message);
+    })
   },
   methods: {
     async mintNFT() {
-      if (!this.isConnected) {
-        console.error("Please connect MetaMask to mint NFTs.");
-        return;
-      }
       try {
-        await window.ethereum.request({ method: 'eth_requestAccounts' })
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(contractAddress, contractABI.abi, signer);
-        const userAddress = await signer.getAddress();
-        const transaction = await contract.safemint(userAddress);
-        await transaction.wait();
-        console.log('NFT minted successfully!');
-        this.isMinted = true;
+        if(await contract.walletMints(userAddress) == 0){
+          const transaction = await contract.safeMint(userAddress);
+          await transaction.wait();
+          this.getNftDetails();
+          console.log('NFT minted successfully!', 'Token Id: ' +  tokenIdMinted);
+          this.isMinted = true;
+        } else {
+          alert("This wallet has already minted a Fruity NFT")
+        }
       } catch (error) {
         console.error('Error minting NFT:', error);
       }
     },
-    async updateAccountStatus() {
-      this.isConnected = await window.ethereum.request({ method: "eth_requestAccounts" }).then((accounts) => {
-        return accounts.length > 0;
-      });
-    },
-    async onDisconnect() {
-      try {
-        this.provider = null;
-        this.signer = null;
-      } catch (error) {
-        console.error(error);
+    async getNftDetails() {
+      const tokenIdMinted = await contract.walletMints(userAddress);
+      const nftURI = await contract.tokenURI(tokenIdMinted);
+      console.log("NFT URI >> " + nftURI)
+      this.mintedNftTokenId = tokenIdMinted;
+      this.mintedNftURI = nftURI;
+
+      // get the image url from the minted nft's uri through XMLHttpRequest
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', this.mintedNftURI);
+      xhr.responseType = "json";
+      xhr.onload = () => {
+        this.mintedNftDetails.image = xhr.response.image;
+        this.mintedNftDetails.name = xhr.response.name;
+        this.mintedNftDetails.description = xhr.response.description;
+        
+        console.log("Image Url >> " + this.mintedNftDetails.image)
+        console.log("Fruity Name >> " + this.mintedNftDetails.name)
+        console.log("Description >> " + this.mintedNftDetails.description)
       }
+      xhr.send();
+    },
+    getImageUrl() {
+      console.log(this.mintedNftImgSrc)
     },
     returnToHomepage() {
       this.$router.push('/')
-    },
-  },
-  mounted() {
-    if (typeof window.ethereum === "undefined") {
-      console.error("Please install MetaMask to mint NFTs.");
-    } else {
-      this.updateAccountStatus();
-    }
-  },
-  watch: {
-    isConnected(newValue) {
-      this.isConnected = newValue;
     },
   },
 };
@@ -69,15 +75,15 @@ export default {
 
 <template>
     <body>    
-     <section class="flex items-center justify-center h-screen w-screen">
-       <div class="flex flex-col justify-center items-center">
-        <!-- <Carousel :autoplay="2000" class="rounded-md border-2 border-teal-400 outline-black shadow-lg hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
-        <div class="rounded-md border-2 border-teal-400 outline-black shadow-lg hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
-          <img src="../../assets/Fruitie/1547667490.png" alt="">
+     <section class="flex items-center justify-center w-screen h-screen">
+       <div class="flex flex-col items-center justify-center">
+        <!-- <Carousel :autoplay="2000" class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
+        <div class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
+          <img src="../../assets/Fruitie/1.png" alt="">
         </div>
-         <div class="text-3xl py-5">FRUITY NFT Claim</div>
+         <div class="py-5 text-3xl">FRUITY NFT Claim</div>
          <div>
-          <button v-if="!isMinted" class="button" @click="mintNFT" :disabled="!isConnected">
+          <button v-if="!isMinted" class="button" @click="mintNFT">
             <span class="button_lg">
               <span class="button_sl"></span>
               <span class="button_text">Mint</span>
@@ -89,7 +95,15 @@ export default {
               <span class="button_text">Return to Homepage</span>
             </span>
           </button>
-         </div>
+            <button class="button" @click="getNftDetails()">
+                Get Nft Image and MetaData
+            </button>
+          </div>
+          <div v-if="mintedNftURI != null && mintedNftTokenId != null && mintedNftDetails != null">
+            <img v-bind:src="mintedNftDetails.image" alt="NFT Image" >
+            <p class="text-lg text-white">{{ mintedNftDetails.name }}</p>
+            <p class="text-white text-md">{{ mintedNftDetails.description }}</p>
+          </div>
        </div>
      </section>
     </body>

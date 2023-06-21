@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <!-- <nav class="flex justify-end w-screen h-32 place-items-center gap-10 pr-10 pt-2 pb-2">
+  <!-- <nav class="flex justify-end w-screen h-32 gap-10 pt-2 pb-2 pr-10 place-items-center">
     <div class="flex gap-10">
       <RouterLink to="/" class="button">Trade</RouterLink>
       <RouterLink to="/" class="button">Earn</RouterLink>
@@ -14,9 +14,9 @@ import { RouterLink } from 'vue-router'
     <w3m-core-button class="button">Connect Wallet</w3m-core-button>
   </nav> -->
   <header class="mt-0">
-    <nav class="flex justify-between items-center w-fit mx-auto">
+    <nav class="flex items-center justify-between mx-auto w-fit">
       <RouterLink to="/" class="flex items-center hover:bg-black/0">
-        <img class="flex-shrink-0 w-16 cursor-pointer" src="../assets/Fruitie/9424480543.png" alt="..."/>
+        <img class="flex-shrink-0 w-16 cursor-pointer" src="../assets/Fruitie/1.png" alt="..."/>
         <div class="px-10">FRUITY NFT</div>
       </RouterLink>
       <div
