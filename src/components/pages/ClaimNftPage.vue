@@ -8,6 +8,7 @@ let isMinted = ref(false);
 let mintedNftTokenId = ref(null);
 let mintedNftURI = ref(null);
 let mintedNftDetails = ref({});
+let openModal = ref(false);
 
 onMounted(()=>{
   if(window.ethereum != undefined){
@@ -38,6 +39,8 @@ async function mintNFT() {
     }
   } catch (error) {
     console.error('Error minting NFT:', error);
+  } finally {
+    openModal.value = true;
   }
 }
 
@@ -46,7 +49,7 @@ function returnToHomepage() {
 }
 
 async function getNftDetails() {
-  console.log(contract, userAddress)
+  console.log("getting nft details")
   const tokenIdMinted = parseInt(await contract.walletMints(userAddress));
   const nftURI = await contract.tokenURI(tokenIdMinted);
   console.log(tokenIdMinted, nftURI)
@@ -65,6 +68,7 @@ async function getNftDetails() {
     console.log("Image Url >> " + mintedNftDetails.value.image)
     console.log("Fruity Name >> " + mintedNftDetails.value.name)
     console.log("Description >> " + mintedNftDetails.value.description)
+    openModal.value = true;
   }
   xhr.send();
 }
@@ -99,12 +103,10 @@ async function getNftDetails() {
             Get Nft Image and MetaData
           </button>
         </div>
-        <!-- <Teleport to="section"> -->
-        <div v-if="mintedNftURI != null && mintedNftTokenId != null && mintedNftDetails != null"
+        <div v-if="openModal == true"
           class="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center bg-black/60 z-10">
-          <NftDetalsModal nftDetails={{ mintedNftDetails }} />
+          <NftDetalsModal v-bind:nftDetails="mintedNftDetails" v-on:close="()=>openModal = false"/>
         </div>
-        <!-- </Teleport> -->
       </div>
     </section>
   </body>
