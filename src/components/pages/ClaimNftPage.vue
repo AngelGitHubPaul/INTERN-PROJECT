@@ -16,6 +16,7 @@ onMounted(()=>{
   }
 })
 
+
 async function mintNFT() {
   try {
     if (isConnected) {
@@ -70,8 +71,6 @@ async function getNftDetails() {
   xhr.send();
 }
 </script>
-
-
 
 <template>
   <body>

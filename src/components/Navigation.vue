@@ -26,9 +26,9 @@ import { RouterLink } from 'vue-router'
         <ul
           class="flex md:flex-row flex-col md:items-center md:gap-[1vw] gap-8"
         >
-          <li>
+          <!--<li>
             <RouterLink to="/claimnft" class="button">Trade</RouterLink>
-          </li>
+          </li>  -->
           <li>
             <RouterLink to="/mintnft" class="button">MINT</RouterLink>
           </li>
