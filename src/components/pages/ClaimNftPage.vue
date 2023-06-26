@@ -2,8 +2,8 @@
 import {RouterLink} from "vue-router";
 import { onMounted, ref, onUnmounted } from 'vue';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
-
-import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
+import swal from 'sweetalert';
+import NftDetailsModal from "./modals/claimNFTPage/nftDetails.vue";
 
 let isMinted = ref(false);
 let mintedNftTokenId = ref(null);
@@ -18,7 +18,7 @@ onMounted(async ()=>{
   openLoadingModal.value = true;
 
   if(window.ethereum == undefined){
-    alert("Please Install Metamask first!")
+    swal("Please Install Metamask first!", "", "warning")
   }
 
   if(!isConnected){
@@ -33,6 +33,7 @@ onMounted(async ()=>{
 
   openLoadingModal.value = false;
 })
+
 
 async function mintNFT() {
   try {
@@ -107,8 +108,6 @@ async function getNftDetails() {
 
 </script>
 
-
-
 <template>
   <body>
     <section class="relative flex items-center justify-center w-screen h-screen">
@@ -144,7 +143,7 @@ async function getNftDetails() {
         </div>
         <div v-if="openModal == true"
           class="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center bg-black/60 z-10">
-          <NftDetalsModal v-bind:nftDetails="mintedNftDetails" v-on:close="()=>openModal = false"/>
+          <NftDetailsModal v-bind:nftDetails="mintedNftDetails" v-on:close="()=>openModal = false"/>
         </div>
       </div>
     </section>
