@@ -12,10 +12,8 @@
         <p class="pb-8 text-5xl md:text-3xl"> extraordinary NFTs</p>
         <p class="pb-8 ">The largest and unique Super rare NFT marketplace For Crypto-collectibles</p>
         <div class="flex justify-center">
-          <button
-            class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 w-80"
-          >
-            SHEESH
+          <button class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 w-80">
+            MINT! MINT! MINT!
           </button>
         </div>
       </div>
