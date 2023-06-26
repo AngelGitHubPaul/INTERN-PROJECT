@@ -16,6 +16,7 @@ contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
 
     Counters.Counter private _tokenIdCounter;
 
+    uint256 public constant currentSupply = 0;
     uint256 public maxSupply;
     uint256 public constant maxPerWallet = 1;
     mapping(address => uint256) public walletMints;
@@ -49,6 +50,7 @@ contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         walletMints[to] = tokenId;
+        currentSupply++;
         tokenURI(tokenId);
     }
 

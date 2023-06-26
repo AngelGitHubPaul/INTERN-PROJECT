@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import {RouterLink} from "vue-router";
+import { onMounted, ref, onUnmounted } from 'vue';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
 
 import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
@@ -9,33 +10,61 @@ let mintedNftTokenId = ref(null);
 let mintedNftURI = ref(null);
 let mintedNftDetails = ref({});
 let openModal = ref(false);
+let openLoadingModal = ref(false);
+let currentSupply = ref(null);
+let maxSupply = ref(11);
 
-onMounted(()=>{
+onMounted(async ()=>{
+  openLoadingModal.value = true;
+
   if(window.ethereum == undefined){
     alert("Please Install Metamask first!")
   }
+
+  if(!isConnected){
+    await signInToMetamask().then(async ()=>{
+      await setContractInstance()
+      console.log(contract)
+      currentSupply.value = parseInt(await contract.currentSupply())
+      isMinted.value = await getTokenIdMinted(userAddress) != 0;
+      console.log(currentSupply.value)
+    }) 
+  }
+
+  openLoadingModal.value = false;
 })
 
 async function mintNFT() {
   try {
-    if (isConnected) {
-      if (await contract.walletMints(userAddress) == 0) {
-        const transaction = await contract.safeMint(userAddress);
-        await transaction.wait();
-        getNftDetails();
-        console.log('NFT minted successfully!', 'Token Id: ' + tokenIdMinted);
-        isMinted.value = true;
-        openModal.value = true;
-      } else {
-        alert("This wallet has already minted a Fruity NFT")
-      }
-    } else {
-      alert("Connect your Metamask Wallet first!");
-      await signInToMetamask();
-      await setContractInstance();
-      alert("Your wallet is now connected, you can now mint your NFT");
-      console.log("Setup Successful");
+    if(currentSupply == maxSupply){
+      alert("Fruity Nft's max supply has been reached, cannot mint right now")
+      return;
     }
+
+    if (!isConnected) {
+      alert("Connect your Metamask Wallet first!");
+      await signInToMetamask().then(async ()=>{
+        await setContractInstance();
+        alert("Your wallet is now connected, you can now mint your NFT");
+        console.log("Setup Successful", contract);
+      })
+      mintNFT();
+      return;
+    }
+
+    if (isMinted.value) {
+      alert("This wallet has already minted a Fruity NFT")
+      return;
+    }
+
+    const transaction = await contract.safeMint(userAddress);
+    await transaction.wait();
+    getNftDetails();
+    console.log('NFT minted successfully!', 'Token Id: ' + mintedNftTokenId);
+    currentSupply.value = parseInt(await contract.currentSupply())
+    isMinted.value = true;
+    openModal.value = true;
+
   } catch (error) {
     console.error('Error minting NFT:', error);
   } 
@@ -45,9 +74,14 @@ function returnToHomepage() {
   this.$router.push('/')
 }
 
+async function getTokenIdMinted(userAddress) {
+  return parseInt(await contract.walletMints(userAddress));
+}
+
 async function getNftDetails() {
   console.log("getting nft details")
-  const tokenIdMinted = parseInt(await contract.walletMints(userAddress));
+  const tokenIdMinted = await getTokenIdMinted(userAddress);
+  console.log(tokenIdMinted)
   const nftURI = await contract.tokenURI(tokenIdMinted);
   console.log(tokenIdMinted, nftURI)
   mintedNftTokenId.value = tokenIdMinted;
@@ -69,6 +103,8 @@ async function getNftDetails() {
   }
   xhr.send();
 }
+
+
 </script>
 
 
@@ -84,19 +120,22 @@ async function getNftDetails() {
         </div>
         <div class="py-5 text-3xl">FRUITY NFT Claim</div>
         <div>
-          <button v-if="!isMinted" class="button" @click="mintNFT">
+          <button v-if="isMinted == false" class="button" @click="mintNFT">
             <span class="button_lg">
               <span class="button_sl"></span>
               <span class="button_text">Mint</span>
             </span>
           </button>
-          <button v-else class="button" @click="returnToHomepage">
-            <span class="button_lg">
-              <span class="button_sl"></span>
-              <span class="button_text">Return to Homepage</span>
-            </span>
-          </button>
-          <button class="button" @click="getNftDetails()">
+          <RouterLink v-else to="/">
+            <div class="button">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Return to Homepage</span>
+              </span>
+            </div>
+          </RouterLink>
+          <p>Current Fruities Minted: {{ currentSupply }} / {{ maxSupply }}</p>
+          <button v-if="isMinted == true" class="text-white button" @click="getNftDetails()" >
             Get Nft Image and MetaData
           </button>
         </div>
@@ -108,6 +147,7 @@ async function getNftDetails() {
     </section>
   </body>
 </template>
+
    
 <style scoped>
 img {

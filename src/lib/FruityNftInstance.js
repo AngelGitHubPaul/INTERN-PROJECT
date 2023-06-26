@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import contractABI from '../FruityNFT.json';
 
-const contractAddress = '0x9008EAFEccd99D48509F59511C73177Ca69cCdd7';
+const contractAddress = '0xefcEEC978F205D0B8448Ac11021B7F4Ba6f8e02d';
 export let contract;
 export let userAddress;
 export let isConnected = false;
