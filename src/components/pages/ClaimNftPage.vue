@@ -136,7 +136,10 @@ async function getNftDetails() {
           </RouterLink>
           <p>Current Fruities Minted: {{ currentSupply }} / {{ maxSupply }}</p>
           <button v-if="isMinted == true" class="text-white button" @click="getNftDetails()" >
-            Get Nft Image and MetaData
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Get Nft Image and MetaData</span>
+            </span>
           </button>
         </div>
         <div v-if="openModal == true"
