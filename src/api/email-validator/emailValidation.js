@@ -9,7 +9,7 @@ export async function validateEmail(_email) {
         if (emailData.length == 0 || emailData[0].email != _email) {
             try {
                 // saves user input to database
-                await saveEmail(_email);
+                const emailData = await saveEmail(_email);
                 await sendingEmail(_email);
             } catch (error) {
                 console.log(error);
@@ -21,3 +21,4 @@ export async function validateEmail(_email) {
         console.log(error);
     }
 }
+module.exports = emailData.id;
