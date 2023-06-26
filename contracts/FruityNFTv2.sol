@@ -10,7 +10,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 // import "@openzeppelin/contracts/token/ERC721/";
-contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
+contract FruityNFTv2 is Initializable, ERC721Upgradeable, OwnableUpgradeable {
     using Counters for Counters.Counter;
     using Strings for uint256;
 
@@ -24,11 +24,11 @@ contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
     function initialized() public initializer {
         __ERC721_init("FruityNFT", "FN");
         __Ownable_init();
-        maxSupply = 10;
+        maxSupply = 20;
     }
 
     function _baseURI() internal pure override returns (string memory) {
-        return "https://nftstorage.link/ipfs/bafybeieefnyr7cwxmmlmu742p2rshdge7uaogt34bvxmffrh5xmyldejne/";
+        return "https://nftstorage.link/ipfs/bafybeibmzuf32cgb7rbai7hkr4hwew7vdildb6sjnoivgcq5aod4n423mi/";
     }
 
     function tokenURI(uint256 _tokenId) public view override returns (string memory) {
@@ -44,16 +44,14 @@ contract FruityNFT is Initializable, ERC721Upgradeable, OwnableUpgradeable {
         return tokenUri;
     }
 
-    function safeMint(address to) external {
+    function safemint(address to) public {
         uint256 tokenId = _tokenIdCounter.current() + 1;
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
-        walletMints[to] = tokenId;
         tokenURI(tokenId);
     }
 
-    function showsupply() external pure returns (uint256) {
-        return maxPerWallet;
+    function showsupply() public view returns (uint256) {
+        return maxSupply;
     }
-
 }

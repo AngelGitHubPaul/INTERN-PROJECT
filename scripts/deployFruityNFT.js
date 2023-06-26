@@ -1,9 +1,9 @@
 
-const hre = require("hardhat");
+const { ethers } = require("hardhat");
 
 async function main() {
 
-  const FruityNFT = await hre.ethers.getContractFactory("FruityNFT");
+  const FruityNFT = await ethers.getContractFactory("FruityNFTv2");
   const fruityNFT = await FruityNFT.deploy();
 
   await fruityNFT.deployed();
