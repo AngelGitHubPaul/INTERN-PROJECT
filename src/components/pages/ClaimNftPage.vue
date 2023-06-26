@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
-
+import swal from 'sweetalert';
 import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
 
 let isMinted = ref(false);
@@ -12,7 +12,7 @@ let openModal = ref(false);
 
 onMounted(()=>{
   if(window.ethereum == undefined){
-    alert("Please Install Metamask first!")
+    swal("Please Install Metamask first!", "", "warning")
   }
 })
 
@@ -28,13 +28,13 @@ async function mintNFT() {
         isMinted.value = true;
         openModal.value = true;
       } else {
-        alert("This wallet has already minted a Fruity NFT")
+        swal("This wallet has already minted a Fruity NFT", "", "warning");
       }
     } else {
-      alert("Connect your Metamask Wallet first!");
+      swal("Connect your Metamask Wallet first!", "", "warning");
       await signInToMetamask();
       await setContractInstance();
-      alert("Your wallet is now connected, you can now mint your NFT");
+      swal("Your wallet is now connected, you can now mint your NFT", "", "success");
       console.log("Setup Successful");
     }
   } catch (error) {

@@ -1,11 +1,11 @@
 <template>
-  <section class="w-full h-full px-28 lg:py-40" data-aos="zoom-in" data-aos-duration="2000">
+  <section class="w-full h-full px-28 lg:py-40" data-aos="zoom-in" data-aos-duration="1000">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
       <div class="p-5">
-        <h1 class="pb-10 text-5xl md:text-6xl">Fruity NFT</h1>
+        <h1 class="pb-10 text-5xl md:text-6xl font-extrabold">Fruity NFT</h1>
         <h2 class=" text-5xl md:text-4xl font-bold">Discover,</h2>
         <p class="pb-0 text-5xl md:text-3xl font-bold">collect, and sell</p>
-        <p class="pb-8 text-5xl md:text-3xl"> extraordinary NFTs</p>
+        <p class="pb-8 text-5xl md:text-3xl font-bold"> extraordinary NFTs</p>
         <p class="pb-8 ">The largest and unique Super rare NFT marketplace For Crypto-collectibles</p>
         <div class="flex justify-center text-center">
           <RouterLink to="/mintnft"
@@ -21,7 +21,7 @@
       </div>
     </div>
   </section>
-  <section class="h-full px-28 pt-20 lg:pt-4" data-aos="fade-right" data-aos-duration="2000">
+  <section class="h-full px-28 pt-20 lg:pt-4" data-aos="fade-right" data-aos-duration="1000">
     <div class="flex flex-col align-middle rounded-lg md:flex-row bg-purple-500/40">
       <div class="flex-row p-10 basis-1/3">
         <span class="float-left px-2 material-symbols-outlined">
@@ -49,7 +49,7 @@
       </div>
     </div>
   </section>
-  <section class="p-28" data-aos="fade-left" data-aos-duration="2000">
+  <section class="p-28" data-aos="fade-left" data-aos-duration="1000">
     <div class="mx-auto" id="about">
       <div class="flex flex-col gap-4 md:flex-row">
         <div class="flex flex-row items-center align-middle basis-1/2">
@@ -89,7 +89,7 @@
       </div>
     </div>
   </section>
-  <section class="h-full px-28 lg:pb-20" data-aos="fade-up" data-aos-duration="2000">
+  <section class="h-full px-28 lg:pb-20" data-aos="fade-up" data-aos-duration="1000">
     <h1 class="pb-10 text-4xl">Market Trend</h1>
     <div class="flex justify-center mb-5 overflow-x-auto">
       <table class="min-w-full border border-collapse border-gray-300 table-auto bg-purple-500/50">
@@ -118,7 +118,7 @@
       </table>
     </div>
   </section>
-  <section class="px-5 lg:pb-40" data-aos="flip-up" data-aos-duration="2000">
+  <section class="px-5 lg:pb-40" data-aos="flip-up" data-aos-duration="1000">
     <div class="flex items-center justify-center mx-auto">
       <p class="text-gray-700">About Us</p>
     </div>
