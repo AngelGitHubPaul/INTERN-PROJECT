@@ -13,9 +13,9 @@
         <p class="pb-8 ">The largest and unique Super rare NFT marketplace For Crypto-collectibles</p>
         <div class="flex justify-center">
           <button
-            class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 w-80"
+            class="px-4 py-2 font-bold bg-blue-500 rounded-full hover:bg-blue-700 w-80"
           >
-            SHEESH
+            <a href="/mintnft" class="text-white">Mint now</a>
           </button>
         </div>
       </div>
