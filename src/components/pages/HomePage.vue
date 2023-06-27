@@ -28,7 +28,7 @@
           verified_user
         </span>
         <h1>Strong Security</h1>
-        <p>Secure transaction and record</p>
+        <p>Secure transactions and record</p>
       </div>
       <div class="flex-row p-10 basis-1/3">
         <span class="float-left px-2 material-symbols-outlined">
@@ -60,27 +60,27 @@
           </div>
         </div>
         <div class="flex-row basis-1/2">
-          <h1 class="flex justify-center mb-5 text-4xl">About US</h1>
-          <p class="text-2xl">Discover More!</p>
-          <p class="mb-2 text-2xl">Collect and Sell Rare NFT’s</p>
+          <h1 class="flex justify-center mb-5 text-4xl font-bold">About Us</h1>
+          <p class="text-2xl font-bold">What is Fruity?</p>
+          <p class="mb-2 text-2x0"></p>
           <p class="mb-2">
-            Lorem ipsum dolor sit amet. Sed voluptatibus laborum rem deleniti
-            doloribus hic velit enim et suscipit quaerat. Aut numquam error et
+            Fruity are mysterious and rare fruits that grant unique and 
+            supernatural powers to those who consumes.
           </p>
           <div class="grid grid-cols-1 lg:grid-cols-2">
             <div>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="m-2 rounded-md bg-purple-500/50 w-52">
                 Wide Range of Platforms
               </button>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="m-2 rounded-md bg-purple-500/50 w-52">
                 World Class Artist
               </button>
             </div>
             <div>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="m-2 rounded-md bg-purple-500/50 w-52">
                 Any Type of Assets
               </button>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="m-2 rounded-md bg-purple-500/50 w-52">
                 Fast Payments
               </button>
             </div>
