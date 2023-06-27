@@ -3,7 +3,7 @@ import {RouterLink} from "vue-router";
 import { onMounted, ref, } from 'vue';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
 import swal from 'sweetalert';
-import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
+import NftDetailsModal from "./modals/claimNFTPage/nftDetails.vue";
 
 let isMinted = ref(false);
 let mintedNftTokenId = ref(null);
@@ -169,12 +169,15 @@ async function getNftDetails() {
           </RouterLink>
           <p>Current Fruities Minted: {{ currentSupply }} / {{ maxSupply }}</p>
           <button v-if="isMinted == true" class="text-white button" @click="getNftDetails()" >
-            Get Nft Image and MetaData
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Get Nft Image and MetaData</span>
+            </span>
           </button>
         </div>
         <div v-if="openModal == true"
           class="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center bg-black/60 z-10">
-          <NftDetalsModal v-bind:nftDetails="mintedNftDetails" v-on:close="()=>openModal = false"/>
+          <NftDetailsModal v-bind:nftDetails="mintedNftDetails" v-on:close="()=>openModal = false"/>
         </div>
       </div>
     </section>
