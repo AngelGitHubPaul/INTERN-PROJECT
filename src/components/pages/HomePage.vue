@@ -61,8 +61,8 @@
         </div>
         <div class=" flex-row basis-1/2">
           <h1 class="flex justify-center mb-5 text-4xl font-bold">About US</h1>
-          <p class="text-2xl">Discover More!</p>
-          <p class="mb-2 text-2xl">Collect and Sell Rare NFT’s</p>
+          <p class="text-2xl font-bold">What is Fruity?</p>
+          <p class="mb-2 text-2xl"></p>
           <p class="mb-2">
             Fruity are mysterious and rare fruits that grant unique and 
             supernatural powers to those who consumes.
