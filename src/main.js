@@ -36,26 +36,38 @@ const routes = [
   {
     path: '/mintnft/claimnft',
     component: ClaimNftPage,
-    meta: { requiresAuth: true },
-    beforeEnter: async (to, from) => {
-      try {
-        const email = to.query.email;
-        const response = await axios.get('https://the-intern-project.vercel.app/api/authenticate', {
-          params: {
-            email: email
-          }
-        });
-        if (response.status === 200) {
-          return;
-        }
-      } catch (error) {
-        console.error('Authentication error');
-        router.replace('/NotFoundPage');
-        return;
-      }
-    }
+    // meta: { requiresAuth: true },
+    // beforeEnter: async (to, from) => {
+    //   try {
+    //     const email = to.query.email;
+    //     const response = await axios.get('https://the-intern-project.vercel.app/api/authenticate', {
+    //       params: {
+    //         email: email
+    //       }
+    //     });
+    //     if (response.status === 200) {
+    //       return;
+    //     }
+    //   } catch (error) {
+    //     console.error('Authentication error');
+    //     router.replace('/NotFoundPage');
+    //     return;
+    //   }
+    // }
   },
 ]
+
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+/* import specific icons */
+import { faUserSecret, faSpinner } from '@fortawesome/free-solid-svg-icons'
+
+/* add icons to the library */
+library.add(faUserSecret, faSpinner)
 
 const router = createRouter({
   history: createWebHistory(),
@@ -70,4 +82,5 @@ app.use(
     once: false,
   })
 )
+app.component('font-awesome-icon', FontAwesomeIcon)
 app.mount('#app')
