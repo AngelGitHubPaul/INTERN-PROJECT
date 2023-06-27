@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full h-full px-28 lg:py-40" data-aos="zoom-in" data-aos-duration="1000">
+  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="zoom-in" data-aos-duration="1000">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
       <div class="p-5">
         <h1 class="pb-10 text-5xl md:text-6xl font-extrabold">Fruity NFT</h1>
@@ -21,7 +21,7 @@
       </div>
     </div>
   </section>
-  <section class="h-full px-28 pt-20 lg:pt-4" data-aos="fade-right" data-aos-duration="1000">
+  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-right" data-aos-duration="1000">
     <div class="flex flex-col align-middle rounded-lg md:flex-row bg-purple-500/40">
       <div class="flex-row p-10 basis-1/3">
         <span class="float-left px-2 material-symbols-outlined">
@@ -49,9 +49,9 @@
       </div>
     </div>
   </section>
-  <section class="p-28" data-aos="fade-left" data-aos-duration="1000">
+  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-left" data-aos-duration="1000">
     <div class="mx-auto" id="about">
-      <div class="flex flex-col gap-4 md:flex-row">
+      <div class="flex flex-col items-center align-middle gap-4 md:flex-row">
         <div class="flex flex-row items-center align-middle basis-1/2">
           <div class="flex flex-row justify-center gap-2 p-5 align-middle rounded-lg animate-pulse">
             <img src="../../assets/Fruitie/1.png" class="w-24 rounded-full lg:w-36 md:w-28" />
@@ -59,10 +59,10 @@
             <img src="../../assets/Fruitie/3.png" class="w-24 rounded-full lg:w-36 md:w-28" />
           </div>
         </div>
-        <div class="flex-row basis-1/2">
-          <h1 class="flex justify-center mb-5 text-4xl font-bold">About Us</h1>
-          <p class="text-2xl font-bold">What is Fruity?</p>
-          <p class="mb-2 text-2x0"></p>
+        <div class=" flex-row basis-1/2">
+          <h1 class="flex justify-center mb-5 text-4xl font-bold">About US</h1>
+          <p class="text-2xl">Discover More!</p>
+          <p class="mb-2 text-2xl">Collect and Sell Rare NFT’s</p>
           <p class="mb-2">
             Fruity are mysterious and rare fruits that grant unique and 
             supernatural powers to those who consumes.
@@ -89,16 +89,16 @@
       </div>
     </div>
   </section>
-  <section class="h-full px-28 lg:pb-20" data-aos="fade-up" data-aos-duration="1000">
-    <h1 class="pb-10 text-4xl">Market Trend</h1>
+  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-up" data-aos-duration="1000">
+    <h1 class="flex justify-center mb-5 text-4xl font-bold">Market Trend</h1>
     <div class="flex justify-center mb-5 overflow-x-auto">
       <table class="min-w-full border border-collapse border-gray-300 table-auto bg-purple-500/50">
         <thead>
           <tr>
-            <th class="px-4 py-2 text-center">Symbol</th>
-            <th class="px-4 py-2 text-center">Price</th>
-            <th class="px-4 py-2 text-center">Market Cap</th>
-            <th class="px-4 py-2 text-center">24h Change</th>
+            <th class="px-4 py-2 text-center font-bold">Symbol</th>
+            <th class="px-4 py-2 text-center font-bold">Price</th>
+            <th class="px-4 py-2 text-center font-bold">Market Cap</th>
+            <th class="px-4 py-2 text-center font-bold">24h Change</th>
           </tr>
         </thead>
         <tbody>
@@ -118,12 +118,12 @@
       </table>
     </div>
   </section>
-  <section class="px-5 lg:pb-40" data-aos="flip-up" data-aos-duration="1000">
+  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="flip-up" data-aos-duration="1000">
     <div class="flex items-center justify-center mx-auto">
       <p class="text-gray-700">About Us</p>
     </div>
     <div class="flex items-center justify-center mx-auto">
-      <p class="mb-2 text-2xl" data-v-9ee6238f="">Frequently asked questions</p>
+      <p class="mb-2 text-2xl font-bold" data-v-9ee6238f="">Frequently asked questions</p>
     </div>
     <div class="flex items-center justify-center mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f="">
