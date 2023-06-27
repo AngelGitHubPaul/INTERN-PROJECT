@@ -78,7 +78,7 @@ async function getNftDetails() {
       <div id="#main" class="relative flex flex-col items-center justify-center">
         <!-- <Carousel :autoplay="2000" class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
         <div
-          class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
+          class="w-full aspect-ratio border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
           <img src="../../assets/Fruitie/1.png" alt="">
         </div>
         <div class="py-5 text-3xl">FRUITY NFT Claim</div>
