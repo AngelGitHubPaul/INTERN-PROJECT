@@ -1,6 +1,6 @@
 <script setup>
 import {RouterLink} from "vue-router";
-import { onMounted, ref, onUnmounted } from 'vue';
+import { onMounted, ref, } from 'vue';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
 import swal from 'sweetalert';
 import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
@@ -10,55 +10,74 @@ let mintedNftTokenId = ref(null);
 let mintedNftURI = ref(null);
 let mintedNftDetails = ref({});
 let openModal = ref(false);
-let openLoadingModal = ref(false);
+let openLoadingModal = ref(true);
+let loadingModalMessage = ref("");
 let currentSupply = ref(null);
 let maxSupply = ref(11);
 
 onMounted(async ()=>{
   openLoadingModal.value = true;
-
+  
+  loadingModalMessage.value = "Checking Metamask..."
   if(window.ethereum == undefined){
     alert("Please Install Metamask first!")
   }
-
+  
+  loadingModalMessage.value = "Establishing wallet connection..."
   if(!isConnected){
     await signInToMetamask().then(async ()=>{
+      loadingModalMessage.value = "Setting Contract Instance..."
       await setContractInstance()
       console.log(contract)
       currentSupply.value = parseInt(await contract.currentSupply())
+      loadingModalMessage.value = "Validating Your Minting Information..."
       isMinted.value = await getTokenIdMinted(userAddress) != 0;
       console.log(currentSupply.value)
     }) 
   }
 
+  loadingModalMessage.value = "";
   openLoadingModal.value = false;
 })
 
-
 async function mintNFT() {
   try {
+    openLoadingModal.value = true;
+
+    loadingModalMessage.value = "Checking Fruity Supply..."
+    console.log(loadingModalMessage.value)
     if(currentSupply == maxSupply){
-      alert("Fruity Nft's max supply has been reached, cannot mint right now")
+      swal("Fruity Nft's max supply has been reached, cannot mint right now", "", "warning")
       return;
     }
-
+    
+    loadingModalMessage.value = "Checking Wallet Connection"
+    console.log(loadingModalMessage.value)
     if (!isConnected) {
-      alert("Connect your Metamask Wallet first!");
+      swal("Connect your Metamask Wallet first!", "", "warning");
+      loadingModalMessage.value = "Establishing Wallet Connection"
+      console.log(loadingModalMessage.value)
       await signInToMetamask().then(async ()=>{
+        loadingModalMessage.value = "Setting Contract Instance"
+        console.log(loadingModalMessage.value)
         await setContractInstance();
-        alert("Your wallet is now connected, you can now mint your NFT");
+        swal("Your wallet is now connected, you can now mint your NFT", "", "success");
         console.log("Setup Successful", contract);
       })
-      mintNFT();
+      await mintNFT();
       return;
     }
-
-    if (isMinted.value) {
-      alert("This wallet has already minted a Fruity NFT")
+    
+    loadingModalMessage.value = "Validating Minting Info..."
+    console.log(loadingModalMessage.value)
+    if (isMinted.value && getTokenIdMinted(userAddress)) {
+      swal("This wallet has already minted a Fruity NFT", "", "warning");
       return;
     }
-
+    
+    loadingModalMessage.value = "Paying Gas Fee..."
     const transaction = await contract.safeMint(userAddress);
+    loadingModalMessage.value = "Minting..."
     await transaction.wait();
     getNftDetails();
     console.log('NFT minted successfully!', 'Token Id: ' + mintedNftTokenId);
@@ -67,7 +86,11 @@ async function mintNFT() {
     openModal.value = true;
 
   } catch (error) {
-    console.error('Error minting NFT:', error);
+    if(openLoadingModal.value){
+      openLoadingModal.value = false
+    }
+    swal(error.message, "", "warning")
+    console.error('Error minting NFT:', error.message);
   } 
 }
 
@@ -80,7 +103,11 @@ async function getTokenIdMinted(userAddress) {
 }
 
 async function getNftDetails() {
-  console.log("getting nft details")
+  if(!openLoadingModal.value){
+    openLoadingModal.value = true;
+  }
+
+  loadingModalMessage.value = "Fetching your Fruity details..."
   const tokenIdMinted = await getTokenIdMinted(userAddress);
   console.log(tokenIdMinted)
   const nftURI = await contract.tokenURI(tokenIdMinted);
@@ -103,6 +130,9 @@ async function getNftDetails() {
     openModal.value = true;
   }
   xhr.send();
+
+  loadingModalMessage.value = "";
+  openLoadingModal.value = false;
 }
 
 
@@ -113,6 +143,10 @@ async function getNftDetails() {
     <section class="relative flex items-center justify-center w-screen h-screen">
       <div id="#main" class="relative flex flex-col items-center justify-center">
         <!-- <Carousel :autoplay="2000" class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
+        <div v-if="openLoadingModal" class="fixed top-0 left-0 w-[100vw] h-[100vh] flex flex-col items-center justify-center bg-black/60 z-10">
+          <font-awesome-icon icon="fa-solid fa-spinner" class="h-10" spin-pulse style="color: #fff;" />
+          <p class="text-white">{{ loadingModalMessage }}</p>
+        </div>
         <div
           class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
           <img src="../../assets/Fruitie/1.png" alt="">
