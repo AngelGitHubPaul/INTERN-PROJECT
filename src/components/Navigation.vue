@@ -3,53 +3,30 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <!-- <nav class="flex justify-end w-screen h-32 gap-10 pt-2 pb-2 pr-10 place-items-center">
-    <div class="flex gap-10">
-      <RouterLink to="/" class="button">Trade</RouterLink>
-      <RouterLink to="/" class="button">Earn</RouterLink>
-      <RouterLink to="/mintnft" class="button">NFT</RouterLink>
-      <RouterLink to="/" class="button">CrossChain</RouterLink>
-      <RouterLink to="/wallet" class="button">Wallet</RouterLink>
-    </div>
-    <w3m-core-button class="button">Connect Wallet</w3m-core-button>
-  </nav> -->
   <header class="mt-0">
     <nav class="z-0 flex items-center justify-between mx-auto w-fit">
       <RouterLink to="/" class="flex items-center hover:bg-black/0">
-        <img class="flex-shrink-0 w-16 cursor-pointer" src="../assets/Fruitie/1.png" alt="..."/>
+        <img class="flex-shrink-0 w-16 cursor-pointer" src="../assets/Fruitie/1.png" alt="..." />
         <div class="px-10">FRUITY NFT</div>
       </RouterLink>
-      <div
-        :class="['nav-links', { 'top-[12%]': isMenuOpen }]"
-        class="duration-500 md:static absolute bg-black md:bg-transparent md:min-h-fit min-h-[85vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 z-50"
-      >
-        <ul
-          class="flex md:flex-row flex-col md:items-center md:gap-[1vw] gap-8"
-        >
-          <li>
+      <div :class="['nav-links', { 'top-[12%]': isMenuOpen }]"
+        class="duration-500 md:static absolute bg-black md:bg-transparent md:min-h-fit min-h-[85vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 z-50">
+        <ul class="flex md:flex-row flex-col md:items-center md:gap-[1vw] gap-8">
+          <!--<li>
             <RouterLink to="/claimnft" class="button">Trade</RouterLink>
-          </li>
-          <li>
-            <RouterLink to="" class="button">Earn</RouterLink>
-          </li>
+          </li>  
           <li>
             <RouterLink to="/mintnft" class="button">MINT</RouterLink>
-          </li>
-          <li>
-            <RouterLink to="" class="button">CrossChain</RouterLink>
-          </li>
+          </li> 
           <li>
             <RouterLink to="/wallet" class="button">Wallet</RouterLink>
-          </li>
+          </li> -->
           <li><w3m-core-button>Connect Wallet</w3m-core-button></li>
         </ul>
       </div>
       <div class="flex items-center gap-6">
-        <ion-icon
-          @click="toggleMenu"
-          :name="isMenuOpen ? 'close' : 'menu'"
-          class="text-3xl cursor-pointer md:hidden"
-        ></ion-icon>
+        <ion-icon @click="toggleMenu" :name="isMenuOpen ? 'close' : 'menu'"
+          class="text-3xl cursor-pointer md:hidden"></ion-icon>
       </div>
     </nav>
   </header>

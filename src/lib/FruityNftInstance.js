@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
 import contractABI from '../FruityNFT.json';
+import swal from 'sweetalert';
 
 const contractAddress = '0xefcEEC978F205D0B8448Ac11021B7F4Ba6f8e02d';
 export let contract;
@@ -13,7 +14,7 @@ export async function signInToMetamask() {
         isConnected = true;
     } catch (err) {
         if (err.code === 4001) {
-            alert("Please Connect to MetaMask");
+            swal("Please Connect to MetaMask", "", "warning");
         } else {
             console.log(err.code, err.message);
         }

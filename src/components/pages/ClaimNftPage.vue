@@ -2,7 +2,7 @@
 import {RouterLink} from "vue-router";
 import { onMounted, ref, onUnmounted } from 'vue';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
-
+import swal from 'sweetalert';
 import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
 
 let isMinted = ref(false);
@@ -33,6 +33,7 @@ onMounted(async ()=>{
 
   openLoadingModal.value = false;
 })
+
 
 async function mintNFT() {
   try {
@@ -106,8 +107,6 @@ async function getNftDetails() {
 
 
 </script>
-
-
 
 <template>
   <body>
