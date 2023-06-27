@@ -1,8 +1,8 @@
 import { ethers } from 'ethers';
-import contractABI from '../FruityNFT.json';
+import contractABI from '../../contracts/abi/FruityNFT.json';
 import swal from 'sweetalert';
 
-const contractAddress = '0xefcEEC978F205D0B8448Ac11021B7F4Ba6f8e02d';
+const contractAddress = '0xB852f66D1519CeD525bf96cCAA0A50871D5949c4';
 export let contract;
 export let userAddress;
 export let isConnected = false;
