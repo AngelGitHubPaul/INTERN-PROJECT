@@ -32,8 +32,13 @@ onMounted(async ()=>{
       currentSupply.value = parseInt(await contract.currentSupply())
       loadingModalMessage.value = "Validating Your Minting Information..."
       isMinted.value = await getTokenIdMinted(userAddress) != 0;
+
+      if(isMinted.value){
+        swal("This wallet have already minted a Fruity NFT", "", "warning")
+      }
+
       console.log(currentSupply.value)
-    }) 
+    })
   }
 
   loadingModalMessage.value = "";
@@ -45,21 +50,17 @@ async function mintNFT() {
     openLoadingModal.value = true;
 
     loadingModalMessage.value = "Checking Fruity Supply..."
-    console.log(loadingModalMessage.value)
     if(currentSupply == maxSupply){
       swal("Fruity Nft's max supply has been reached, cannot mint right now", "", "warning")
       return;
     }
     
     loadingModalMessage.value = "Checking Wallet Connection"
-    console.log(loadingModalMessage.value)
     if (!isConnected) {
       swal("Connect your Metamask Wallet first!", "", "warning");
-      loadingModalMessage.value = "Establishing Wallet Connection"
-      console.log(loadingModalMessage.value)
+      loadingModalMessage.value = "Establishing Wallet Connection..."
       await signInToMetamask().then(async ()=>{
-        loadingModalMessage.value = "Setting Contract Instance"
-        console.log(loadingModalMessage.value)
+        loadingModalMessage.value = "Setting Contract Instance..."
         await setContractInstance();
         swal("Your wallet is now connected, you can now mint your NFT", "", "success");
         console.log("Setup Successful", contract);
