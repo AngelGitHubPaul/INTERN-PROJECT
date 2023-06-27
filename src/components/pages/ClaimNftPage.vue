@@ -3,6 +3,8 @@ import { onMounted, ref } from 'vue';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
 import swal from 'sweetalert';
 import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
+import nftMinted from "../../api/getAxios"
+import { email } from "./MintingPage.vue"
 
 let isMinted = ref(false);
 let mintedNftTokenId = ref(null);
@@ -11,6 +13,7 @@ let mintedNftDetails = ref({});
 let openModal = ref(false);
 
 onMounted(()=>{
+  console.log(email);
   if(window.ethereum == undefined){
     swal("Please Install Metamask first!", "", "warning")
   }
@@ -24,6 +27,7 @@ async function mintNFT() {
         const transaction = await contract.safeMint(userAddress);
         await transaction.wait();
         getNftDetails();
+        nftMinted(email);
         console.log('NFT minted successfully!', 'Token Id: ' + tokenIdMinted);
         isMinted.value = true;
         openModal.value = true;
