@@ -145,7 +145,7 @@ async function getNftDetails() {
       <div id="#main" class="relative flex flex-col items-center justify-center">
         <!-- <Carousel :autoplay="2000" class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
         <div v-if="openLoadingModal" class="fixed top-0 left-0 w-[100vw] h-[100vh] flex flex-col items-center justify-center bg-black/60 z-10">
-          <font-awesome-icon icon="fa-solid fa-spinner" class="h-10" spin-pulse style="color: #fff;" />
+          <font-awesome-icon icon="fa-solid fa-apple-whole" class="w-16 h-16" bounce style="color: #fff;" />
           <p class="text-white">{{ loadingModalMessage }}</p>
         </div>
         <div
