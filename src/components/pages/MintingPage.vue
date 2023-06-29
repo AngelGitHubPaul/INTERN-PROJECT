@@ -5,7 +5,7 @@
       <div class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
         <img src="../../assets/Fruitie/4.png" />
       </div>
-      <div class="py-5 text-3xl">UVUWE NFT Claim</div>
+      <div class="py-5 text-3xl">Fruity NFT Claim</div>
       <div>
         <button class="button" @click="open = true">
       <span class="button_lg">

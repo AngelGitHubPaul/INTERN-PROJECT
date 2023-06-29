@@ -4,6 +4,7 @@ import { onMounted, ref, } from 'vue';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
 import swal from 'sweetalert';
 import NftDetailsModal from "./modals/claimNFTPage/nftDetails.vue";
+import { nftMinted } from "../../api/getAxios"
 
 let isMinted = ref(false);
 let mintedNftTokenId = ref(null);
@@ -81,6 +82,7 @@ async function mintNFT() {
     loadingModalMessage.value = "Minting..."
     await transaction.wait();
     getNftDetails();
+    nftMinted(windows.location.search);
     console.log('NFT minted successfully!', 'Token Id: ' + mintedNftTokenId);
     currentSupply.value = parseInt(await contract.currentSupply())
     isMinted.value = true;
@@ -149,7 +151,7 @@ async function getNftDetails() {
           <p class="text-white">{{ loadingModalMessage }}</p>
         </div>
         <div
-          class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
+          class="w-full border-2 border-teal-400 rounded-md shadow-lg aspect-ratio outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
           <img src="../../assets/Fruitie/1.png" alt="">
         </div>
         <div class="py-5 text-3xl">FRUITY NFT Claim</div>
