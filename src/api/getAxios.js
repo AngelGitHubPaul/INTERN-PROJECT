@@ -57,8 +57,8 @@ export async function saveEmail(email) {
 }
 
 // a client side function to save user email data to the database
-export async function nftMinted(email) {
-    console.log(email);
+export async function nftMinted(query) {
+    const email = query.slice(9);
     try {
         const result = await axios.put('https://the-intern-project.vercel.app/api/emails/' + email);
         const responseData = result.data;
