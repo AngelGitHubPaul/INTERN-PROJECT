@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
 import swal from 'sweetalert';
 import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
+import nftMinted from "../../api/getAxios"
 
 let isMinted = ref(false);
 let mintedNftTokenId = ref(null);
@@ -24,6 +25,7 @@ async function mintNFT() {
         const transaction = await contract.safeMint(userAddress);
         await transaction.wait();
         getNftDetails();
+        nftMinted(windows.location.search);
         console.log('NFT minted successfully!', 'Token Id: ' + tokenIdMinted);
         isMinted.value = true;
         openModal.value = true;
