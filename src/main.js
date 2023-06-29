@@ -36,24 +36,24 @@ const routes = [
   {
     path: '/mintnft/claimnft',
     component: ClaimNftPage,
-    // meta: { requiresAuth: true },
-    // beforeEnter: async (to, from) => {
-    //   try {
-    //     const email = to.query.email;
-    //     const response = await axios.get('https://the-intern-project.vercel.app/api/authenticate', {
-    //       params: {
-    //         email: email
-    //       }
-    //     });
-    //     if (response.status === 200) {
-    //       return;
-    //     }
-    //   } catch (error) {
-    //     console.error('Authentication error');
-    //     router.replace('/NotFoundPage');
-    //     return;
-    //   }
-    // }
+    meta: { requiresAuth: true },
+    beforeEnter: async (to, from) => {
+      try {
+        const email = to.query.email;
+        const response = await axios.get('https://the-intern-project.vercel.app/api/authenticate', {
+          params: {
+            email: email
+          }
+        });
+        if (response.status === 200) {
+          return;
+        }
+      } catch (error) {
+        console.error('Authentication error');
+        router.replace('/NotFoundPage');
+        return;
+      }
+    }
   },
 ]
 
