@@ -1,7 +1,3 @@
-<script setup>
-import { RouterLink } from 'vue-router'
-</script>
-
 <template>
   <header class="mt-0">
     <nav class="z-0 flex items-center justify-between mx-auto w-fit">
@@ -26,24 +22,20 @@ import { RouterLink } from 'vue-router'
       </div>
       <div class="flex items-center gap-6">
         <ion-icon @click="toggleMenu" :name="isMenuOpen ? 'close' : 'menu'"
-          class="text-3xl cursor-pointer md:hidden"></ion-icon>
+          class="text-3xl z-50 cursor-pointer md:hidden"></ion-icon>
       </div>
     </nav>
   </header>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isMenuOpen: false,
-    }
-  },
-  methods: {
-    toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen
-    },
-  },
+<script setup>
+import { ref } from 'vue';
+import { RouterLink } from 'vue-router'
+
+const isMenuOpen = ref(false);
+
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value;
 }
 </script>
 
