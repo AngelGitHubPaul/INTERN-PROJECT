@@ -46,6 +46,7 @@ const routes = [
           }
         });
         if (response.status === 200) {
+          to.meta.email = email;
           return;
         }
       } catch (error) {

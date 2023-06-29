@@ -1,9 +1,10 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
 import swal from 'sweetalert';
 import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
-import nftMinted from "../../api/getAxios"
+import { nftMinted } from '../../api/getAxios.js'
 
 let isMinted = ref(false);
 let mintedNftTokenId = ref(null);
@@ -25,7 +26,6 @@ async function mintNFT() {
         const transaction = await contract.safeMint(userAddress);
         await transaction.wait();
         getNftDetails();
-        nftMinted(windows.location.search);
         console.log('NFT minted successfully!', 'Token Id: ' + tokenIdMinted);
         isMinted.value = true;
         openModal.value = true;
@@ -70,6 +70,8 @@ async function getNftDetails() {
     console.log("Description >> " + mintedNftDetails.value.description)
     openModal.value = true;
   }
+  const router = useRouter();
+  nftMinted(router.currentRoute.value.meta.email);
   xhr.send();
 }
 </script>
