@@ -78,5 +78,5 @@ const app = createApp(App)
 
 app.use(router);
 app.use(AOSPlugin);
-
+app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount('#app')
