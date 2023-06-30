@@ -18,12 +18,7 @@
 
     <div class="pr-16 basis-2/3">
       <p class="text-2xl font-bold text-white ">
-        Lorem ipum dolor sit amet, consectetur adipisicing elit. Cupiditate
-        aliquid veniam libero explicabo saepe recusandae eligendi? Ducimus
-        similique laboriosam iste maxime voluptatum perspiciatis suscipit
-        sapiente quidem minus, nobis et tempore corrupti saepe repudiandae earum
-        doloribus? Modi debitis corporis, qui illo voluptatem, temporibus
-        cupiditate et quam quaerat dignissimos voluptatibus, eum adipisci?
+        Thank you for visiting Fruity NFT! To access the minting page, please provide us with your email address. Once you've submitted your email, we'll send you a link to the page. Please remember that only one email can be used per mint. Kindly check your inbox after submitting your email. Happy Minting!.
       </p>
     </div>
   </section>
