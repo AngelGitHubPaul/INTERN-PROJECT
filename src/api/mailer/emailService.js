@@ -21,11 +21,15 @@ function sendEmail(_email) {
         },
     });
 
+    const replacedHtmlTemplate = htmlTemplate
+    .replace('[Recipient Name]', _email)
+    .replace('callback_url', `https://the-intern-project.vercel.app/mintnft/claimnft?emailed=${encodeURIComponent(_email)}`);
+
     const mailConfig = {
         from: 'tripna3p@gmail.com',
         to: _email,
-        subject: 'Sample Test Mailer',
-        html: htmlTemplate,
+        subject: 'Claim Your FruityNFT',
+        html: replacedHtmlTemplate,
     };
 
     return new Promise((resolve, reject) => {

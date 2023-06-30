@@ -2,7 +2,7 @@
   "_format": "hh-sol-artifact-1",
   "contractName": "FruityNFT",
   "sourceName": "contracts/FruityNFT.sol",
-  "abi": [
+  "abi":[
     {
       "anonymous": false,
       "inputs": [
@@ -148,6 +148,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "currentSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -271,6 +284,24 @@
     {
       "inputs": [],
       "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "safeBurn",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
