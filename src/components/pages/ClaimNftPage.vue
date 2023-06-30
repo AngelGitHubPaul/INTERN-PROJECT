@@ -1,10 +1,10 @@
 <script setup>
-import {RouterLink} from "vue-router";
-import { onMounted, ref, } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
 import swal from 'sweetalert';
 import NftDetailsModal from "./modals/claimNFTPage/nftDetails.vue";
-import { nftMinted } from "../../api/getAxios"
+import { nftMinted } from '../../api/getAxios.js'
 
 let isMinted = ref(false);
 let mintedNftTokenId = ref(null);
@@ -48,16 +48,18 @@ onMounted(async ()=>{
 
 async function mintNFT() {
   try {
-    openLoadingModal.value = true;
-
-    loadingModalMessage.value = "Checking Fruity Supply..."
-    if(currentSupply == maxSupply){
-      swal("Fruity Nft's max supply has been reached, cannot mint right now", "", "warning")
-      return;
-    }
-    
-    loadingModalMessage.value = "Checking Wallet Connection"
-    if (!isConnected) {
+    if (isConnected) {
+      if (await contract.walletMints(userAddress) == 0) {
+        const transaction = await contract.safeMint(userAddress);
+        await transaction.wait();
+        getNftDetails();
+        console.log('NFT minted successfully!', 'Token Id: ' + tokenIdMinted);
+        isMinted.value = true;
+        openModal.value = true;
+      } else {
+        swal("This wallet has already minted a Fruity NFT", "", "warning");
+      }
+    } else {
       swal("Connect your Metamask Wallet first!", "", "warning");
       loadingModalMessage.value = "Establishing Wallet Connection..."
       await signInToMetamask().then(async ()=>{
@@ -132,6 +134,8 @@ async function getNftDetails() {
     console.log("Description >> " + mintedNftDetails.value.description)
     openModal.value = true;
   }
+  const router = useRouter();
+  nftMinted(router.currentRoute.value.meta.email);
   xhr.send();
 
   loadingModalMessage.value = "";

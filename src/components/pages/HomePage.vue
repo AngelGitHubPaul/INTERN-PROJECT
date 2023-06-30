@@ -149,41 +149,40 @@
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      cryptocurrencies: [],
-    }
-  },
-  mounted() {
-    this.populateTable()
-    this.$nextTick(() => {
-      // Refresh AOS after rendering the component
-      this.$nextTick(() => {
-        this.$AOS.refresh()
-      })
-    })
-  },
-  methods: {
-    async getData() {
-      try {
-        const response = await fetch('https://api.coinpaprika.com/v1/tickers')
-        const data = await response.json()
-        return data
-      } catch (error) {
-        console.error('Error fetching cryptocurrency market data:', error)
-        return []
-      }
-    },
-    async populateTable() {
-      const marketData = await this.getData()
-      this.cryptocurrencies = marketData.slice(0, 5)
-      console.log(marketData.slice(0, 5))
-    },
-  },
+<script setup>
+import { ref, onMounted, nextTick, getCurrentInstance } from 'vue';
+
+const cryptocurrencies = ref([]);
+const { appContext } = getCurrentInstance();
+
+async function getData() {
+  try {
+    const response = await fetch('https://api.coinpaprika.com/v1/tickers');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching cryptocurrency market data:', error);
+    return [];
+  }
 }
+
+async function populateTable() {
+  const marketData = await getData();
+  cryptocurrencies.value = marketData.slice(0, 5);
+}
+
+onMounted(() => {
+  populateTable();
+  nextTick(() => {
+    // Refresh AOS after rendering the component
+    nextTick(() => {
+      appContext.provides.AOS.init();
+      appContext.provides.AOS.refresh();
+    });
+  });
+});
 </script>
+
 
 <style scoped>
 .material-symbols-outlined {

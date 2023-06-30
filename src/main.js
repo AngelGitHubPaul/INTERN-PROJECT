@@ -9,8 +9,7 @@ import NftPage from './components/pages/NftPage.vue'
 import NotFoundPage from './components/pages/NotFoundPage.vue'
 import ClaimNftPage from './components/pages/ClaimNftPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import AOSPlugin from './aos-plugin';
 
 const routes = [
   {
@@ -46,6 +45,7 @@ const routes = [
           }
         });
         if (response.status === 200) {
+          to.meta.email = email;
           return;
         }
       } catch (error) {
@@ -76,11 +76,7 @@ const router = createRouter({
 
 const app = createApp(App)
 
-app.use(router)
-app.use(
-  AOS.init({
-    once: false,
-  })
-)
-app.component('font-awesome-icon', FontAwesomeIcon)
+app.use(router);
+app.use(AOSPlugin);
+
 app.mount('#app')
