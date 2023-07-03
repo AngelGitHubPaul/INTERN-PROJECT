@@ -119,6 +119,7 @@ async function getNftDetails() {
     mintedNftDetails.value.image = xhr.response.image;
     mintedNftDetails.value.name = xhr.response.name;
     mintedNftDetails.value.description = xhr.response.description;
+    mintedNftDetails.value.id = mintedNftTokenId.value;
 
     console.log("Image Url >> " + mintedNftDetails.value.image)
     console.log("Fruity Name >> " + mintedNftDetails.value.name)
@@ -157,7 +158,7 @@ async function getNftDetails() {
           </button>
           <RouterLink v-else to="/">
             <div class="button">
-              <span class="button_lg">
+              <span class="button_lg text-center">
                 <span class="button_sl"></span>
                 <span class="button_text">Return to Homepage</span>
               </span>
