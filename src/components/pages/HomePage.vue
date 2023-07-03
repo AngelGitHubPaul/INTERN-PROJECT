@@ -50,8 +50,8 @@
       </div>
     </div>
   </section>
-  <section id="about" class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-left" data-aos-duration="1000">
-    <div class="mx-auto" id="about">
+  <section id="about" class="py-16">
+    <div class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-left" data-aos-duration="1000">
       <div class="flex flex-col items-center align-middle gap-4 md:flex-row">
         <div class="flex flex-row items-center align-middle basis-1/2">
           <div class="flex flex-row justify-center gap-2 p-5 align-middle rounded-lg animate-pulse">
