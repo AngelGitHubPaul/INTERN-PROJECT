@@ -70,6 +70,9 @@ import { faUserSecret, faAppleWhole } from '@fortawesome/free-solid-svg-icons'
 library.add(faUserSecret, faAppleWhole)
 
 const router = createRouter({
+  scrollBehavior() {
+    return { top: 0 };
+  },
   history: createWebHistory(),
   routes: routes,
 })

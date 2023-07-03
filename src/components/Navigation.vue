@@ -17,6 +17,9 @@
           <li>
             <RouterLink to="/wallet" class="button">Wallet</RouterLink>
           </li> -->
+          <li>
+            <a class="px-6 py-3 rounded-lg cursor-pointer" @click="scrollToSection('#about')">About Us</a>
+          </li>
           <li><w3m-core-button>Connect Wallet</w3m-core-button></li>
         </ul>
       </div>
@@ -29,10 +32,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, toRef, defineProps } from 'vue';
 import { RouterLink } from 'vue-router'
 
 const isMenuOpen = ref(false);
+const props = defineProps({
+  scrollToSection: Function,
+});
+const scrollToSection = toRef(props, 'scrollToSection');
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
