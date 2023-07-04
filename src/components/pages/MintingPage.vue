@@ -1,5 +1,4 @@
 <template>
-  <body>
     <section class="flex items-center w-screen h-screen">
       <div class="flex flex-col items-center justify-center px-5 basis-1/2 first-letter:">
         <div
@@ -25,8 +24,7 @@
         </p>
       </div>
     </section>
-  </body>
-  <Teleport to="body">
+  <Teleport to="section">
     <div v-if="open" class="modal">
       <div>
         <div class="flex flex-col items-center justify-center w-full h-full">
@@ -60,7 +58,6 @@
         </div>
       </div>
     </div>
-
   </Teleport>
 </template>
 
@@ -443,13 +440,14 @@ img {
 
 /* Bg css */
 
-body {
+section {
   position: relative;
   background: linear-gradient(-45deg, #ff4848, #00000077, #04081f, #111d33);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   height: 100vh;
   width: 100vw;
+  margin-top: -8px;
 }
 
 @keyframes gradient {

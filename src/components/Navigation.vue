@@ -18,7 +18,7 @@
             <RouterLink to="/wallet" class="button">Wallet</RouterLink>
           </li> -->
           <li>
-            <a class="px-6 py-3 rounded-lg cursor-pointer" @click="scrollToSection('#about')">About Us</a>
+            <a class="px-6 py-3 rounded-lg cursor-pointer" @click="scrollToSection('#about')" v-if="scrollToSection">About Us</a>
           </li>
           <li><w3m-core-button>Connect Wallet</w3m-core-button></li>
         </ul>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, toRef, defineProps } from 'vue';
+import { ref, toRef } from 'vue';
 import { RouterLink } from 'vue-router'
 
 const isMenuOpen = ref(false);
