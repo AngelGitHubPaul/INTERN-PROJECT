@@ -1,43 +1,92 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { isConnected, contract, userAddress, signInToMetamask, setContractInstance } from "../../lib/FruityNftInstance"
-
-import NftDetalsModal from "./modals/claimNFTPage/nftDetails.vue";
+import swal from 'sweetalert';
+import NftDetailsModal from "./modals/claimNFTPage/nftDetails.vue";
+import { nftMinted } from '../../api/getAxios.js'
 
 let isMinted = ref(false);
 let mintedNftTokenId = ref(null);
 let mintedNftURI = ref(null);
 let mintedNftDetails = ref({});
 let openModal = ref(false);
+let openLoadingModal = ref(true);
+let loadingModalMessage = ref("");
+let currentSupply = ref(null);
+let maxSupply = ref(11);
 
-onMounted(()=>{
+onMounted(async ()=>{
+  openLoadingModal.value = true;
+  
+  loadingModalMessage.value = "Checking Metamask..."
   if(window.ethereum == undefined){
     alert("Please Install Metamask first!")
   }
+  
+  loadingModalMessage.value = "Establishing wallet connection..."
+  if(!isConnected){
+    await signInToMetamask().then(async ()=>{
+      loadingModalMessage.value = "Setting Contract Instance..."
+      await setContractInstance()
+      console.log(contract)
+      currentSupply.value = parseInt(await contract.currentSupply())
+      loadingModalMessage.value = "Validating Your Minting Information..."
+      isMinted.value = await getTokenIdMinted(userAddress) != 0;
+
+      if(isMinted.value){
+        swal("This wallet have already minted a Fruity NFT", "", "warning")
+      }
+
+      console.log(currentSupply.value)
+    })
+  }
+
+  loadingModalMessage.value = "";
+  openLoadingModal.value = false;
 })
 
 async function mintNFT() {
   try {
-    if (isConnected) {
-      if (await contract.walletMints(userAddress) == 0) {
-        const transaction = await contract.safeMint(userAddress);
-        await transaction.wait();
-        getNftDetails();
-        console.log('NFT minted successfully!', 'Token Id: ' + tokenIdMinted);
-        isMinted.value = true;
-        openModal.value = true;
-      } else {
-        alert("This wallet has already minted a Fruity NFT")
-      }
-    } else {
-      alert("Connect your Metamask Wallet first!");
-      await signInToMetamask();
-      await setContractInstance();
-      alert("Your wallet is now connected, you can now mint your NFT");
-      console.log("Setup Successful");
+    openLoadingModal.value = true;
+    if (!isConnected) {
+      swal("Connect your Metamask Wallet first!", "", "warning");
+      loadingModalMessage.value = "Establishing Wallet Connection..."
+      await signInToMetamask().then(async ()=>{
+        loadingModalMessage.value = "Setting Contract Instance..."
+        await setContractInstance();
+        swal("Your wallet is now connected, you can now mint your NFT", "", "success");
+        console.log("Setup Successful", contract);
+      })
+      await mintNFT();
+      return;
+    } 
+    
+    loadingModalMessage.value = "Validating Minting Info..."
+    console.log(loadingModalMessage.value)
+    if (isMinted.value && getTokenIdMinted(userAddress)) {
+      swal("This wallet has already minted a Fruity NFT", "", "warning");
+      return;
     }
+    
+    loadingModalMessage.value = "Paying Gas Fee..."
+    const transaction = await contract.safeMint(userAddress);
+    loadingModalMessage.value = "Minting..."
+    await transaction.wait();
+    console.log('NFT minted successfully!', 'Token Id: ' + mintedNftTokenId);
+    const router = useRouter();
+    nftMinted(router.currentRoute.value.meta.email);
+    currentSupply.value = parseInt(await contract.currentSupply())
+    await getNftDetails();
+    isMinted.value = true;
+    openModal.value = true;
+
   } catch (error) {
-    console.error('Error minting NFT:', error);
+    if(openLoadingModal.value){
+      openLoadingModal.value = false
+    }
+    swal(error.message, "", "warning")
+    console.error('Error minting NFT:', error.message);
   } 
 }
 
@@ -45,9 +94,18 @@ function returnToHomepage() {
   this.$router.push('/')
 }
 
+async function getTokenIdMinted(userAddress) {
+  return parseInt(await contract.walletMints(userAddress));
+}
+
 async function getNftDetails() {
-  console.log("getting nft details")
-  const tokenIdMinted = parseInt(await contract.walletMints(userAddress));
+  if(!openLoadingModal.value){
+    openLoadingModal.value = true;
+  }
+
+  loadingModalMessage.value = "Fetching your Fruity details..."
+  const tokenIdMinted = await getTokenIdMinted(userAddress);
+  console.log(tokenIdMinted)
   const nftURI = await contract.tokenURI(tokenIdMinted);
   console.log(tokenIdMinted, nftURI)
   mintedNftTokenId.value = tokenIdMinted;
@@ -61,6 +119,7 @@ async function getNftDetails() {
     mintedNftDetails.value.image = xhr.response.image;
     mintedNftDetails.value.name = xhr.response.name;
     mintedNftDetails.value.description = xhr.response.description;
+    mintedNftDetails.value.id = mintedNftTokenId.value;
 
     console.log("Image Url >> " + mintedNftDetails.value.image)
     console.log("Fruity Name >> " + mintedNftDetails.value.name)
@@ -68,46 +127,60 @@ async function getNftDetails() {
     openModal.value = true;
   }
   xhr.send();
+
+  loadingModalMessage.value = "";
+  openLoadingModal.value = false;
 }
+
+
 </script>
-
-
 
 <template>
   <body>
     <section class="relative flex items-center justify-center w-screen h-screen">
       <div id="#main" class="relative flex flex-col items-center justify-center">
         <!-- <Carousel :autoplay="2000" class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50"></Carousel> -->
+        <div v-if="openLoadingModal" class="fixed top-0 left-0 w-[100vw] h-[100vh] flex flex-col items-center justify-center bg-black/60 z-10">
+          <font-awesome-icon icon="fa-solid fa-apple-whole" class="w-16 h-16" bounce style="color: #fff;" />
+          <p class="text-white">{{ loadingModalMessage }}</p>
+        </div>
         <div
-          class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
+          class="w-full border-2 border-teal-400 rounded-md shadow-lg aspect-ratio outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
           <img src="../../assets/Fruitie/1.png" alt="">
         </div>
         <div class="py-5 text-3xl">FRUITY NFT Claim</div>
         <div>
-          <button v-if="!isMinted" class="button" @click="mintNFT">
+          <button v-if="isMinted == false" class="button" @click="mintNFT">
             <span class="button_lg">
               <span class="button_sl"></span>
               <span class="button_text">Mint</span>
             </span>
           </button>
-          <button v-else class="button" @click="returnToHomepage">
+          <RouterLink v-else to="/">
+            <div class="button">
+              <span class="button_lg text-center">
+                <span class="button_sl"></span>
+                <span class="button_text">Return to Homepage</span>
+              </span>
+            </div>
+          </RouterLink>
+          <p>Current Fruities Minted: {{ currentSupply }} / {{ maxSupply }}</p>
+          <button v-if="isMinted == true" class="text-white button" @click="getNftDetails()" >
             <span class="button_lg">
               <span class="button_sl"></span>
-              <span class="button_text">Return to Homepage</span>
+              <span class="button_text">Get Nft Image and MetaData</span>
             </span>
-          </button>
-          <button class="button" @click="getNftDetails()">
-            Get Nft Image and MetaData
           </button>
         </div>
         <div v-if="openModal == true"
           class="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center bg-black/60 z-10">
-          <NftDetalsModal v-bind:nftDetails="mintedNftDetails" v-on:close="()=>openModal = false"/>
+          <NftDetailsModal v-bind:nftDetails="mintedNftDetails" v-on:close="()=>openModal = false"/>
         </div>
       </div>
     </section>
   </body>
 </template>
+
    
 <style scoped>
 img {

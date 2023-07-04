@@ -10,6 +10,11 @@
     "test:unit": "vitest"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@openzeppelin/contracts": "^4.9.0",
     "@wagmi/core": "^1.0.6",
     "@web3modal/ethereum": "^2.4.1",
@@ -22,6 +27,7 @@
     "express": "^4.18.2",
     "mongoose": "^7.2.1",
     "nodemailer": "^6.9.2",
+    "sweetalert": "^2.1.2",
     "viem": "^0.3.36",
     "vue": "^3.3.4",
     "vue-router": "^4.2.1"

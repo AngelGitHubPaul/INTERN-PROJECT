@@ -12,13 +12,7 @@ const emailSchema = new Schema({
 });
 
 // create email model using schema
-const Email = model('Email', emailSchema);
+export const Email = model('Email', emailSchema);
 
 // create wallet model using schema
-const Wallet = model('Wallet', keySchema);
-
-// Export the Email model to be used in other parts of the application
-export default {
-    Email,
-    Wallet,
-};
+export const Wallet = model('Wallet', keySchema);

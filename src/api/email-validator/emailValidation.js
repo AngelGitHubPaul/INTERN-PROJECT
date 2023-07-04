@@ -1,24 +1,18 @@
 import { fetchEmail, saveEmail, sendingEmail } from '../getAxios.js';
 
-// function to validate if the email input of use has aldreay minted on the site once or not
-export async function validateEmail(_email) {
+// function to validate if the email input of client has already minted on the site or not
+export async function validateEmail(email) {
     try {
-        // look for user input in the db
-        const emailData = await fetchEmail(_email);
-        // checks if user input is found in db
-        if (emailData.length == 0 || emailData[0].email != _email) {
-            try {
-                // saves user input to database
-                const emailData = await saveEmail(_email);
-                await sendingEmail(_email);
-            } catch (error) {
-                console.log(error);
-            }
+        const emailData = await fetchEmail(email);
+        if (emailData.length === 0 || emailData[0].email !== email) {
+            await saveEmail(email);
+            await sendingEmail(email);
+            return true;
         } else {
-            console.log("user already have minted once");
+            alert("User has already minted once");
+            return false;
         }
     } catch (error) {
         console.log(error);
     }
 }
-module.exports = emailData.id;

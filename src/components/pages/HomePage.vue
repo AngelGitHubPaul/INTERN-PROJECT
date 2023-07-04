@@ -1,59 +1,35 @@
 <template>
-  <section
-    class="w-full h-full px-5 lg:py-40"
-    data-aos="zoom-in"
-    data-aos-duration="2000"
-  >
+  <Navigation :scrollToSection="scrollToSection"></Navigation>
+  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="zoom-in" data-aos-duration="1000">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
       <div class="p-5">
-        <h1 class="pb-10 text-5xl md:text-7xl">UVUVWE</h1>
-        <p class="pb-8">
-          Lorem ipsum dolor sit amet. Sed voluptatibus laborum rem deleniti
-          doloribus hic velit enim et suscipit quaerat. Aut numquam error et
-          consequatur galisum eos dolores autem in aliquam asperiores. Ad
-          exercitationem optio et quasi illum in quasi ratione At inventore
-          tempora eum dolor nemo ab dolorum temporibus ad itaque maxime
-        </p>
-        <div class="flex justify-center">
-          <button
-            class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 w-80"
-          >
-            SHEESH
-          </button>
+        <h1 class="pb-10 text-5xl md:text-6xl font-extrabold">Fruity NFT</h1>
+        <h2 class=" text-5xl md:text-4xl font-bold">Discover,</h2>
+        <p class="pb-0 text-5xl md:text-3xl font-bold">collect, and sell</p>
+        <p class="pb-8 text-5xl md:text-3xl font-bold"> extraordinary NFTs</p>
+        <p class="pb-8 ">The largest and unique Super rare NFT marketplace For Crypto-collectibles</p>
+        <div class="flex justify-center text-center">
+          <RouterLink to="/mintnft"
+            class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 w-80">Mint now</RouterLink>
         </div>
       </div>
       <div class="flex justify-center p-5 md:relative">
-        <img
-          src="../../assets/Fruitie/1.png"
-          class="w-20 rounded-md md:absolute md:w-36"
-          style="top: 30px; left: 30px"
-        />
-        <img
-          src="../../assets/Fruitie/2.png"
-          class="w-20 rounded-md md:absolute md:w-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:z-50"
-        />
-        <img
-          src="../../assets/Fruitie/3.png"
-          class="w-20 rounded-md md:absolute md:w-36"
-          style="bottom: 30px; right: 30px"
-        />
+        <img src="../../assets/Fruitie/1.png" class="w-20 rounded-md md:absolute md:w-36" style="top: 30px; left: 30px" />
+        <img src="../../assets/Fruitie/2.png"
+          class="w-20 rounded-md md:absolute md:w-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:z-50" />
+        <img src="../../assets/Fruitie/3.png" class="w-20 rounded-md md:absolute md:w-36"
+          style="bottom: 30px; right: 30px" />
       </div>
     </div>
   </section>
-  <section
-    class="h-full px-5 pt-20 lg:pt-4"
-    data-aos="fade-right"
-    data-aos-duration="2000"
-  >
-    <div
-      class="flex flex-col align-middle rounded-lg md:flex-row bg-purple-500/40"
-    >
+  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-right" data-aos-duration="1000">
+    <div class="flex flex-col align-middle rounded-lg md:flex-row bg-purple-500/40">
       <div class="flex-row p-10 basis-1/3">
         <span class="float-left px-2 material-symbols-outlined">
           verified_user
         </span>
         <h1>Strong Security</h1>
-        <p>Secure transaction and record</p>
+        <p>Secure transactions and record</p>
       </div>
       <div class="flex-row p-10 basis-1/3">
         <span class="float-left px-2 material-symbols-outlined">
@@ -74,49 +50,38 @@
       </div>
     </div>
   </section>
-  <section class="p-5" data-aos="fade-left" data-aos-duration="2000">
-    <div class="mx-auto" id="about">
-      <div class="flex flex-col gap-4 md:flex-row">
+  <section id="about" class="py-16">
+    <div class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-left" data-aos-duration="1000">
+      <div class="flex flex-col items-center align-middle gap-4 md:flex-row">
         <div class="flex flex-row items-center align-middle basis-1/2">
-          <div
-            class="flex flex-row justify-center gap-2 p-5 align-middle rounded-lg animate-pulse"
-          >
-            <img
-              src="../../assets/Fruitie/1.png"
-              class="w-24 rounded-full lg:w-36 md:w-28"
-            />
-            <img
-              src="../../assets/Fruitie/2.png"
-              class="w-24 rounded-full lg:w-36 md:w-28"
-            />
-            <img
-              src="../../assets/Fruitie/3.png"
-              class="w-24 rounded-full lg:w-36 md:w-28"
-            />
+          <div class="flex flex-row justify-center gap-2 p-5 align-middle rounded-lg animate-pulse">
+            <img src="../../assets/Fruitie/1.png" class="w-24 rounded-full lg:w-36 md:w-28" />
+            <img src="../../assets/Fruitie/2.png" class="w-24 rounded-full lg:w-36 md:w-28" />
+            <img src="../../assets/Fruitie/3.png" class="w-24 rounded-full lg:w-36 md:w-28" />
           </div>
         </div>
-        <div class="flex-row basis-1/2">
-          <h1 class="flex justify-center mb-5 text-4xl">About US</h1>
-          <p class="text-2xl">Discover More!</p>
-          <p class="mb-2 text-2xl">Collect and Sell Rare NFT’s</p>
+        <div class=" flex-row basis-1/2">
+          <h1 class="flex justify-center mb-5 text-4xl font-bold">About US</h1>
+          <p class="text-2xl font-bold">What is Fruity?</p>
+          <p class="mb-2 text-2xl"></p>
           <p class="mb-2">
-            Lorem ipsum dolor sit amet. Sed voluptatibus laborum rem deleniti
-            doloribus hic velit enim et suscipit quaerat. Aut numquam error et
+            Fruity are mysterious and rare fruits that grant unique and
+            supernatural powers to those who consumes.
           </p>
           <div class="grid grid-cols-1 lg:grid-cols-2">
             <div>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="m-2 rounded-md bg-purple-500/50 w-52">
                 Wide Range of Platforms
               </button>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="m-2 rounded-md bg-purple-500/50 w-52">
                 World Class Artist
               </button>
             </div>
             <div>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="m-2 rounded-md bg-purple-500/50 w-52">
                 Any Type of Assets
               </button>
-              <button class="m-2 rounded-none bg-purple-500/50 w-52">
+              <button class="m-2 rounded-md bg-purple-500/50 w-52">
                 Fast Payments
               </button>
             </div>
@@ -125,22 +90,16 @@
       </div>
     </div>
   </section>
-  <section
-    class="h-full px-5 lg:py-40"
-    data-aos="fade-up"
-    data-aos-duration="2000"
-  >
-    <h1 class="pb-10 mt-10 text-4xl">Market Trend</h1>
+  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-up" data-aos-duration="1000">
+    <h1 class="flex justify-center mb-5 text-4xl font-bold">Market Trend</h1>
     <div class="flex justify-center mb-5 overflow-x-auto">
-      <table
-        class="min-w-full border border-collapse border-gray-300 table-auto bg-purple-500/50"
-      >
+      <table class="min-w-full border border-collapse border-gray-300 table-auto bg-purple-500/50">
         <thead>
           <tr>
-            <th class="px-4 py-2 text-center">Symbol</th>
-            <th class="px-4 py-2 text-center">Price</th>
-            <th class="px-4 py-2 text-center">Market Cap</th>
-            <th class="px-4 py-2 text-center">24h Change</th>
+            <th class="px-4 py-2 text-center font-bold">Symbol</th>
+            <th class="px-4 py-2 text-center font-bold">Price</th>
+            <th class="px-4 py-2 text-center font-bold">Market Cap</th>
+            <th class="px-4 py-2 text-center font-bold">24h Change</th>
           </tr>
         </thead>
         <tbody>
@@ -160,137 +119,80 @@
       </table>
     </div>
   </section>
-  <section class="px-5" data-aos="slide-up" data-aos-duration="2000">
-    <h1 class="flex justify-center mb-5 text-4xl">Marketplace</h1>
+  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="flip-up" data-aos-duration="1000">
     <div class="flex items-center justify-center mx-auto">
-      <span
-        class="float-left px-2 material-symbols-outlined"
-        data-v-9ee6238f=""
-      >
-        arrow_left
-      </span>
-      <p class="text-gray-700">Best Seller NFT's</p>
-      <span
-        class="float-left px-2 material-symbols-outlined"
-        data-v-9ee6238f=""
-      >
-        arrow_right
-      </span>
-    </div>
-    <div
-      class="flex flex-col align-middle rounded-lg md:flex-row bg-purple-500/40"
-    >
-      <div class="flex-row p-10 basis-1/3">
-        <button class="w-40 m-0 rounded-md bg-yellow-500/50" data-v-9ee6238f="">
-          NFT-01
-        </button>
-        <img
-          src="/src/assets/Fruitie/1.png"
-          class="relative w-24 p-0 lg:w-40 md:w-28"
-          data-v-9ee6238f=""
-        />
-      </div>
-      <div class="flex-row p-10 basis-1/3">
-        <button class="w-40 m-0 rounded-md bg-violet-500/50" data-v-9ee6238f="">
-          NFT-02
-        </button>
-        <img
-          src="/src/assets/Fruitie/2.png"
-          class="relative w-24 p-0 lg:w-40 md:w-28"
-          data-v-9ee6238f=""
-        />
-      </div>
-      <div class="flex-row p-10 basis-1/3">
-        <button class="w-40 m-0 rounded-md bg-red-500/50" data-v-9ee6238f="">
-          NFT-03
-        </button>
-        <img
-          src="/src/assets/Fruitie/3.png"
-          class="relative w-24 p-0 lg:w-40 md:w-28"
-          data-v-9ee6238f=""
-        />
-      </div>
-    </div>
-    
-  </section>
-  <section class="px-5 lg:pb-40" data-aos="flip-up" data-aos-duration="2000">
-    <div class="flex items-center justify-center mx-auto">
-      <p class="text-gray-700">About Us</p>
+      <!-- <p class="text-gray-700">About Us</p> -->
     </div>
     <div class="flex items-center justify-center mx-auto">
-      <p class="mb-2 text-2xl" data-v-9ee6238f="">Frequently asked questions</p>
+      <p class="mb-2 text-2xl font-bold" data-v-9ee6238f="">Frequently asked questions</p>
     </div>
     <div class="flex items-center justify-center mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f="">
-        <div data-v-9ee6238f="">
-          <button
-            class="m-2 rounded-md bg-purple-500/50 w-52"
-            data-v-9ee6238f=""
-          >
+        <div data-v-9ee6238f="" class="flex items-stretch justify-center mx-auto h-full">
+          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-bold" data-v-9ee6238f="">
             What is NFT?
           </button>
-          <button
-            class="m-2 rounded-md bg-purple-500/50 w-52"
-            data-v-9ee6238f=""
-          >
-            What is NFSpace?
-          </button>
+          <RouterLink to="/howtoimport" class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-semibold text-center px-4 py-2" data-v-9ee6238f="">How to import your minted NFT to your metamask wallet</RouterLink>
         </div>
-        <div data-v-9ee6238f="">
-          <button
-            class="m-2 rounded-md bg-purple-500/50 w-52"
-            data-v-9ee6238f=""
-          >
+        <div data-v-9ee6238f="" class="flex items-stretch justify-center mx-auto h-full">
+          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-bold" data-v-9ee6238f="">
             How to Mint?
           </button>
-          <button
-            class="m-2 rounded-md bg-purple-500/50 w-52"
-            data-v-9ee6238f=""
-          >
+          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-bold" data-v-9ee6238f="">
             How payments process?
           </button>
-          
+
         </div>
       </div>
     </div>
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      cryptocurrencies: [],
-    }
-  },
-  mounted() {
-    this.populateTable()
-    this.$nextTick(() => {
-      // Refresh AOS after rendering the component
-      this.$nextTick(() => {
-        this.$AOS.refresh()
-      })
-    })
-  },
-  methods: {
-    async getData() {
-      try {
-        const response = await fetch('https://api.coinpaprika.com/v1/tickers')
-        const data = await response.json()
-        return data
-      } catch (error) {
-        console.error('Error fetching cryptocurrency market data:', error)
-        return []
-      }
-    },
-    async populateTable() {
-      const marketData = await this.getData()
-      this.cryptocurrencies = marketData.slice(0, 5)
-      console.log(marketData.slice(0, 5))
-    },
-  },
+<script setup>
+import { ref, onMounted, nextTick, getCurrentInstance } from 'vue';
+import Navigation from '../Navigation.vue';
+
+const scrollToSection = (selector) => {
+  const element = document.querySelector(selector);
+  if (element) {
+    window.scrollTo({
+      top: element.offsetTop,
+      behavior: 'smooth',
+    });
+  }
+};
+
+const cryptocurrencies = ref([]);
+const { appContext } = getCurrentInstance();
+
+async function getData() {
+  try {
+    const response = await fetch('https://api.coinpaprika.com/v1/tickers');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching cryptocurrency market data:', error);
+    return [];
+  }
 }
+
+async function populateTable() {
+  const marketData = await getData();
+  cryptocurrencies.value = marketData.slice(0, 5);
+}
+
+onMounted(() => {
+  populateTable();
+  nextTick(() => {
+    // Refresh AOS after rendering the component
+    nextTick(() => {
+      appContext.provides.AOS.init();
+      appContext.provides.AOS.refresh();
+    });
+  });
+});
 </script>
+
 
 <style scoped>
 .material-symbols-outlined {
