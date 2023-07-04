@@ -13,7 +13,7 @@ const projectId = import.meta.env.VITE_PROJECT_ID;
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })])
 const wagmiConfig = createConfig({
   autoConnect: true,
-  connectors: w3mConnectors({ projectId, version: 1, chains }),
+  connectors: w3mConnectors({ projectId, version: 2, chains }),
   publicClient
 })
 const ethereumClient = new EthereumClient(wagmiConfig, chains)
@@ -47,7 +47,7 @@ export default {
       <h1> Custodian Wallet </h1>
         <div class="flex gap-10">
           <button class="p-2 bg-black rounded-md hover:scale-105" @click="toggle">Show Public Key</button>
-          <button class="p-2 bg-black rounded-md  btn hover:scale-105" @click="triggerSendEmail">Send Email</button>
+          <button class="p-2 bg-black rounded-md btn hover:scale-105" @click="triggerSendEmail">Send Email</button>
             <div v-if="showPublicKey">
               <span>Public Key: {{ publicKey }}</span>
             </div>

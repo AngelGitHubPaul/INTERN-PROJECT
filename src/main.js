@@ -8,6 +8,7 @@ import Wallet from './components/pages/Wallet.vue'
 import NftPage from './components/pages/NftPage.vue'
 import NotFoundPage from './components/pages/NotFoundPage.vue'
 import ClaimNftPage from './components/pages/ClaimNftPage.vue'
+import HowToImport from './components/pages/HowToImport.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import AOSPlugin from './aos-plugin';
 
@@ -31,6 +32,10 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     component: NotFoundPage,
+  },
+  {
+    path: '/howtoimport',
+    component: HowToImport,
   },
   {
     path: '/mintnft/claimnft',
@@ -81,5 +86,5 @@ const app = createApp(App)
 
 app.use(router);
 app.use(AOSPlugin);
-
+app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount('#app')

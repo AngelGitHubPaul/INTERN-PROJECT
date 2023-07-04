@@ -128,19 +128,17 @@
     </div>
     <div class="flex items-center justify-center mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f="">
-        <div data-v-9ee6238f="">
-          <button class="m-2 rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
+        <div data-v-9ee6238f="" class="flex items-stretch justify-center mx-auto h-full">
+          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white" data-v-9ee6238f="">
             What is NFT?
           </button>
-          <button class="m-2 rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
-            What is NFSpace?
-          </button>
+          <RouterLink to="/howtoimport" class="m-2 rounded-md bg-purple-500/50 w-52 text-white text-center px-4 py-2" data-v-9ee6238f="">How to import your minted NFT to your metamask wallet</RouterLink>
         </div>
-        <div data-v-9ee6238f="">
-          <button class="m-2 rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
+        <div data-v-9ee6238f="" class="flex items-stretch justify-center mx-auto h-full">
+          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white" data-v-9ee6238f="">
             How to Mint?
           </button>
-          <button class="m-2 rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
+          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white" data-v-9ee6238f="">
             How payments process?
           </button>
 

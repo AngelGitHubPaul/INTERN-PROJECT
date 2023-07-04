@@ -48,18 +48,8 @@ onMounted(async ()=>{
 
 async function mintNFT() {
   try {
-    if (isConnected) {
-      if (await contract.walletMints(userAddress) == 0) {
-        const transaction = await contract.safeMint(userAddress);
-        await transaction.wait();
-        getNftDetails();
-        console.log('NFT minted successfully!', 'Token Id: ' + tokenIdMinted);
-        isMinted.value = true;
-        openModal.value = true;
-      } else {
-        swal("This wallet has already minted a Fruity NFT", "", "warning");
-      }
-    } else {
+    openLoadingModal.value = true;
+    if (!isConnected) {
       swal("Connect your Metamask Wallet first!", "", "warning");
       loadingModalMessage.value = "Establishing Wallet Connection..."
       await signInToMetamask().then(async ()=>{
@@ -70,7 +60,7 @@ async function mintNFT() {
       })
       await mintNFT();
       return;
-    }
+    } 
     
     loadingModalMessage.value = "Validating Minting Info..."
     console.log(loadingModalMessage.value)
@@ -83,10 +73,11 @@ async function mintNFT() {
     const transaction = await contract.safeMint(userAddress);
     loadingModalMessage.value = "Minting..."
     await transaction.wait();
-    getNftDetails();
-    nftMinted(windows.location.search);
     console.log('NFT minted successfully!', 'Token Id: ' + mintedNftTokenId);
+    const router = useRouter();
+    nftMinted(router.currentRoute.value.meta.email);
     currentSupply.value = parseInt(await contract.currentSupply())
+    await getNftDetails();
     isMinted.value = true;
     openModal.value = true;
 
@@ -128,14 +119,13 @@ async function getNftDetails() {
     mintedNftDetails.value.image = xhr.response.image;
     mintedNftDetails.value.name = xhr.response.name;
     mintedNftDetails.value.description = xhr.response.description;
+    mintedNftDetails.value.id = mintedNftTokenId.value;
 
     console.log("Image Url >> " + mintedNftDetails.value.image)
     console.log("Fruity Name >> " + mintedNftDetails.value.name)
     console.log("Description >> " + mintedNftDetails.value.description)
     openModal.value = true;
   }
-  const router = useRouter();
-  nftMinted(router.currentRoute.value.meta.email);
   xhr.send();
 
   loadingModalMessage.value = "";
@@ -168,7 +158,7 @@ async function getNftDetails() {
           </button>
           <RouterLink v-else to="/">
             <div class="button">
-              <span class="button_lg">
+              <span class="button_lg text-center">
                 <span class="button_sl"></span>
                 <span class="button_text">Return to Homepage</span>
               </span>
