@@ -1,9 +1,9 @@
 <template>
   <header class="mt-20">
-    <nav class="z-50 flex items-center mx-auto fixed top-0 left-0 w-full px-2 py-1 bg-white shadow-sm">
+    <nav class="z-50 flex items-center mx-auto fixed top-0 left-0 w-full px-2 py-1 bg-gray-800 shadow-sm">
       <RouterLink to="/" class="flex items-center hover:bg-black/0">
         <img class="flex-shrink-0 w-16 cursor-pointer" src="../assets/Fruitie/1.png" alt="..." />
-        <div class="px-10">FRUITY NFT</div>
+        <div class="px-10 font-bold">FRUITY NFT</div>
       </RouterLink>
       <div :class="['nav-links', { 'top-[12%]': isMenuOpen }]"
         class="duration-500 md:static absolute ml-auto bg-black md:bg-transparent md:min-h-fit min-h-[85vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 z-50">
