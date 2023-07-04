@@ -16,4 +16,3 @@ export async function validateEmail(email) {
         console.log(error);
     }
 }
-
