@@ -4,6 +4,7 @@ const props = defineProps({
         name: String,
         description: String,
         image: String,
+        id: String,
     }
 });
 </script>
@@ -15,6 +16,7 @@ const props = defineProps({
             <p class="text-lg text-neutral-50 font-extrabold">{{ props.nftDetails.name }}</p>
             <p class="text-neutral-50 font-bold">Description:</p>
             <p class="text-center text-neutral-50 text-md">{{ props.nftDetails.description }}</p>
+            <p class="text-neutral-50 font-bold">Your Token Id: {{ props.nftDetails.id }}</p>
             <button class="p-3 font-bold text-neutral-200 bg-gray-800 rounded-xl" v-on:click="$emit('close')">Close</button>
         </div>
     </div>

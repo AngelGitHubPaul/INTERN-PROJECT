@@ -1,68 +1,67 @@
 <template>
- <body>
-  <section class="flex items-center w-screen h-screen">
-    <div class="flex flex-col items-center justify-center px-5 basis-1/2 first-letter:">
-      <div class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
-        <img src="../../assets/Fruitie/4.png" />
+  <body>
+    <section class="flex items-center w-screen h-screen">
+      <div class="flex flex-col items-center justify-center px-5 basis-1/2 first-letter:">
+        <div
+          class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
+          <img src="../../assets/Fruitie/4.png" />
+        </div>
+        <div class="py-5 text-3xl">Fruity NFT Claim</div>
+        <div>
+          <button class="button" @click="open = true">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Mint Now!</span>
+            </span>
+          </button>
+        </div>
       </div>
-      <div class="py-5 text-3xl">Fruity NFT Claim</div>
+
+      <div class="pr-16 basis-2/3">
+        <p class="text-2xl font-bold text-white ">
+          Thank you for visiting Fruity NFT! To access the minting page, please provide us with your email address. Once
+          you've submitted your email, we'll send you a link to the page. Please remember that only one email can be used
+          per mint. Kindly check your inbox after submitting your email. Happy Minting!.
+        </p>
+      </div>
+    </section>
+  </body>
+  <Teleport to="body">
+    <div v-if="open" class="modal">
       <div>
-        <button class="button" @click="open = true">
-      <span class="button_lg">
-          <span class="button_sl"></span>
-          <span class="button_text">Mint Now!</span>
-      </span>
-    </button>
-      </div>
-    </div>
-
-    <div class="pr-16 basis-2/3">
-      <p class="text-2xl font-bold text-white ">
-        Lorem ipum dolor sit amet, consectetur adipisicing elit. Cupiditate
-        aliquid veniam libero explicabo saepe recusandae eligendi? Ducimus
-        similique laboriosam iste maxime voluptatum perspiciatis suscipit
-        sapiente quidem minus, nobis et tempore corrupti saepe repudiandae earum
-        doloribus? Modi debitis corporis, qui illo voluptatem, temporibus
-        cupiditate et quam quaerat dignissimos voluptatibus, eum adipisci?
-      </p>
-    </div>
-  </section>
-</body>
-      <Teleport to="body">
-        <div v-if="open" class="modal">
-          <div>
-            <div class="flex flex-col items-center justify-center w-full h-full">
-              <input v-if="!isSubmitted" type="email" class="w-3/4 h-12 p-2 text-center bg-gray-600 input-field"  placeholder="Enter Email" required v-model="email">
-              <button class="submit_btn" @click="handleSubmit" :disabled="isLoading || isSubmitted || email === ''">
-              <span v-if="isLoading">
-                <i class="loading-icon"></i>
-              </span>
-              <span v-else-if="isSubmitted">
-                Submitted ✔
-              </span>
-              <span v-else>
-                Submit
-              </span>
-              </button>
-              <div v-if="showModal" class="modal-confirm">
-                <h2>{{ modalTitle }}</h2>
-                <p>{{ modalMessage }}</p>
-                <div class="option-btn">
-                <button @click="closeModal" class="ok">OK</button>
-                <button @click="handleCancel" class="cancel">Cancel</button>
-                </div>
-               </div>
-
-            </div>
-            <div class="close-btn" id="close_button">
-              <div id="translate"></div>
-            <span @click="open = false" class="close_btn">Close</span>
+        <div class="flex flex-col items-center justify-center w-full h-full">
+          <input v-if="!isSubmitted" type="email" class="w-3/4 h-12 p-2 text-center bg-gray-600 input-field"
+            placeholder="Enter Email" required v-model="email">
+          <button class="submit_btn" @click="handleSubmit" :disabled="isLoading || isSubmitted || email === ''">
+            <span v-if="isLoading">
+              <i class="loading-icon"></i>
+            </span>
+            <span v-else-if="isSubmitted">
+              Submitted ✔
+            </span>
+            <span v-else>
+              Submit
+            </span>
+          </button>
+          <div v-if="showModal" class="modal-confirm">
+            <h2>{{ modalTitle }}</h2>
+            <p>{{ modalMessage }}</p>
+            <div class="option-btn">
+              <button @click="closeModal" class="ok">OK</button>
+              <button @click="handleCancel" class="cancel">Cancel</button>
             </div>
           </div>
+          <!-- Display a message if email validation fails -->
+          <div v-if="emailInvalid" class="error-message">Invalid email address. Please enter a valid email.</div>
         </div>
-       
-      </Teleport>
+        <div class="close-btn" id="close_button">
+          <div id="translate"></div>
+          <span @click="open = false" class="close_btn">Close</span>
+        </div>
+      </div>
+    </div>
 
+  </Teleport>
 </template>
 
 <script>
@@ -78,21 +77,38 @@ export default {
       showModal: false,
       modalTitle: '',
       modalMessage: '',
+      emailInvalid: false,
     };
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       if (this.email === '') {
         return;
       }
-      validateEmail(this.email);
-      this.isLoading = true;
-      this.isSubmitted = false;
-
-      setTimeout(() => {
-        this.isLoading = false;
-        this.isSubmitted = true;
-      }, 2000);
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(this.email)) {
+        this.emailInvalid = true;
+        return;
+      }
+      this.emailInvalid = false;
+      try {
+        const isValidEmail = await validateEmail(this.email);
+        console.log(isValidEmail);
+        if (isValidEmail) {
+          this.isLoading = true;
+          this.isSubmitted = false;
+          setTimeout(() => {
+            this.isLoading = false;
+            this.isSubmitted = true;
+          }, 2000);
+          console.log('TRue');
+        } else {
+          this.isSubmitted = false;
+          console.log('false');
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 };
@@ -100,12 +116,12 @@ export default {
 </script>
 
 <style scoped>
-
 img {
   width: 300px;
   height: auto;
   padding: 5px;
 }
+
 .modal {
   position: fixed;
   top: 0;
@@ -118,7 +134,7 @@ img {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-confirm{
+.modal-confirm {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -130,14 +146,14 @@ img {
   color: white;
 }
 
-.modal-confirm .option-btn{
+.modal-confirm .option-btn {
   display: flex;
   margin-top: 100px;
   gap: 200px;
 
 }
 
-.modal-confirm .option-btn .ok{
+.modal-confirm .option-btn .ok {
   background-color: #2D3142;
   width: 5rem;
   padding: 5px;
@@ -145,14 +161,15 @@ img {
   border: solid 1px;
 }
 
-.modal-confirm .option-btn .cancel{
-  background-color:#ff4655;
+.modal-confirm .option-btn .cancel {
+  background-color: #ff4655;
   width: 5rem;
   padding: 5px;
   padding-top: 1px;
   border: solid 1px;
 }
-.modal > div {
+
+.modal>div {
   position: relative;
   padding: 20px;
   background-color: rgb(24, 34, 43);
@@ -170,9 +187,9 @@ img {
 }
 
 
-  /* Minting button css */
+/* Minting button css */
 
-  .button {
+.button {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -298,8 +315,8 @@ img {
 
 /* Submit button */
 
-.submit_btn{
-  margin-top: 10px ;
+.submit_btn {
+  margin-top: 10px;
   background-color: #ff4655;
   padding: 5px;
   width: 10rem;
@@ -319,20 +336,23 @@ img {
   direction: rtl;
   z-index: -1;
   box-shadow:
-   -7px -7px 20px 0px #fff9,
-   4px -4px 5px 0px #fff9,
-   7px 7px 20px 0px #0002,
-   4px 4px 5px 0px #0001;
+    -7px -7px 20px 0px #fff9,
+    4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001;
   transition: all 0.3s ease;
 }
+
 .submit_btn:hover {
   color: #000;
 }
+
 .submit_btn:hover:after {
   left: auto;
   right: 0;
   width: 100%;
 }
+
 .submit_btn:active {
   top: 2px;
 }
@@ -357,7 +377,9 @@ img {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* close button */
@@ -387,7 +409,7 @@ img {
   cursor: pointer;
   margin: 1rem;
   padding: 10px 35px;
-  color:white;
+  color: white;
   overflow: hidden;
 }
 
@@ -421,25 +443,26 @@ img {
 
 /* Bg css */
 
-body{
+body {
   position: relative;
-	background: linear-gradient(-45deg, #ff4848, #00000077, #04081f, #111d33);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	height: 100vh;
+  background: linear-gradient(-45deg, #ff4848, #00000077, #04081f, #111d33);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
   width: 100vw;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
+  0% {
+    background-position: 0% 50%;
+  }
 
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
 </style>

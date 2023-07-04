@@ -1,4 +1,5 @@
 <template>
+  <Navigation :scrollToSection="scrollToSection"></Navigation>
   <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="zoom-in" data-aos-duration="1000">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
       <div class="p-5">
@@ -49,8 +50,8 @@
       </div>
     </div>
   </section>
-  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-left" data-aos-duration="1000">
-    <div class="mx-auto" id="about">
+  <section id="about" class="py-16">
+    <div class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-left" data-aos-duration="1000">
       <div class="flex flex-col items-center align-middle gap-4 md:flex-row">
         <div class="flex flex-row items-center align-middle basis-1/2">
           <div class="flex flex-row justify-center gap-2 p-5 align-middle rounded-lg animate-pulse">
@@ -64,7 +65,7 @@
           <p class="text-2xl font-bold">What is Fruity?</p>
           <p class="mb-2 text-2xl"></p>
           <p class="mb-2">
-            Fruity are mysterious and rare fruits that grant unique and 
+            Fruity are mysterious and rare fruits that grant unique and
             supernatural powers to those who consumes.
           </p>
           <div class="grid grid-cols-1 lg:grid-cols-2">
@@ -120,26 +121,24 @@
   </section>
   <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="flip-up" data-aos-duration="1000">
     <div class="flex items-center justify-center mx-auto">
-      <p class="text-gray-700">About Us</p>
+      <!-- <p class="text-gray-700">About Us</p> -->
     </div>
     <div class="flex items-center justify-center mx-auto">
       <p class="mb-2 text-2xl font-bold" data-v-9ee6238f="">Frequently asked questions</p>
     </div>
     <div class="flex items-center justify-center mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f="">
-        <div data-v-9ee6238f="">
-          <button class="m-2 rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
+        <div data-v-9ee6238f="" class="flex items-stretch justify-center mx-auto h-full">
+          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-bold" data-v-9ee6238f="">
             What is NFT?
           </button>
-          <button class="m-2 rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
-            What is NFSpace?
-          </button>
+          <RouterLink to="/howtoimport" class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-semibold text-center px-4 py-2" data-v-9ee6238f="">How to import your minted NFT to your metamask wallet</RouterLink>
         </div>
-        <div data-v-9ee6238f="">
-          <button class="m-2 rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
+        <div data-v-9ee6238f="" class="flex items-stretch justify-center mx-auto h-full">
+          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-bold" data-v-9ee6238f="">
             How to Mint?
           </button>
-          <button class="m-2 rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
+          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-bold" data-v-9ee6238f="">
             How payments process?
           </button>
 
@@ -151,6 +150,17 @@
 
 <script setup>
 import { ref, onMounted, nextTick, getCurrentInstance } from 'vue';
+import Navigation from '../Navigation.vue';
+
+const scrollToSection = (selector) => {
+  const element = document.querySelector(selector);
+  if (element) {
+    window.scrollTo({
+      top: element.offsetTop,
+      behavior: 'smooth',
+    });
+  }
+};
 
 const cryptocurrencies = ref([]);
 const { appContext } = getCurrentInstance();
