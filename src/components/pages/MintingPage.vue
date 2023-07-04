@@ -98,10 +98,10 @@ export default {
             this.isLoading = false;
             this.isSubmitted = true;
           }, 2000);
-          console.log('TRue');
+          // console.log('TRue');
         } else {
           this.isSubmitted = false;
-          console.log('false');
+          // console.log('false');
         }
       } catch (error) {
         console.log(error);
