@@ -5,7 +5,7 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <main>
+  <main class="w-[100vw]">
     <Navigation />
     <RouterView />
     <Footer />

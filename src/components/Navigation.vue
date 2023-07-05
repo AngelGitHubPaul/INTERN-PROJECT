@@ -1,6 +1,6 @@
 <template>
   <header class="relative mt-20">
-    <nav class="fixed top-0 left-0 z-50 w-full">
+    <nav class="fixed top-0 left-0 z-50 w-[100vw]">
       <div class="z-50 flex items-center justify-between w-full h-20 px-2 py-1 mx-auto bg-gray-800 shadow-sm">
         <RouterLink to="/" class="flex items-center hover:bg-black/0">
           <img class="flex-shrink-0 w-16 cursor-pointer" src="../assets/Fruitie/1.png" alt="..." />
