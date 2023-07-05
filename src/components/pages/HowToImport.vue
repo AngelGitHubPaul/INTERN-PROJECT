@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-zinc-900 flex items-top justify-center px-4 sm:px-6 lg:px-8 py-14">
+    <div class="min-h-screen bg-zinc-900 flex items-top justify-center -mt-8 px-4 sm:px-6 lg:px-8 py-14">
         <div class="max-w-md w-full overflow-y-auto ">
             <div class="bg-gray-200 shadow-md rounded-md px-8 py-6">
                 <h2 class="text-xl font-bold mb-4 text-gray-800">How to Import Your NFT to Your MetaMask Wallet</h2>

@@ -63,7 +63,6 @@
         </div>
       </div>
     </div>
-
   </Teleport>
 </template>
 
@@ -121,14 +120,14 @@ export default {
             this.isLoading = false;
             this.isSubmitted = true;
           }, 2000);
-          console.log('TRue');
+          // console.log('TRue');
         } else {
           this.invalidMessage = "This email has already been used"
           setTimeout(()=>{
             this.invalidMessage = "";
           }, 3000)
           this.isSubmitted = false;
-          console.log('false');
+          // console.log('false');
         }
 
       } catch (error) {
@@ -477,13 +476,14 @@ img {
 
 /* Bg css */
 
-body {
+section {
   position: relative;
   background: linear-gradient(-45deg, #ff4848, #00000077, #04081f, #111d33);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   height: 100vh;
   width: 100vw;
+  margin-top: -8px;
 }
 
 @keyframes gradient {

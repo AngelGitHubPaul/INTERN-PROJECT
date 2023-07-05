@@ -23,7 +23,7 @@
         class="-top-40 absolute w-[100vw] p-5 transition-all duration-500 bg-gray-800 left-0 md:hidden -z-10">
         <ul class="flex md:flex-row flex-col md:items-center md:gap-[1vw] gap-8">
           <li>
-            <a class="px-6 py-3 rounded-lg cursor-pointer" @click="scrollToSection('#about')">About Us</a>
+            <a class="px-6 py-3 rounded-lg cursor-pointer" @click="scrollToSection('#about')" v-if="scrollToSection">About Us</a>
           </li>
           <li><w3m-core-button>Connect Wallet</w3m-core-button></li>
         </ul>
@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref, toRef, defineProps } from 'vue';
+import { ref, toRef } from 'vue';
 import { RouterLink } from 'vue-router'
 
 const isMenuOpen = ref(false);
