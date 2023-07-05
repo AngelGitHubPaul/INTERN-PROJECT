@@ -11,7 +11,6 @@ export async function validateEmail(Email) {
             await sendingEmail(Email);
             return true;
         } else {
-            alert("User has already minted once");
             return false;
         }
     } catch (error) {

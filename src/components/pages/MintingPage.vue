@@ -1,5 +1,6 @@
 <template>
-    <section class="flex items-center w-screen h-screen">
+  <body>
+    <section class="flex flex-col items-center w-screen h-screen md:flex-row">
       <div class="flex flex-col items-center justify-center px-5 basis-1/2 first-letter:">
         <div
           class="border-2 border-teal-400 rounded-md shadow-lg outline-black hover:shadow-2xl shadow-teal-950 bg-teal-400/50">
@@ -15,22 +16,27 @@
           </button>
         </div>
       </div>
-
-      <div class="pr-16 basis-2/3">
-        <p class="text-2xl font-bold text-white ">
+      <div class="md:pr-16 basis-2/3">
+        <p class="text-md md:text-2xl font-bold text-center text-white w-[100vw] md:w-full ">
           Thank you for visiting Fruity NFT! To access the minting page, please provide us with your email address. Once
           you've submitted your email, we'll send you a link to the page. Please remember that only one email can be used
           per mint. Kindly check your inbox after submitting your email. Happy Minting!.
         </p>
       </div>
     </section>
-  <Teleport to="section">
+  </body>
+  <Teleport to="body">
+    <div v-if="openLoadingModal" class="fixed top-0 left-0 w-[100vw] h-[100vh] flex flex-col items-center justify-center bg-black/60 z-10">
+      <font-awesome-icon icon="fa-solid fa-apple-whole" class="w-16 h-16" bounce style="color: #fff;" />
+      <p class="text-white">{{ this.loadingModalMessage }}</p>
+    </div>
     <div v-if="open" class="modal">
       <div>
-        <div class="flex flex-col items-center justify-center w-full h-full">
-          <input v-if="!isSubmitted" type="email" class="w-3/4 h-12 p-2 text-center bg-gray-600 input-field"
+        <form class="flex flex-col items-center justify-center w-full h-full" @submit.prevent="handleSubmit">
+          <input v-if="!isSubmitted" type="email" class="w-3/4 h-12 p-2 text-center bg-gray-600 focus:outline-gray-400 input-field"
             placeholder="Enter Email" required v-model="email">
-          <button class="submit_btn" @click="handleSubmit" :disabled="isLoading || isSubmitted || email === ''">
+          <div v-if="!!invalidMessage" class="text-red-500">{{ this.invalidMessage }}.</div>
+          <button type="submit" class="submit_btn" :disabled="isLoading || isSubmitted || email === ''">
             <span v-if="isLoading">
               <i class="loading-icon"></i>
             </span>
@@ -50,8 +56,7 @@
             </div>
           </div>
           <!-- Display a message if email validation fails -->
-          <div v-if="emailInvalid" class="error-message">Invalid email address. Please enter a valid email.</div>
-        </div>
+        </form>
         <div class="close-btn" id="close_button">
           <div id="translate"></div>
           <span @click="open = false" class="close_btn">Close</span>
@@ -63,6 +68,7 @@
 
 <script>
 import { validateEmail } from '../../api/email-validator/emailValidation';
+import swal from "sweetalert"
 
 export default {
   data() {
@@ -75,16 +81,32 @@ export default {
       modalTitle: '',
       modalMessage: '',
       emailInvalid: false,
+      invalidMessage: '',
+      openLoadingModal: false,
+      loadingModalMessage: 'Loading',
     };
   },
   methods: {
     async handleSubmit() {
+      this.openLoadingModal = true
+      this.loadingModalMessage = "Validating email address..."
       if (this.email === '') {
+        this.emailInvalid = true;
+        this.invalidMessage = "Email cannot be empty"
+        setTimeout(()=>{
+          this.invalidMessage = "";
+        }, 3000)
+        this.openLoadingModal = false;
         return;
       }
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(this.email)) {
         this.emailInvalid = true;
+        this.invalidMessage = "Invalid Email"
+        setTimeout(()=>{
+          this.invalidMessage = "";
+        }, 3000)
+        this.openLoadingModal = false;
         return;
       }
       this.emailInvalid = false;
@@ -100,12 +122,18 @@ export default {
           }, 2000);
           // console.log('TRue');
         } else {
+          this.invalidMessage = "This email has already been used"
+          setTimeout(()=>{
+            this.invalidMessage = "";
+          }, 3000)
           this.isSubmitted = false;
           // console.log('false');
         }
+
       } catch (error) {
         console.log(error);
       }
+      this.openLoadingModal = false;
     }
   }
 };
@@ -175,6 +203,14 @@ img {
   border: solid 1px;
   border-right: none;
   border-left: none;
+}
+
+
+
+@media (max-width: 768px) {
+  .modal>div{
+    width: 90vw;
+  }
 }
 
 .close_btn {

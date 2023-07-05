@@ -1,31 +1,32 @@
 <template>
-  <header class="mt-20">
-    <nav class="z-50 flex items-center mx-auto fixed top-0 left-0 w-full px-2 py-1 bg-gray-800 shadow-sm">
-      <RouterLink to="/" class="flex items-center hover:bg-black/0">
-        <img class="flex-shrink-0 w-16 cursor-pointer" src="../assets/Fruitie/1.png" alt="..." />
-        <div class="px-10 font-bold">FRUITY NFT</div>
-      </RouterLink>
-      <div :class="['nav-links', { 'top-[12%]': isMenuOpen }]"
-        class="duration-500 md:static absolute ml-auto bg-black md:bg-transparent md:min-h-fit min-h-[85vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 z-50">
+  <header class="relative mt-20">
+    <nav class="fixed top-0 left-0 z-50 w-[100vw]">
+      <div class="z-50 flex items-center justify-between w-full h-20 px-2 py-1 mx-auto bg-gray-800 shadow-sm">
+        <RouterLink to="/" class="flex items-center hover:bg-black/0">
+          <img class="flex-shrink-0 w-16 cursor-pointer" src="../assets/Fruitie/1.png" alt="..." />
+          <div class="px-10 font-bold">FRUITY NFT</div>
+        </RouterLink>
+        <div class="hidden md:flex static ml-auto bg-transparent min-h-fit left-0 top-[-100%] w-auto items-center px-5">
+          <ul class="flex md:flex-row flex-col md:items-center md:gap-[1vw] gap-8">
+            <li>
+              <a class="px-6 py-3 rounded-lg cursor-pointer" @click="scrollToSection('#about')">About Us</a>
+            </li>   
+            <li><w3m-core-button>Connect Wallet</w3m-core-button></li>
+          </ul>
+        </div>
+        <button class="flex items-center gap-6" @click="toggleMenu">
+          <ion-icon :name="isMenuOpen ? 'close' : 'menu'"
+          class="z-50 text-3xl cursor-pointer md:hidden"></ion-icon>
+        </button>
+      </div>
+      <div :class="{ 'translate-y-[231px]': isMenuOpen,}"
+        class="-top-40 absolute w-[100vw] p-5 transition-all duration-500 bg-gray-800 left-0 md:hidden -z-10">
         <ul class="flex md:flex-row flex-col md:items-center md:gap-[1vw] gap-8">
-          <!--<li>
-            <RouterLink to="/claimnft" class="button">Trade</RouterLink>
-          </li>  
-          <li>
-            <RouterLink to="/mintnft" class="button">MINT</RouterLink>
-          </li> 
-          <li>
-            <RouterLink to="/wallet" class="button">Wallet</RouterLink>
-          </li> -->
           <li>
             <a class="px-6 py-3 rounded-lg cursor-pointer" @click="scrollToSection('#about')" v-if="scrollToSection">About Us</a>
           </li>
           <li><w3m-core-button>Connect Wallet</w3m-core-button></li>
         </ul>
-      </div>
-      <div class="flex items-center gap-6">
-        <ion-icon @click="toggleMenu" :name="isMenuOpen ? 'close' : 'menu'"
-          class="text-3xl z-50 cursor-pointer md:hidden"></ion-icon>
       </div>
     </nav>
   </header>

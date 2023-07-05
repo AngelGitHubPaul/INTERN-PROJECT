@@ -1,12 +1,12 @@
 <template>
   <Navigation :scrollToSection="scrollToSection"></Navigation>
-  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="zoom-in" data-aos-duration="1000">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20">
+  <section class="max-w-[100vw] h-full px-10 md:px-28 lg:py-10" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="grid max-w-full grid-cols-1 md:grid-cols-2 gap-x-20">
       <div class="p-5">
-        <h1 class="pb-10 text-5xl md:text-6xl font-extrabold">Fruity NFT</h1>
-        <h2 class=" text-5xl md:text-4xl font-bold">Discover,</h2>
-        <p class="pb-0 text-5xl md:text-3xl font-bold">collect, and sell</p>
-        <p class="pb-8 text-5xl md:text-3xl font-bold"> extraordinary NFTs</p>
+        <h1 class="pb-10 text-5xl font-extrabold md:text-6xl">Fruity NFT</h1>
+        <h2 class="text-5xl font-bold md:text-4xl">Discover,</h2>
+        <p class="pb-0 text-5xl font-bold md:text-3xl">collect, and sell</p>
+        <p class="pb-8 text-5xl font-bold md:text-3xl"> extraordinary NFTs</p>
         <p class="pb-8 ">The largest and unique Super rare NFT marketplace For Crypto-collectibles</p>
         <div class="flex justify-center text-center">
           <RouterLink to="/mintnft"
@@ -22,7 +22,7 @@
       </div>
     </div>
   </section>
-  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-right" data-aos-duration="1000">
+  <section class="max-w-[100vw] h-full px-10 md:px-28 lg:py-10" data-aos="fade-right" data-aos-duration="1000">
     <div class="flex flex-col align-middle rounded-lg md:flex-row bg-purple-500/40">
       <div class="flex-row p-10 basis-1/3">
         <span class="float-left px-2 material-symbols-outlined">
@@ -51,8 +51,8 @@
     </div>
   </section>
   <section id="about" class="py-16">
-    <div class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-left" data-aos-duration="1000">
-      <div class="flex flex-col items-center align-middle gap-4 md:flex-row">
+    <div class="max-w-[100vw] h-full px-10 md:px-28 lg:py-10" data-aos="fade-left" data-aos-duration="1000">
+      <div class="flex flex-col items-center gap-4 align-middle md:flex-row">
         <div class="flex flex-row items-center align-middle basis-1/2">
           <div class="flex flex-row justify-center gap-2 p-5 align-middle rounded-lg animate-pulse">
             <img src="../../assets/Fruitie/1.png" class="w-24 rounded-full lg:w-36 md:w-28" />
@@ -60,7 +60,7 @@
             <img src="../../assets/Fruitie/3.png" class="w-24 rounded-full lg:w-36 md:w-28" />
           </div>
         </div>
-        <div class=" flex-row basis-1/2">
+        <div class="flex-row basis-1/2">
           <h1 class="flex justify-center mb-5 text-4xl font-bold">About US</h1>
           <p class="text-2xl font-bold">What is Fruity?</p>
           <p class="mb-2 text-2xl"></p>
@@ -90,16 +90,16 @@
       </div>
     </div>
   </section>
-  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="fade-up" data-aos-duration="1000">
+  <section class="max-w-[100vw] h-full px-10 md:px-28 lg:py-10" data-aos="fade-up" data-aos-duration="1000">
     <h1 class="flex justify-center mb-5 text-4xl font-bold">Market Trend</h1>
     <div class="flex justify-center mb-5 overflow-x-auto">
       <table class="min-w-full border border-collapse border-gray-300 table-auto bg-purple-500/50">
         <thead>
           <tr>
-            <th class="px-4 py-2 text-center font-bold">Symbol</th>
-            <th class="px-4 py-2 text-center font-bold">Price</th>
-            <th class="px-4 py-2 text-center font-bold">Market Cap</th>
-            <th class="px-4 py-2 text-center font-bold">24h Change</th>
+            <th class="px-4 py-2 font-bold text-center">Symbol</th>
+            <th class="px-4 py-2 font-bold text-center">Price</th>
+            <th class="px-4 py-2 font-bold text-center">Market Cap</th>
+            <th class="px-4 py-2 font-bold text-center">24h Change</th>
           </tr>
         </thead>
         <tbody>
@@ -119,31 +119,28 @@
       </table>
     </div>
   </section>
-  <section class="w-full h-full px-10 md:px-28 lg:py-10" data-aos="flip-up" data-aos-duration="1000">
-    <div class="flex items-center justify-center mx-auto">
-      <!-- <p class="text-gray-700">About Us</p> -->
-    </div>
+  <section class="max-w-[100vw] h-full px-10 md:px-28 lg:py-10" data-aos="flip-up" data-aos-duration="1000">
     <div class="flex items-center justify-center mx-auto">
       <p class="mb-2 text-2xl font-bold" data-v-9ee6238f="">Frequently asked questions</p>
     </div>
-    <div class="flex items-center justify-center mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2" data-v-9ee6238f="">
-        <div data-v-9ee6238f="" class="flex items-stretch justify-center mx-auto h-full">
-          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-bold" data-v-9ee6238f="">
-            What is NFT?
-          </button>
-          <RouterLink to="/howtoimport" class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-semibold text-center px-4 py-2" data-v-9ee6238f="">How to import your minted NFT to your metamask wallet</RouterLink>
-        </div>
-        <div data-v-9ee6238f="" class="flex items-stretch justify-center mx-auto h-full">
-          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-bold" data-v-9ee6238f="">
-            How to Mint?
-          </button>
-          <button class="m-2 rounded-md bg-purple-500/50 w-52 text-white font-bold" data-v-9ee6238f="">
-            How payments process?
-          </button>
+    <div class="flex flex-col items-center w-full h-[80%] mx-auto md:flex-row" data-v-9ee6238f="">
+      <!-- <div class="grid grid-cols-1 md:grid-cols-2" data-v-9ee6238f=""> -->
+        <button class="flex items-center justify-center md:min-h-full min-h-[75px] m-2 font-bold text-white rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
+          What is NFT?
+        </button>
+        <RouterLink to="/howtoimport" class="flex items-center justify-center md:min-h-full min-h-[75px] px-4 py-2 m-2 font-semibold text-center text-white rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">How to import your minted NFT to your metamask wallet</RouterLink>
+        <!-- <div data-v-9ee6238f="" class="flex items-stretch justify-center h-full mx-auto">
+        </div> -->
+        <button class="flex items-center justify-center md:min-h-full min-h-[75px] m-2 font-bold text-white rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
+          How to Mint?
+        </button>
+        <button class="flex items-center justify-center md:min-h-full min-h-[75px] m-2 font-bold text-white rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
+          How payments process?
+        </button>
+        <!-- <div data-v-9ee6238f="" class="flex items-center justify-center h-full mx-auto">
 
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
     </div>
   </section>
 </template>
