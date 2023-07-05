@@ -1,5 +1,4 @@
 import { fetchEmail, saveEmail, sendingEmail } from '../getAxios.js';
-
 // function to validate if the email input of client has already minted on the site or not
 export async function validateEmail(email) {
     try {
@@ -9,7 +8,6 @@ export async function validateEmail(email) {
             await sendingEmail(email);
             return true;
         } else {
-            alert("User has already minted once");
             return false;
         }
     } catch (error) {
