@@ -9,6 +9,7 @@ import NftPage from './components/pages/NftPage.vue'
 import NotFoundPage from './components/pages/NotFoundPage.vue'
 import ClaimNftPage from './components/pages/ClaimNftPage.vue'
 import HowToImport from './components/pages/HowToImport.vue'
+import WhatIsNFT from './components/pages/WhatIsNFT.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import AOSPlugin from './aos-plugin';
 
@@ -36,6 +37,10 @@ const routes = [
   {
     path: '/howtoimport',
     component: HowToImport,
+  },
+  {
+    path: '/whatisnft',
+    component: WhatIsNFT,
   },
   {
     path: '/mintnft/claimnft',
