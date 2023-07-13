@@ -62,8 +62,12 @@ async function mintNFT() {
       return;
     } 
     
+    loadingModalMessage.value = "Checking Fruity NFT Supply`..."
+    if(currentSupply.value >= maxSupply.value){
+      swal("Max Fruity NFT supply has been reached", "", "warning");
+      return;
+    }
     loadingModalMessage.value = "Validating Minting Info..."
-    console.log(loadingModalMessage.value)
     if (isMinted.value && getTokenIdMinted(userAddress)) {
       swal("This wallet has already minted a Fruity NFT", "", "warning");
       return;
@@ -158,7 +162,7 @@ async function getNftDetails() {
           </button>
           <RouterLink v-else to="/">
             <div class="button">
-              <span class="button_lg text-center">
+              <span class="text-center button_lg">
                 <span class="button_sl"></span>
                 <span class="button_text">Return to Homepage</span>
               </span>
@@ -173,7 +177,7 @@ async function getNftDetails() {
           </button>
         </div>
         <div v-if="openModal == true"
-          class="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center bg-black/60 z-10">
+          class="fixed top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center bg-black/60 z-50">
           <NftDetailsModal v-bind:nftDetails="mintedNftDetails" v-on:close="()=>openModal = false"/>
         </div>
       </div>
