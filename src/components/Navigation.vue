@@ -9,7 +9,7 @@
         <div class="hidden md:flex static ml-auto bg-transparent min-h-fit left-0 top-[-100%] w-auto items-center px-5">
           <ul class="flex md:flex-row flex-col md:items-center md:gap-[1vw] gap-8">
             <li>
-              <a class="px-6 py-3 rounded-lg cursor-pointer" @click="scrollToSection('#about')">About Us</a>
+              <a class="px-6 py-3 rounded-lg cursor-pointer" @click="scrollToSection('#about')" v-if="scrollToSection">About Us</a>
             </li>   
             <li><w3m-core-button>Connect Wallet</w3m-core-button></li>
           </ul>
