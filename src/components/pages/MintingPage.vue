@@ -1,5 +1,4 @@
 <template>
-  <body>
     <section class="flex flex-col items-center w-screen h-screen md:flex-row">
       <div class="flex flex-col items-center justify-center px-5 basis-1/2 first-letter:">
         <div
@@ -24,8 +23,7 @@
         </p>
       </div>
     </section>
-  </body>
-  <Teleport to="body">
+  <Teleport to="section">
     <div v-if="openLoadingModal" class="fixed top-0 left-0 w-[100vw] h-[100vh] flex flex-col items-center justify-center bg-black/60 z-10">
       <font-awesome-icon icon="fa-solid fa-apple-whole" class="w-16 h-16" bounce style="color: #fff;" />
       <p class="text-white">{{ this.loadingModalMessage }}</p>
@@ -63,13 +61,11 @@
         </div>
       </div>
     </div>
-
   </Teleport>
 </template>
 
 <script>
 import { validateEmail } from '../../api/email-validator/emailValidation';
-import swal from "sweetalert"
 
 export default {
   data() {
@@ -121,14 +117,14 @@ export default {
             this.isLoading = false;
             this.isSubmitted = true;
           }, 2000);
-          console.log('TRue');
+          // console.log('TRue');
         } else {
           this.invalidMessage = "This email has already been used"
           setTimeout(()=>{
             this.invalidMessage = "";
           }, 3000)
           this.isSubmitted = false;
-          console.log('false');
+          // console.log('false');
         }
 
       } catch (error) {
@@ -477,13 +473,14 @@ img {
 
 /* Bg css */
 
-body {
+section {
   position: relative;
   background: linear-gradient(-45deg, #ff4848, #00000077, #04081f, #111d33);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   height: 100vh;
   width: 100vw;
+  margin-top: -8px;
 }
 
 @keyframes gradient {

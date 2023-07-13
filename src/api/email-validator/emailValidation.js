@@ -1,11 +1,14 @@
 import { fetchEmail, saveEmail, sendingEmail } from '../getAxios.js';
+import { SHA256 } from 'crypto-js';
+
 // function to validate if the email input of client has already minted on the site or not
-export async function validateEmail(email) {
+export async function validateEmail(Email) {
     try {
-        const emailData = await fetchEmail(email);
-        if (emailData.length === 0 || emailData[0].email !== email) {
-            await saveEmail(email);
-            await sendingEmail(email);
+        const hashEmail = SHA256(Email).toString();
+        const emailData = await fetchEmail(hashEmail);
+        if (emailData.length === 0 || emailData[0].email !== hashEmail) {
+            await saveEmail(hashEmail);
+            await sendingEmail(Email);
             return true;
         } else {
             return false;
@@ -14,4 +17,3 @@ export async function validateEmail(email) {
         console.log(error);
     }
 }
-
