@@ -123,11 +123,9 @@
     <div class="flex items-center justify-center mx-auto">
       <p class="mb-2 text-2xl font-bold" data-v-9ee6238f="">Frequently asked questions</p>
     </div>
-    <div class="flex flex-col items-center w-full h-[80%] mx-auto md:flex-row" data-v-9ee6238f="">
+    <div class="flex flex-col items-center md:justify-center w-full h-[80%] mx-auto md:flex-row" data-v-9ee6238f="">
       <!-- <div class="grid grid-cols-1 md:grid-cols-2" data-v-9ee6238f=""> -->
-        <button class="flex items-center justify-center md:min-h-full min-h-[75px] m-2 font-bold text-white rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">
-          What is NFT?
-        </button>
+        <RouterLink to="/whatisnft" class="flex items-center justify-center md:min-h-full min-h-[75px] px-4 py-2 m-2 font-semibold text-center text-white rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">What is NFT?</RouterLink>
         <RouterLink to="/howtoimport" class="flex items-center justify-center md:min-h-full min-h-[75px] px-4 py-2 m-2 font-semibold text-center text-white rounded-md bg-purple-500/50 w-52" data-v-9ee6238f="">How to import your minted NFT to your metamask wallet</RouterLink>
         <!-- <div data-v-9ee6238f="" class="flex items-stretch justify-center h-full mx-auto">
         </div> -->
