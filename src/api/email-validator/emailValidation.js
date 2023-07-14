@@ -10,6 +10,11 @@ export async function validateEmail(Email) {
             await saveEmail(hashEmail);
             await sendingEmail(Email);
             return true;
+        } else if(emailData[0].claimed == false) {
+            await sendingEmail(Email);
+            return true;
+        } else if(emailData[0].claimed == true) {
+            return false;
         } else {
             return false;
         }
