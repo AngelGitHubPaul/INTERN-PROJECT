@@ -49,6 +49,13 @@ const routes = [
     beforeEnter: async (to, from) => {
       try {
         const email = to.query.email;
+        
+        if (email == undefined) {
+          console.error('Authentication error');
+          router.replace('/NotFoundPage');
+          return;
+        }
+        
         const response = await axios.get('https://the-intern-project.vercel.app/api/authenticate', {
           params: {
             email: email
